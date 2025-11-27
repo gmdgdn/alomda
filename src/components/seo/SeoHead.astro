@@ -36,23 +36,33 @@ let description = propDescription;
 
 // --- OG Image Logic (Robust with Fallback) ---
 
-// 1. Define the Site URL (Handle Localhost vs Production)
+// 1. Define the Site URL
 const ogSiteUrl = Astro.site ? Astro.site.href : "https://elomda-sa.com";
 
-// 2. Construct the Dynamic Image URL
-// Logic: Use the path to construct OG image URL
-const path = Astro.url.pathname.replace(/^\/|\/$/g, "") || "index";
-const dynamicOgUrl = new URL(`/og/${path}.png`, ogSiteUrl).href;
+// 2. Define Static Branded Images
+const ogWideStatic = new URL("/og-wide.jpg", ogSiteUrl).href;
+const ogSquareStatic = new URL("/og-square.jpg", ogSiteUrl).href;
 
-// 3. Select the Final Image (Override -> Dynamic)
-const defaultFallback = new URL("/default-og.png", ogSiteUrl).href;
-let image: string;
+// 3. Determine Primary Image
+let primaryImage = ogWideStatic; // Default to branded wide image
+let isStatic = true;
 
 if (propImage) {
-  image = new URL(propImage, ogSiteUrl).href;
+  // Manual override
+  primaryImage = new URL(propImage, ogSiteUrl).href;
+  isStatic = false;
+} else if (Astro.url.pathname === "/" || Astro.url.pathname === "") {
+  // Homepage: ALWAYS use static branded images
+  primaryImage = ogWideStatic;
+  isStatic = true;
 } else {
-  // Use dynamic OG image
-  image = dynamicOgUrl;
+  // Inner Pages: Try Dynamic, but we can't easily check if it exists during build in SSG without complexity.
+  // For now, we assume dynamic generation works for districts/services.
+  // However, if you want to force static for everything, change this.
+  // We will use dynamic for districts/services to keep the "Buying in Al-Malqa" value.
+  const path = Astro.url.pathname.replace(/^\/|\/$/g, "");
+  primaryImage = new URL(`/og/${path}.png`, ogSiteUrl).href;
+  isStatic = false;
 }
 
 if (district) {
@@ -157,7 +167,7 @@ if (Astro.url.pathname === "/") {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "العمدة لشراء الاثاث المستعمل بالرياض",
-    image: `${siteUrl}og-image.jpg`,
+    image: ogWideStatic,
     telephone: `+${SITE_CONFIG.whatsapp}`,
     address: {
       "@type": "PostalAddress",
@@ -198,7 +208,7 @@ if (district) {
     provider: {
       "@type": "LocalBusiness",
       name: "العمدة لشراء الاثاث المستعمل",
-      image: `${siteUrl}og-image.jpg`,
+      image: ogWideStatic,
       telephone: `+${SITE_CONFIG.whatsapp}`,
       priceRange: "$$",
     },
@@ -237,7 +247,7 @@ if (service) {
     provider: {
       "@type": "LocalBusiness",
       name: "العمدة لشراء الاثاث المستعمل",
-      image: `${siteUrl}og-image.jpg`,
+      image: ogWideStatic,
       telephone: `+${SITE_CONFIG.whatsapp}`,
       priceRange: service.priceRange || "$$",
     },
@@ -297,14 +307,31 @@ if (service) {
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+
+{/* Primary Wide Image (Facebook, X, LinkedIn Post) */}
+<meta property="og:image" content={primaryImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+{
+  /* Secondary Square Image (WhatsApp, LinkedIn Profile) - Only if using static branding */
+}
+{
+  isStatic && (
+    <>
+      <meta property="og:image" content={ogSquareStatic} />
+      <meta property="og:image:width" content="600" />
+      <meta property="og:image:height" content="600" />
+    </>
+  )
+}
 
 {/* Twitter */}
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta property="twitter:image" content={primaryImage} />
 
 {/* Sitemap */}
 <link rel="sitemap" href="/sitemap-index.xml" />
