@@ -1,0 +1,87 @@
+---
+import { DISTRICTS } from "../../data/districts";
+
+interface Props {
+  serviceTitle: string;
+  serviceSlug?: string;
+}
+
+const { serviceTitle, serviceSlug } = Astro.props;
+
+// Filter districts based on service type (Seller Persona Strategy)
+let filteredDistricts = DISTRICTS;
+
+if (serviceSlug === "villa-furniture") {
+  // Targets VIPs/North Riyadh (High Margin)
+  filteredDistricts = DISTRICTS.filter((d) => d.region === "North");
+} else if (serviceSlug === "used-office-furniture") {
+  // Targets B2B/Companies closing down (Bulk/High Cash)
+  // Link to Olaya, Murabba, and Commercial areas
+  const commercialSlugs = ["al-olaya", "al-murabba", "al-aqiq", "al-sahafa"];
+  filteredDistricts = DISTRICTS.filter(
+    (d) => commercialSlugs.includes(d.slug) || d.region === "Central",
+  );
+} else if (serviceSlug === "used-majlis") {
+  // Targets local Saudi families (Volume)
+  // Link to East and West Riyadh (High density family areas)
+  filteredDistricts = DISTRICTS.filter(
+    (d) => d.region === "East" || d.region === "West",
+  );
+} else if (serviceSlug === "general-furniture") {
+  // General furniture - prioritize high density residential
+  filteredDistricts = DISTRICTS.filter(
+    (d) => d.housing === "Apartments" || d.vibe === "Family",
+  );
+}
+
+// Get top districts (first 12)
+const topDistricts = filteredDistricts.slice(0, 12);
+---
+
+<section class="py-12 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-bold text-center mb-8 text-gray-900">
+      نشتري {serviceTitle} في جميع أحياء الرياض
+    </h2>
+    <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+      سياراتنا مجهزة لنقل {serviceTitle} من جميع المناطق. سواء كنت في الشمال أو الجنوب،
+      نصل إليك فوراً.
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {
+        topDistricts.map((district) => (
+          <a
+            href={`/riyadh/${district.slug}`}
+            class="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-100 text-gray-700 hover:text-primary-600 hover:border-primary-100"
+          >
+            <span class="text-sm font-medium">
+              بيع {serviceTitle} في {district.nameAr}
+            </span>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="mt-8 text-center">
+      <a
+        href="/riyadh"
+        class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium"
+      >
+        عرض جميع الأحياء
+        <svg
+          class="w-4 h-4 mr-1 rotate-180"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

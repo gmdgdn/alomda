@@ -1,0 +1,217 @@
+---
+import Container from "./ui/Container.astro";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Facebook,
+  Twitter,
+  Instagram,
+} from "lucide-react";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  class="bg-slate-900 text-slate-300 pt-16 pb-8 border-t border-slate-800"
+>
+  <Container>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+      {/* Column 1: About */}
+      <div class="space-y-6">
+        <div class="flex items-center gap-2">
+          <div
+            class="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg"
+          >
+            ال
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-bold text-white leading-none">العمدة</span
+            >
+            <span class="text-sm text-emerald-500 font-medium leading-none"
+              >لشراء الاثاث</span
+            >
+          </div>
+        </div>
+        <p class="text-slate-400 leading-relaxed">
+          شركة العمدة هي الشركة الرائدة في الرياض. نتميز عن غيرنا بالمصداقية
+          (الأمانة) والسرعة (الإنجاز). لا نكسر الأسعار ولا نتأخر في المواعيد.
+        </p>
+        <div class="flex gap-4">
+          <a
+            href="#"
+            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all"
+          >
+            <Facebook className="w-5 h-5" />
+          </a>
+          <a
+            href="#"
+            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all"
+          >
+            <Twitter className="w-5 h-5" />
+          </a>
+          <a
+            href="#"
+            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all"
+          >
+            <Instagram className="w-5 h-5" />
+          </a>
+        </div>
+      </div>
+
+      {/* Column 2: Quick Links */}
+      <div>
+        <h3 class="text-white font-bold text-lg mb-6 relative inline-block">
+          روابط سريعة
+          <span
+            class="absolute -bottom-2 right-0 w-12 h-1 bg-emerald-500 rounded-full"
+          ></span>
+        </h3>
+        <ul class="space-y-4">
+          <li>
+            <a
+              href="/"
+              class="hover:text-emerald-400 transition-colors flex items-center gap-2"
+              ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"
+              ></span>الرئيسية</a>
+          </li>
+          <li>
+            <a
+              href="/blog"
+              class="hover:text-emerald-400 transition-colors flex items-center gap-2"
+              ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"
+              ></span>المدونة</a>
+          </li>
+          <li>
+            <a
+              href="/privacy"
+              class="hover:text-emerald-400 transition-colors flex items-center gap-2"
+              ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"
+              ></span>سياسة الخصوصية</a>
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="hover:text-emerald-400 transition-colors flex items-center gap-2"
+              ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>اتصل
+              بنا</a>
+          </li>
+        </ul>
+      </div>
+
+      {/* Column 3: Services */}
+      <div>
+        <h3 class="text-white font-bold text-lg mb-6 relative inline-block">
+          خدماتنا
+          <span
+            class="absolute -bottom-2 right-0 w-12 h-1 bg-emerald-500 rounded-full"
+          ></span>
+        </h3>
+        <ul class="space-y-4">
+          <li>
+            <a
+              href="/services/used-acs"
+              class="hover:text-emerald-400 transition-colors flex items-center gap-2"
+              ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>شراء
+              مكيفات مستعملة</a>
+          </li>
+          <li>
+            <a
+              href="/services/used-bedrooms"
+              class="hover:text-emerald-400 transition-colors flex items-center gap-2"
+              ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>شراء
+              غرف نوم</a>
+          </li>
+          <li>
+            <a
+              href="/services/used-kitchens"
+              class="hover:text-emerald-400 transition-colors flex items-center gap-2"
+              ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>شراء
+              مطابخ مستعملة</a>
+          </li>
+          <li>
+            <a
+              href="/services/used-majlis"
+              class="hover:text-emerald-400 transition-colors flex items-center gap-2"
+              ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>شراء
+              مجالس عربية</a>
+          </li>
+          <li>
+            <a
+              href="/services/used-office-furniture"
+              class="hover:text-emerald-400 transition-colors flex items-center gap-2"
+              ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>شراء
+              اثاث مكتبي</a>
+          </li>
+          <li>
+            <a
+              href="/services/villa-furniture"
+              class="hover:text-emerald-400 transition-colors flex items-center gap-2"
+              ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>شراء
+              اثاث فلل</a>
+          </li>
+          <li>
+            <a
+              href="/services/general-furniture"
+              class="hover:text-emerald-400 transition-colors flex items-center gap-2"
+              ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>شراء
+              اثاث منزلي</a>
+          </li>
+          <li>
+            <a
+              href="/services/furniture-moving"
+              class="hover:text-emerald-400 transition-colors flex items-center gap-2"
+              ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>نقل
+              عفش بالرياض</a>
+          </li>
+        </ul>
+      </div>
+
+      {/* Column 4: Top Areas (SEO) */}
+      <div>
+        <h3 class="text-white font-bold text-lg mb-6 relative inline-block">
+          مناطق الخدمة
+          <span
+            class="absolute -bottom-2 right-0 w-12 h-1 bg-emerald-500 rounded-full"
+          ></span>
+        </h3>
+        <div class="grid grid-cols-1 gap-3">
+          <a
+            href="/north-riyadh/al-malqa"
+            class="text-sm text-slate-400 hover:text-emerald-400 transition-colors border-b border-slate-800 pb-2"
+            >شراء اثاث في الملقا</a
+          >
+          <a
+            href="/north-riyadh/al-yasmine"
+            class="text-sm text-slate-400 hover:text-emerald-400 transition-colors border-b border-slate-800 pb-2"
+            >شراء اثاث في الياسمين</a
+          >
+          <a
+            href="/east-riyadh/al-naseem"
+            class="text-sm text-slate-400 hover:text-emerald-400 transition-colors border-b border-slate-800 pb-2"
+            >شراء اثاث في النسيم</a
+          >
+          <a
+            href="/south-riyadh/al-aziziyah"
+            class="text-sm text-slate-400 hover:text-emerald-400 transition-colors border-b border-slate-800 pb-2"
+            >شراء اثاث في العزيزية</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="border-t border-slate-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4"
+    >
+      <p class="text-slate-500 text-sm">
+        © {currentYear} شركة العمدة. جميع الحقوق محفوظة.
+      </p>
+      <div class="flex items-center gap-6 text-sm text-slate-500">
+        <div class="flex items-center gap-2">
+          <MapPin className="w-4 h-4" />
+          <span>الرياض، المملكة العربية السعودية</span>
+        </div>
+      </div>
+    </div>
+  </Container>
+</footer>

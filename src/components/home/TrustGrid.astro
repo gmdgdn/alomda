@@ -1,0 +1,43 @@
+---
+import Container from '../ui/Container.astro';
+import { Banknote, Truck, Clock, ShieldCheck } from 'lucide-react';
+
+const features = [
+  {
+    icon: Banknote,
+    title: 'دفع فوري كاش',
+    description: 'نستلم الاثاث ونسلمك المبلغ فوراً نقداً أو تحويل بنكي'
+  },
+  {
+    icon: Truck,
+    title: 'نقل مجاني',
+    description: 'نتكفل بفك ونقل الاثاث مجاناً دون أي تكلفة عليك'
+  },
+  {
+    icon: Clock,
+    title: 'وصول سريع',
+    description: 'نصل إليك في أي مكان بالرياض خلال 60 دقيقة'
+  },
+  {
+    icon: ShieldCheck,
+    title: 'خدمة موثوقة',
+    description: 'فريق محترف وأسعار عادلة ترضي جميع الأطراف'
+  }
+];
+---
+
+<section class="bg-white py-16 relative z-10">
+  <Container>
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {features.map((feature) => (
+        <div class="group flex flex-col items-center text-center p-6 rounded-2xl bg-white border border-slate-100 shadow-lg shadow-slate-200/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-emerald-900/5 hover:border-emerald-100">
+          <div class="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
+            <feature.icon className="h-10 w-10" />
+          </div>
+          <h3 class="mb-3 text-xl font-bold text-slate-900 group-hover:text-emerald-800 transition-colors">{feature.title}</h3>
+          <p class="text-slate-600 leading-relaxed">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,319 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/ui/Container.astro";
+import SeoHead from "../../components/seo/SeoHead.astro";
+import NearbyDistricts from "../../components/NearbyDistricts.astro";
+import { DISTRICTS, SERVICES } from "../../data/seo-data";
+import {
+  MessageCircle,
+  Phone,
+  MapPin,
+  CheckCircle,
+  Clock,
+  Truck,
+} from "lucide-react";
+
+export async function getStaticPaths() {
+  return DISTRICTS.map((district) => ({
+    params: {
+      region: district.region.toLowerCase(),
+      district: district.slug,
+    },
+    props: { district },
+  }));
+}
+
+const { district } = Astro.props;
+
+// --- GEO Content Logic ---
+
+// H1 Synonyms Rotation
+const buyingSynonyms = ["شراء", "نشتري", "حقين", "محلات شراء"];
+const randomSynonym =
+  buyingSynonyms[Math.floor(Math.random() * buyingSynonyms.length)];
+const h1Title = `${randomSynonym} اثاث مستعمل في ${district.nameAr} - خدمة ${district.urgencyTrigger}`;
+
+// Context Intro Logic
+const isHighEnd = district.socioEconomic === "High";
+const isIndustrial = district.socioEconomic === "Industrial";
+
+const introText = isHighEnd
+  ? `هل تبحث عن شركة تقدر قيمة اثاثك في ${district.nameAr}؟ نحن متخصصون في شراء الاثاث الراقي والمستعمل بحالة جيدة من ${district.housingType === "Luxury Villa" ? "الفلل والقصور" : "الشقق الفاخرة"}. نضمن لك تقييماً عادلاً يحافظ على قيمة مقتنياتك، مع خدمة فك ونقل احترافية تحافظ على سلامة جدران منزلك.`
+  : isIndustrial
+    ? `هل لديك اثاث قديم أو سكراب تريد التخلص منه في ${district.nameAr}؟ نحن نشتري جميع أنواع الاثاث والسكراب كاش فوراً. نخلصك من الكراكيب وننظف المكان بعد التحميل. خدمة سريعة وعمالة جاهزة للتحميل من ${district.housingType}.`
+    : `نقدم خدمة شراء الاثاث المستعمل في ${district.nameAr} بأفضل الأسعار. سواء كنت تجدد منزلك أو تنتقل لسكن جديد، نحن نشتري غرف النوم، المكيفات، والمطابخ من ${district.housingType} ونوفر لك سيولة نقدية فورية.`;
+
+// Priority Items based on housing
+const priorityItems =
+  district.housingType === "Luxury Villa"
+    ? [
+        "غرف نوم مودرن وكلاسيك",
+        "مجالس عربية فاخرة",
+        "مطابخ كبيرة (خشب/المنيوم)",
+        "مكيفات مركزية وسبليت",
+      ]
+    : [
+        "مكيفات شباك وسبليت",
+        "اجهزة كهربائية (ثلاجات/غسالات)",
+        "غرف نوم ايكيا ووطني",
+        "كنب ومجالس",
+      ];
+
+// Hero Image Logic
+const heroImage = "/images/hero-villa.png"; // Default to generated villa image
+---
+
+<Layout title={h1Title}>
+  <SeoHead district={district} />
+
+  {/* Localized Hero */}
+  <section class="relative bg-slate-900 py-24 text-white overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img
+        src={heroImage}
+        alt={district.nameAr}
+        class="w-full h-full object-cover grayscale-[20%] contrast-125"
+      />
+      <div class="absolute inset-0 bg-emerald-950/80 mix-blend-multiply"></div>
+    </div>
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-emerald-900/50 to-slate-900/90 z-10"
+    >
+    </div>
+    <div
+      class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] animate-pulse-slow z-10"
+    >
+    </div>
+    <Container className="relative z-20">
+      <div class="mx-auto max-w-4xl text-center">
+        <div
+          class="mb-6 flex items-center justify-center gap-2 text-emerald-400 animate-fade-in-down"
+        >
+          <MapPin className="h-6 w-6" />
+          <span class="text-xl font-bold tracking-wide">{district.nameAr}</span>
+        </div>
+        <h1
+          class="mb-8 text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl animate-fade-in-up"
+        >
+          {h1Title}
+        </h1>
+        <p
+          class="mb-6 text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto animate-fade-in-up delay-100"
+        >
+          {introText}
+        </p>
+
+        {/* Local Context Block */}
+        <p
+          class="text-xl font-medium text-amber-400 mb-10 animate-fade-in-up delay-150 bg-slate-900/50 inline-block px-6 py-2 rounded-xl border border-amber-500/30 backdrop-blur-sm"
+        >
+          {district.localContext}
+        </p>
+
+        {/* Local Proof */}
+        <div
+          class="mb-10 inline-flex items-center gap-3 rounded-full bg-slate-800/80 px-6 py-3 text-sm text-emerald-400 backdrop-blur-md border border-emerald-500/30 shadow-lg shadow-emerald-900/20 animate-fade-in-up delay-200"
+        >
+          <span class="relative flex h-3 w-3">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"
+            ></span>
+          </span>
+          <span class="font-bold"
+            >فريقنا متواجد حالياً بالقرب من {district.landmarks[0]} - نصلك خلال 30
+            دقيقة</span
+          >
+        </div>
+
+        <div
+          class="flex flex-col items-center justify-center gap-4 sm:flex-row animate-fade-in-up delay-300"
+        >
+          <a
+            href="https://wa.me/966500000000"
+            class="flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-8 py-4 text-lg font-bold text-white transition-all hover:bg-emerald-500 hover:scale-105 hover:shadow-lg hover:shadow-emerald-600/30 sm:w-auto"
+          >
+            <MessageCircle className="h-6 w-6" />
+            ارسل الصور واتساب
+          </a>
+          <a
+            href="tel:0500000000"
+            class="flex w-full items-center justify-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-8 py-4 text-lg font-bold text-white transition-all hover:bg-white/20 hover:scale-105 sm:w-auto"
+          >
+            <Phone className="h-6 w-6" />
+            اتصل للمعاينة
+          </a>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  {/* Main Content Area */}
+  <section class="py-20 bg-white">
+    <Container>
+      <div class="grid gap-12 lg:grid-cols-3">
+        {/* Content Column */}
+        <div class="lg:col-span-2 animate-fade-in-right">
+          <h2
+            class="mb-6 text-3xl font-bold text-slate-900 flex items-center gap-3"
+          >
+            <span class="w-2 h-8 bg-emerald-500 rounded-full"></span>
+            ماذا نشتري في {district.nameAr}؟
+          </h2>
+          <p class="mb-8 text-lg leading-relaxed text-slate-600">
+            نحن نوفر خدمة شاملة لسكان {district.nameAr}. نشتري جميع محتويات
+            المنزل تقريباً، ولكن نركز بشكل خاص على:
+          </p>
+
+          <div class="mb-12 grid gap-4 sm:grid-cols-2">
+            {
+              priorityItems.map((item, idx) => (
+                <div class="flex items-center gap-4 rounded-2xl bg-slate-50 p-5 border border-slate-100 hover:border-emerald-200 hover:shadow-md transition-all duration-300 group">
+                  <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-emerald-600 shadow-sm group-hover:scale-110 transition-transform">
+                    <CheckCircle className="h-6 w-6" />
+                  </div>
+                  <span class="font-bold text-slate-800 text-lg group-hover:text-emerald-800 transition-colors">
+                    {item}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+
+          <h3 class="mb-6 text-2xl font-bold text-slate-900">
+            لماذا يختارنا سكان {district.nameAr}؟
+          </h3>
+          <ul class="space-y-6 mb-12">
+            <li class="flex gap-5 group">
+              <div
+                class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm"
+              >
+                <Clock className="h-7 w-7" />
+              </div>
+              <div>
+                <h4
+                  class="font-bold text-slate-900 text-xl mb-2 group-hover:text-emerald-700 transition-colors"
+                >
+                  سرعة الوصول
+                </h4>
+                <p class="text-slate-600 leading-relaxed">
+                  نعرف {district.nameAr} جيداً ونصلك بسرعة عبر {
+                    district.landmarks[0] || "الطرق الرئيسية"
+                  } لتوفير وقتك الثمين.
+                </p>
+              </div>
+            </li>
+            <li class="flex gap-5 group">
+              <div
+                class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm"
+              >
+                <Truck className="h-7 w-7" />
+              </div>
+              <div>
+                <h4
+                  class="font-bold text-slate-900 text-xl mb-2 group-hover:text-emerald-700 transition-colors"
+                >
+                  نقل فوري
+                </h4>
+                <p class="text-slate-600 leading-relaxed">
+                  سياراتنا جاهزة لنقل الاثاث فور الاتفاق. لا نتركك تنتظر ولا
+                  نسبب أي فوضى في المكان.
+                </p>
+              </div>
+            </li>
+          </ul>
+
+          {/* Internal Linking Mesh */}
+          <div
+            class="bg-slate-50 rounded-3xl p-8 border border-slate-100 mb-12"
+          >
+            <NearbyDistricts
+              currentRegion={district.region}
+              currentDistrictSlug={district.slug}
+            />
+          </div>
+
+          {/* Neighborhood Info Section */}
+          <div class="bg-emerald-50 rounded-3xl p-8 border border-emerald-100">
+            <h3 class="text-2xl font-bold text-emerald-900 mb-4">
+              هل تسكن في {district.nameAr}؟
+            </h3>
+            <p class="text-emerald-800 leading-relaxed text-lg">
+              نحن نعلم أن {district.nameAr} يتميز بـ {
+                district.vibe === "Luxury"
+                  ? "الفلل الواسعة والشوارع الهادئة"
+                  : "الحركة التجارية والنشاط السكاني"
+              }. شاحناتنا مجهزة لتناسب {
+                district.vibe === "Family"
+                  ? "الشوارع الداخلية"
+                  : "جميع أنواع المداخل"
+              } لضمان نقل عفش سلس وسريع دون إزعاج الجيران.
+            </p>
+          </div>
+        </div>
+
+        {/* Sidebar / Services List */}
+        <aside class="space-y-8 animate-fade-in-left delay-200">
+          <div
+            class="rounded-3xl bg-white p-6 border border-slate-100 shadow-lg shadow-slate-200/50 sticky top-24"
+          >
+            <h3
+              class="mb-6 text-xl font-bold text-slate-900 flex items-center gap-2"
+            >
+              <span class="w-1.5 h-6 bg-emerald-500 rounded-full"></span>
+              خدماتنا الأخرى
+            </h3>
+            <ul class="space-y-3">
+              {
+                SERVICES.map((service) => (
+                  <li>
+                    <a
+                      href={`/services/${service.slug}`}
+                      class="flex items-center justify-between p-3 rounded-xl hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-all group"
+                    >
+                      <span class="font-medium">{service.nameAr}</span>
+                      <span class="text-slate-300 group-hover:text-emerald-500 transform group-hover:-translate-x-1 transition-all">
+                        &larr;
+                      </span>
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+
+          <div
+            class="rounded-3xl bg-gradient-to-br from-emerald-600 to-emerald-800 p-8 text-white text-center shadow-xl shadow-emerald-900/20 relative overflow-hidden group"
+          >
+            <div
+              class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] opacity-10"
+            >
+            </div>
+            <div class="relative z-10">
+              <h3 class="mb-3 text-2xl font-bold">هل أنت مستعجل؟</h3>
+              <p class="mb-8 text-emerald-100">
+                نحن متواجدون الآن في {
+                  district.region === "North"
+                    ? "شمال"
+                    : district.region === "South"
+                      ? "جنوب"
+                      : district.region === "East"
+                        ? "شرق"
+                        : "غرب"
+                } الرياض
+              </p>
+              <a
+                href="tel:0500000000"
+                class="block w-full rounded-xl bg-white py-4 font-bold text-emerald-800 hover:bg-emerald-50 hover:scale-105 transition-all shadow-lg"
+              >
+                اتصل الآن
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </Container>
+  </section>
+</Layout>

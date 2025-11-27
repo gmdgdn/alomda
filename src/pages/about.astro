@@ -1,0 +1,295 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/ui/Container.astro";
+import { CheckCircle, Users, History, Award } from "lucide-react";
+
+const title = "من نحن | شركة العمدة لشراء الاثاث المستعمل";
+const description =
+  "تعرف على شركة العمدة، الرائدة في مجال شراء الاثاث المستعمل بالرياض. خبرة طويلة ومصداقية عالية.";
+---
+
+<Layout title={title} description={description}>
+  {/* Page Header */}
+  <section class="bg-slate-900 py-20 relative overflow-hidden">
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-emerald-900/40 to-slate-900/90 z-10"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] opacity-10 animate-pulse-slow"
+    >
+    </div>
+    <Container className="relative z-20 text-center">
+      <h1
+        class="text-4xl md:text-6xl font-bold mb-6 text-white animate-fade-in-up"
+      >
+        من <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-200"
+          >نحن</span
+        >
+      </h1>
+      <p
+        class="text-xl text-slate-300 max-w-2xl mx-auto animate-fade-in-up delay-100"
+      >
+        شريكك الموثوق لبيع الاثاث المستعمل في الرياض بأفضل الأسعار.
+      </p>
+    </Container>
+  </section>
+
+  {/* Story Section */}
+  <section class="py-24 bg-white overflow-hidden">
+    <Container>
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="order-2 lg:order-1">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-sm font-bold mb-6 animate-fade-in"
+          >
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
+            ></span>
+            قصتنا
+          </div>
+          <h2 class="text-4xl font-bold text-slate-900 mb-6 leading-tight">
+            لماذا بدأت <span class="text-emerald-600">العمدة</span>؟
+          </h2>
+          <p class="text-lg text-slate-600 leading-relaxed mb-6">
+            تأسست شركة العمدة برؤية واضحة: تقديم خدمة احترافية وشفافة في سوق
+            الاثاث المستعمل بالرياض. لاحظنا الصعوبات التي يواجهها العملاء عند
+            بيع اثاثهم، من بخس الأسعار إلى عدم الالتزام بالمواعيد، وقررنا تغيير
+            ذلك.
+          </p>
+          <p class="text-lg text-slate-600 leading-relaxed mb-8">
+            اليوم، نفخر بكوننا الخيار الأول لآلاف العملاء في الرياض، بفضل
+            التزامنا بالمصداقية، السرعة، والأسعار العادلة.
+          </p>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="flex items-center gap-3 group">
+              <div
+                class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors"
+              >
+                <CheckCircle className="w-5 h-5" />
+              </div>
+              <span class="font-bold text-slate-800">خبرة +10 سنوات</span>
+            </div>
+            <div class="flex items-center gap-3 group">
+              <div
+                class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors"
+              >
+                <CheckCircle className="w-5 h-5" />
+              </div>
+              <span class="font-bold text-slate-800">فريق محترف</span>
+            </div>
+            <div class="flex items-center gap-3 group">
+              <div
+                class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors"
+              >
+                <CheckCircle className="w-5 h-5" />
+              </div>
+              <span class="font-bold text-slate-800">دفع فوري</span>
+            </div>
+            <div class="flex items-center gap-3 group">
+              <div
+                class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors"
+              >
+                <CheckCircle className="w-5 h-5" />
+              </div>
+              <span class="font-bold text-slate-800">تغطية شاملة</span>
+            </div>
+          </div>
+        </div>
+        <div class="relative order-1 lg:order-2 group">
+          <div
+            class="absolute -inset-4 bg-gradient-to-tr from-emerald-600 to-emerald-400 rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity duration-500"
+          >
+          </div>
+          <div
+            class="relative rounded-3xl overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-700"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
+              alt="فريق العمدة"
+              class="w-full h-[500px] object-cover"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  {/* Timeline Section */}
+  <section class="py-24 bg-slate-50 relative overflow-hidden">
+    <Container>
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span
+          class="text-emerald-600 font-bold text-sm tracking-wider uppercase mb-2 block"
+          >مسيرتنا</span
+        >
+        <h2 class="text-4xl font-bold text-slate-900 mb-4">رحلة النجاح</h2>
+        <p class="text-xl text-slate-600">خطوات ثابتة نحو القمة</p>
+      </div>
+
+      <div class="relative max-w-4xl mx-auto">
+        {/* Vertical Line */}
+        <div
+          class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-emerald-100 rounded-full"
+        >
+        </div>
+
+        <div class="space-y-12 relative">
+          {/* 2015 */}
+          <div
+            class="relative flex items-center justify-between md:flex-row flex-col-reverse group"
+          >
+            <div class="w-full md:w-5/12 text-center md:text-left pr-8 md:pr-0">
+              <h3 class="text-2xl font-bold text-slate-900 mb-2">البداية</h3>
+              <p class="text-slate-600">
+                تأسست شركة العمدة بشاحنة واحدة ورؤية لتقديم خدمة نزيهة.
+              </p>
+            </div>
+            <div
+              class="absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-emerald-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300"
+            >
+              <span class="w-3 h-3 bg-white rounded-full"></span>
+            </div>
+            <div
+              class="w-full md:w-5/12 text-center md:text-right pl-8 md:pl-0"
+            >
+              <span
+                class="text-5xl font-bold text-emerald-100 group-hover:text-emerald-200 transition-colors duration-300"
+                >2015</span
+              >
+            </div>
+          </div>
+
+          {/* 2018 */}
+          <div
+            class="relative flex items-center justify-between md:flex-row-reverse flex-col-reverse group"
+          >
+            <div
+              class="w-full md:w-5/12 text-center md:text-right pl-8 md:pl-0"
+            >
+              <h3 class="text-2xl font-bold text-slate-900 mb-2">التوسع</h3>
+              <p class="text-slate-600">
+                تغطية شاملة لجميع أحياء الرياض وافتتاح مستودعات جديدة.
+              </p>
+            </div>
+            <div
+              class="absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-white rounded-full border-4 border-emerald-600 shadow-lg flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300"
+            >
+              <span class="w-3 h-3 bg-emerald-600 rounded-full"></span>
+            </div>
+            <div class="w-full md:w-5/12 text-center md:text-left pr-8 md:pr-0">
+              <span
+                class="text-5xl font-bold text-emerald-100 group-hover:text-emerald-200 transition-colors duration-300"
+                >2018</span
+              >
+            </div>
+          </div>
+
+          {/* 2021 */}
+          <div
+            class="relative flex items-center justify-between md:flex-row flex-col-reverse group"
+          >
+            <div class="w-full md:w-5/12 text-center md:text-left pr-8 md:pr-0">
+              <h3 class="text-2xl font-bold text-slate-900 mb-2">
+                التحول الرقمي
+              </h3>
+              <p class="text-slate-600">
+                إطلاق منصتنا الرقمية لتسهيل طلبات التسعير والمعاينة.
+              </p>
+            </div>
+            <div
+              class="absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-emerald-600 rounded-full border-4 border-white shadow-lg flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300"
+            >
+              <span class="w-3 h-3 bg-white rounded-full"></span>
+            </div>
+            <div
+              class="w-full md:w-5/12 text-center md:text-right pl-8 md:pl-0"
+            >
+              <span
+                class="text-5xl font-bold text-emerald-100 group-hover:text-emerald-200 transition-colors duration-300"
+                >2021</span
+              >
+            </div>
+          </div>
+
+          {/* 2024 */}
+          <div
+            class="relative flex items-center justify-between md:flex-row-reverse flex-col-reverse group"
+          >
+            <div
+              class="w-full md:w-5/12 text-center md:text-right pl-8 md:pl-0"
+            >
+              <h3 class="text-2xl font-bold text-slate-900 mb-2">الريادة</h3>
+              <p class="text-slate-600">
+                الخيار الأول في الرياض مع فريق يتجاوز 50 خبيراً.
+              </p>
+            </div>
+            <div
+              class="absolute left-1/2 transform -translate-x-1/2 w-10 h-10 bg-white rounded-full border-4 border-emerald-600 shadow-lg flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300"
+            >
+              <span class="w-3 h-3 bg-emerald-600 rounded-full"></span>
+            </div>
+            <div class="w-full md:w-5/12 text-center md:text-left pr-8 md:pr-0">
+              <span
+                class="text-5xl font-bold text-emerald-100 group-hover:text-emerald-200 transition-colors duration-300"
+                >2024</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  {/* Values Section */}
+  <section class="py-24 bg-slate-50">
+    <Container>
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span
+          class="text-emerald-600 font-bold text-sm tracking-wider uppercase mb-2 block"
+          >قيمنا</span
+        >
+        <h2 class="text-4xl font-bold text-slate-900 mb-4">ما الذي يميزنا؟</h2>
+        <p class="text-xl text-slate-600">
+          نلتزم بأعلى معايير الجودة والمصداقية في كل تعامل
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {
+          [
+            {
+              icon: Users,
+              title: "العميل أولاً",
+              desc: "رضا العميل هو أولويتنا القصوى. نسعى دائماً لتقديم تجربة سلسة ومريحة.",
+            },
+            {
+              icon: Award,
+              title: "الشفافية",
+              desc: "لا رسوم مخفية. نقدم عروض أسعار واضحة وعادلة تعكس القيمة الحقيقية للاثاث.",
+            },
+            {
+              icon: History,
+              title: "السرعة",
+              desc: "نقدر وقتك. نلتزم بالمواعيد وننجز عملية النقل بأسرع وقت ممكن.",
+            },
+          ].map((item, index) => (
+            <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 text-center group hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <div class="w-20 h-20 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-600 mx-auto mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 transform group-hover:rotate-3">
+                <item.icon className="w-10 h-10" />
+              </div>
+              <h3 class="text-2xl font-bold text-slate-900 mb-4">
+                {item.title}
+              </h3>
+              <p class="text-slate-600 leading-relaxed">{item.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+</Layout>

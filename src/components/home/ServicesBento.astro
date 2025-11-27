@@ -1,0 +1,281 @@
+---
+import Container from "../ui/Container.astro";
+import { ArrowUpLeft } from "lucide-react";
+
+const services = [
+  {
+    title: "شراء غرف النوم",
+    description: "نشتري غرف النوم الكاملة والمفردة بأفضل الأسعار",
+    image:
+      "https://images.unsplash.com/photo-1616594039964-40891a909d99?q=80&w=2070&auto=format&fit=crop", // Modern Bedroom
+    class: "md:col-span-2 md:row-span-2",
+    link: "/services/used-bedrooms",
+  },
+  {
+    title: "سكراب مكيفات",
+    description: "نشتري جميع أنواع المكيفات الخربانة والسكراب",
+    image:
+      "https://images.unsplash.com/photo-1574966739987-65e38db0f7ce?q=80&w=2071&auto=format&fit=crop", // AC Unit
+    class: "md:col-span-1 md:row-span-1",
+    link: "/services/used-acs",
+  },
+  {
+    title: "شراء المطابخ",
+    description: "مطابخ ألمنيوم وخشب مستعملة",
+    image:
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop", // Modern Kitchen
+    class: "md:col-span-1 md:row-span-1",
+    link: "/services/used-kitchens",
+  },
+  {
+    title: "معدات المطاعم",
+    description: "أفران، ثلاجات، ومعدات مطاعم",
+    image:
+      "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop", // Restaurant Equipment
+    class: "md:col-span-1 md:row-span-1",
+    link: "/services/used-kitchen-equipment",
+  },
+  {
+    title: "الأجهزة الكهربائية",
+    description: "ثلاجات، غسالات، وأفران",
+    image:
+      "https://images.unsplash.com/photo-1571175443880-49e1d58b794a?q=80&w=2070&auto=format&fit=crop", // Appliances
+    class: "md:col-span-2 md:row-span-1",
+    link: "/services/used-appliances",
+  },
+];
+---
+
+<section class="py-24 bg-slate-50">
+  <Container>
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span
+        class="text-emerald-600 font-bold text-sm tracking-wider uppercase mb-2 block"
+        >خدماتنا</span
+      >
+      <h2 class="text-4xl font-bold text-slate-900 mb-4">ماذا نشتري؟</h2>
+      <p class="text-xl text-slate-600">
+        نشتري جميع أنواع الاثاث المستعمل بأفضل الأسعار في الرياض
+      </p>
+    </div>
+
+    <div
+      class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]"
+    >
+      {/* 1. Used ACs (Large) */}
+      <a
+        href="/services/used-acs"
+        class="group relative col-span-2 row-span-2 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
+      >
+        <div class="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1574966739987-65e38db0f7ce?q=80&w=2071&auto=format&fit=crop"
+            alt="شراء مكيفات"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%] contrast-110"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"
+          >
+          </div>
+        </div>
+        <div class="absolute inset-0 p-6 flex flex-col justify-end">
+          <h3 class="text-2xl md:text-3xl font-bold text-white mb-2">
+            شراء مكيفات
+          </h3>
+          <p
+            class="text-slate-200 text-sm md:text-base opacity-90 line-clamp-2"
+          >
+            نشتري جميع أنواع المكيفات السبلت والشباك بأعلى سعر.
+          </p>
+        </div>
+      </a>
+
+      {/* 2. Bedrooms */}
+      <a
+        href="/services/used-bedrooms"
+        class="group relative col-span-1 row-span-1 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
+      >
+        <div class="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1616594039964-40891a909d99?q=80&w=2070&auto=format&fit=crop"
+            alt="غرف نوم"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
+          >
+          </div>
+        </div>
+        <div class="absolute inset-0 p-4 flex flex-col justify-end">
+          <h3 class="text-lg font-bold text-white">غرف نوم</h3>
+        </div>
+      </a>
+
+      {/* 3. Kitchens */}
+      <a
+        href="/services/used-kitchens"
+        class="group relative col-span-1 row-span-1 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
+      >
+        <div class="absolute inset-0">
+          <img
+            src="/images/service-kitchen.png"
+            alt="مطابخ"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
+          >
+          </div>
+        </div>
+        <div class="absolute inset-0 p-4 flex flex-col justify-end">
+          <h3 class="text-lg font-bold text-white">مطابخ مستعملة</h3>
+        </div>
+      </a>
+
+      {/* 4. Majlis (Wide) */}
+      <a
+        href="/services/used-majlis"
+        class="group relative col-span-2 row-span-1 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
+      >
+        <div class="absolute inset-0">
+          <img
+            src="/images/service-majlis.png"
+            alt="مجالس عربية"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
+          >
+          </div>
+        </div>
+        <div class="absolute inset-0 p-6 flex flex-col justify-end">
+          <h3 class="text-xl font-bold text-white">مجالس وكنب</h3>
+          <p
+            class="text-slate-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            مجالس عربية، كنب أمريكي، وبيوت شعر
+          </p>
+        </div>
+      </a>
+
+      {/* 5. Office Furniture */}
+      <a
+        href="/services/used-office-furniture"
+        class="group relative col-span-1 row-span-1 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
+      >
+        <div class="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=2070&auto=format&fit=crop"
+            alt="اثاث مكتبي"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
+          >
+          </div>
+        </div>
+        <div class="absolute inset-0 p-4 flex flex-col justify-end">
+          <h3 class="text-lg font-bold text-white">اثاث مكتبي</h3>
+        </div>
+      </a>
+
+      {/* 6. Villa Furniture */}
+      <a
+        href="/services/villa-furniture"
+        class="group relative col-span-1 row-span-1 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
+      >
+        <div class="absolute inset-0">
+          <img
+            src="/images/hero-villa.png"
+            alt="اثاث فلل"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
+          >
+          </div>
+        </div>
+        <div class="absolute inset-0 p-4 flex flex-col justify-end">
+          <h3 class="text-lg font-bold text-white">اثاث فلل وقصور</h3>
+        </div>
+      </a>
+
+      {/* 7. Restaurant Equipment */}
+      <a
+        href="/services/used-kitchen-equipment"
+        class="group relative col-span-1 row-span-1 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
+      >
+        <div class="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2070&auto=format&fit=crop"
+            alt="معدات مطاعم"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
+          >
+          </div>
+        </div>
+        <div class="absolute inset-0 p-4 flex flex-col justify-end">
+          <h3 class="text-lg font-bold text-white">معدات مطاعم</h3>
+        </div>
+      </a>
+
+      {/* 8. Appliances */}
+      <a
+        href="/services/used-appliances"
+        class="group relative col-span-1 row-span-1 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
+      >
+        <div class="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1571175443880-49e1d58b794a?q=80&w=2070&auto=format&fit=crop"
+            alt="أجهزة كهربائية"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
+          >
+          </div>
+        </div>
+        <div class="absolute inset-0 p-4 flex flex-col justify-end">
+          <h3 class="text-lg font-bold text-white">أجهزة كهربائية</h3>
+        </div>
+      </a>
+
+      {/* 9. General Furniture (Wide) */}
+      <a
+        href="/services/general-furniture"
+        class="group relative col-span-2 row-span-1 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
+      >
+        <div class="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2158&auto=format&fit=crop"
+            alt="اثاث منزلي عام"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
+          >
+          </div>
+        </div>
+        <div class="absolute inset-0 p-6 flex flex-col justify-end">
+          <h3 class="text-xl font-bold text-white">شراء اثاث الشقق بالكامل</h3>
+          <p
+            class="text-slate-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            نشتري عفش بيتك كاملاً دفعة واحدة
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <div class="mt-12 text-center">
+      <a
+        href="/services"
+        class="inline-flex items-center gap-2 text-emerald-600 font-bold hover:text-emerald-700 transition-colors"
+      >
+        عرض جميع الخدمات <ArrowUpLeft className="w-5 h-5" />
+      </a>
+    </div>
+  </Container>
+</section>

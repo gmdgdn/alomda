@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Container from '../components/ui/Container.astro';
+import { Home, Search, ArrowRight } from 'lucide-react';
+
+const title = "الصفحة غير موجودة | 404";
+const description = "عذراً، الصفحة التي تبحث عنها غير موجودة.";
+---
+
+<Layout title={title} description={description}>
+  <section class="min-h-[80vh] flex items-center justify-center bg-slate-900 relative overflow-hidden">
+    {/* Background Effects */}
+    <div class="absolute inset-0 bg-gradient-to-br from-emerald-900/40 to-slate-900/90 z-10"></div>
+    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] opacity-10 animate-pulse-slow"></div>
+    
+    {/* Floating Blobs */}
+    <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-600/20 rounded-full blur-3xl animate-float"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-800/20 rounded-full blur-3xl animate-float delay-1000"></div>
+
+    <Container className="relative z-20 text-center">
+      <div class="mb-8 relative inline-block">
+        <h1 class="text-[150px] md:text-[200px] font-black leading-none text-transparent bg-clip-text bg-gradient-to-b from-emerald-400 to-slate-900 opacity-50 select-none animate-fade-in-up">
+          404
+        </h1>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="text-4xl md:text-6xl font-bold text-white drop-shadow-lg animate-fade-in-up delay-100">
+            عذراً!
+          </span>
+        </div>
+      </div>
+
+      <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 animate-fade-in-up delay-200">
+        الصفحة التي تبحث عنها غير موجودة
+      </h2>
+      
+      <p class="text-lg text-slate-300 max-w-lg mx-auto mb-10 animate-fade-in-up delay-300">
+        يبدو أنك وصلت إلى طريق مسدود. ربما تم نقل الصفحة أو حذفها، أو أنك كتبت الرابط بشكل خاطئ.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up delay-400">
+        <a 
+          href="/" 
+          class="flex items-center gap-2 px-8 py-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold transition-all hover:scale-105 hover:shadow-lg hover:shadow-emerald-600/30 w-full sm:w-auto justify-center"
+        >
+          <Home className="w-5 h-5" />
+          العودة للرئيسية
+        </a>
+        
+        <a 
+          href="/services" 
+          class="flex items-center gap-2 px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/10 text-white rounded-xl font-bold transition-all hover:scale-105 w-full sm:w-auto justify-center"
+        >
+          <Search className="w-5 h-5" />
+          تصفح خدماتنا
+        </a>
+      </div>
+    </Container>
+  </section>
+</Layout>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+</style>

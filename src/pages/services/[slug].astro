@@ -1,0 +1,549 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { SERVICE_TEMPLATES } from "../../data/service-content";
+import ServiceAreaList from "../../components/services/ServiceAreaList.astro";
+import MapEmbed from "../../components/ui/MapEmbed.astro";
+import BrandedImage from "../../components/ui/BrandedImage.astro";
+import Container from "../../components/ui/Container.astro";
+import {
+  CheckCircle,
+  Truck,
+  Banknote,
+  Phone,
+  Info,
+  XCircle,
+  ChevronDown,
+  MessageCircle,
+  Star,
+  ShieldCheck,
+  Clock,
+  MapPin,
+} from "lucide-react";
+import { SITE_CONFIG } from "../../data/site-config";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return Object.values(SERVICE_TEMPLATES).map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const {
+  hero,
+  keywords,
+  acceptance,
+  pricing,
+  faq,
+  titleAr,
+  shortName,
+  itemNoun,
+  technicalInfo,
+  dontBuy,
+} = service;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: titleAr,
+  areaServed: "Riyadh",
+  provider: {
+    "@type": "LocalBusiness",
+    name: "العمدة لشراء الاثاث المستعمل",
+  },
+  offers: pricing.map((p) => ({
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Product",
+      name: p.item,
+    },
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      priceCurrency: "SAR",
+      minPrice: p.price.replace(/[^0-9-]/g, "").split("-")[0] || "0",
+      maxPrice: p.price.replace(/[^0-9-]/g, "").split("-")[1] || "0",
+    },
+  })),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "خدمات شراء " + titleAr,
+    itemListElement: acceptance.map((a) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: a.title,
+        description: a.desc,
+      },
+    })),
+  },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.a,
+    },
+  })),
+};
+---
+
+<Layout
+  title={`${hero.h1} | أعلى سعر ودفع كاش`}
+  description={`نشتري ${keywords.join(", ")} في الرياض. خدمة فك ونقل مجاني. اتصل بنا لبيع ${titleAr} بأفضل سعر.`}
+>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+  />
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(faqSchema)}
+  />
+
+  {/* Enhanced Hero Section - Compact Version */}
+  <section
+    class="relative min-h-[40vh] flex items-center justify-center overflow-hidden"
+  >
+    <div class="absolute inset-0 z-0">
+      <BrandedImage
+        src={hero.bgImage}
+        alt={hero.h1}
+        class="w-full h-full object-cover grayscale-[10%] contrast-110"
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-slate-900/30 z-10"
+      >
+      </div>
+      <div
+        class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] opacity-10 animate-pulse-slow z-10"
+      >
+      </div>
+    </div>
+
+    <Container className="relative z-20 pt-16 pb-12">
+      <div class="max-w-4xl mx-auto text-center">
+        {/* Trust Badge */}
+        <div
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6 animate-fade-in-up"
+        >
+          <ShieldCheck className="w-5 h-5 text-emerald-400" />
+          <span class="text-emerald-50 font-bold text-sm"
+            >خدمة موثوقة وضمان أعلى سعر</span
+          >
+        </div>
+
+        <h1
+          class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight text-white drop-shadow-2xl animate-fade-in-up delay-100"
+        >
+          {hero.h1}
+        </h1>
+
+        <p
+          class="text-lg md:text-xl text-slate-200 mb-8 leading-relaxed font-light animate-fade-in-up delay-200"
+        >
+          {hero.sub}
+        </p>
+
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-300"
+        >
+          <a
+            href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
+            class="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-bold text-white bg-[#25D366] rounded-full overflow-hidden shadow-xl hover:shadow-emerald-500/40 transition-all duration-300 hover:-translate-y-1"
+          >
+            <div
+              class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"
+            >
+            </div>
+            <MessageCircle className="w-6 h-6 ml-2" />
+            <span>أرسل الصور واتساب</span>
+          </a>
+          <a
+            href={`tel:${SITE_CONFIG.phone}`}
+            class="inline-flex items-center justify-center px-8 py-3 text-lg font-bold text-white bg-white/10 backdrop-blur-sm border border-white/20 rounded-full hover:bg-white/20 transition-all duration-300"
+          >
+            <Phone className="w-6 h-6 ml-2" />
+            <span>اتصال هاتفي</span>
+          </a>
+        </div>
+
+        {/* Stats/Features */}
+        <div
+          class="mt-8 grid grid-cols-3 gap-4 border-t border-white/10 pt-6 animate-fade-in-up delay-500"
+        >
+          <div class="text-center">
+            <div class="text-emerald-400 font-bold text-xl mb-1">فوري</div>
+            <div class="text-slate-400 text-sm">دفع كاش</div>
+          </div>
+          <div class="text-center border-r border-l border-white/10">
+            <div class="text-emerald-400 font-bold text-xl mb-1">مجاني</div>
+            <div class="text-slate-400 text-sm">فك ونقل</div>
+          </div>
+          <div class="text-center">
+            <div class="text-emerald-400 font-bold text-xl mb-1">24/7</div>
+            <div class="text-slate-400 text-sm">خدمة عملاء</div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  {/* Visual Navigation (Keywords) */}
+  <section class="py-12 bg-slate-50 border-b border-slate-200">
+    <Container>
+      <div class="text-center mb-8">
+        <h2 class="text-xl font-bold text-slate-900">
+          نشتري جميع الأنواع والموديلات
+        </h2>
+      </div>
+      <div class="flex flex-wrap justify-center gap-4">
+        {
+          keywords.map((keyword) => (
+            <div class="flex items-center gap-2 px-5 py-3 bg-white rounded-xl shadow-sm border border-slate-200 hover:border-emerald-500 hover:shadow-md transition-all duration-300 cursor-default group">
+              <CheckCircle className="w-5 h-5 text-emerald-500 group-hover:scale-110 transition-transform" />
+              <span class="font-bold text-slate-700 group-hover:text-emerald-700 transition-colors">
+                {keyword}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <div class="bg-white py-16">
+    <Container>
+      <div class="grid lg:grid-cols-12 gap-12">
+        {/* Main Content */}
+        <div class="lg:col-span-8 space-y-20">
+          {/* Acceptance Section - Visual Grid */}
+          <section>
+            <div class="flex items-center gap-3 mb-8">
+              <div
+                class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600"
+              >
+                <ShieldCheck className="w-6 h-6" />
+              </div>
+              <div>
+                <span
+                  class="text-emerald-600 font-bold text-sm tracking-wider uppercase"
+                  >خدماتنا</span
+                >
+                <h2 class="text-3xl font-bold text-slate-900">
+                  ماذا نشتري في قسم {shortName}؟
+                </h2>
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              {
+                acceptance.map((item, idx) => (
+                  <div class="group relative bg-white p-8 rounded-3xl border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-xl hover:border-emerald-200 transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110" />
+                    <div class="relative z-10">
+                      <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-emerald-600 mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                        <span class="text-2xl font-bold">{idx + 1}</span>
+                      </div>
+                      <h3 class="text-xl font-bold mb-3 text-slate-900 group-hover:text-emerald-700 transition-colors">
+                        {item.title}
+                      </h3>
+                      <p class="text-slate-600 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+
+          {/* Process Section - Horizontal Timeline */}
+          <section
+            class="bg-slate-900 rounded-3xl p-8 md:p-12 text-white relative overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] opacity-5"
+            >
+            </div>
+            <div class="relative z-10">
+              <h2 class="text-3xl font-bold mb-12 text-center">
+                كيف تبيع {itemNoun} في 4 خطوات؟
+              </h2>
+              <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                {
+                  [
+                    {
+                      icon: Phone,
+                      title: "اتصل بنا",
+                      desc: "تواصل واتساب وأرسل الصور",
+                    },
+                    {
+                      icon: Banknote,
+                      title: "سعر فوري",
+                      desc: "نقيم الأثاث ونعطيك السعر",
+                    },
+                    {
+                      icon: Truck,
+                      title: "نقل مجاني",
+                      desc: "فريقنا يفك وينقل الأثاث",
+                    },
+                    {
+                      icon: Star,
+                      title: "استلم الكاش",
+                      desc: "تستلم المبلغ قبل التحميل",
+                    },
+                  ].map((step, idx) => (
+                    <div class="text-center relative group">
+                      <div class="w-16 h-16 mx-auto bg-white/10 rounded-2xl backdrop-blur-sm flex items-center justify-center text-emerald-400 mb-4 border border-white/10 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300 shadow-lg group-hover:shadow-emerald-500/30">
+                        <step.icon className="w-8 h-8" />
+                      </div>
+                      <h3 class="font-bold text-lg mb-2">{step.title}</h3>
+                      <p class="text-slate-400 text-sm">{step.desc}</p>
+                      {idx < 3 && (
+                        <div class="hidden lg:block absolute top-8 left-0 w-full h-0.5 bg-white/10 -z-10 transform -translate-x-1/2" />
+                      )}
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </section>
+
+          {/* Pricing Table - Card Style */}
+          <section id="pricing">
+            <div class="flex items-center gap-3 mb-8">
+              <div
+                class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600"
+              >
+                <Banknote className="w-6 h-6" />
+              </div>
+              <div>
+                <span
+                  class="text-amber-600 font-bold text-sm tracking-wider uppercase"
+                  >الأسعار</span
+                >
+                <h2 class="text-3xl font-bold text-slate-900">
+                  متوسط أسعار {shortName}
+                </h2>
+              </div>
+            </div>
+
+            <div
+              class="bg-white rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100 overflow-hidden"
+            >
+              <div
+                class="bg-slate-50 px-8 py-4 border-b border-slate-200 flex justify-between items-center"
+              >
+                <span class="font-bold text-slate-700">نوع القطعة</span>
+                <span class="font-bold text-slate-700"
+                  >السعر التقديري (ريال)</span
+                >
+              </div>
+              <div class="divide-y divide-slate-100">
+                {
+                  pricing.map((row) => (
+                    <div class="px-8 py-6 flex justify-between items-center hover:bg-emerald-50/30 transition-colors group">
+                      <span class="font-medium text-slate-800 group-hover:text-emerald-700 transition-colors">
+                        {row.item}
+                      </span>
+                      <span
+                        class="font-bold text-xl text-emerald-600"
+                        dir="ltr"
+                      >
+                        {row.price}
+                      </span>
+                    </div>
+                  ))
+                }
+              </div>
+              <div
+                class="bg-amber-50 px-8 py-4 text-amber-800 text-sm flex items-center gap-2"
+              >
+                <Info className="w-4 h-4" />
+                الأسعار تقريبية وتعتمد على المعاينة المباشرة وحالة القطعة.
+              </div>
+            </div>
+          </section>
+
+          {/* Technical Details - Pro Tips Style */}
+          {
+            technicalInfo && technicalInfo.length > 0 && (
+              <section>
+                <h2 class="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                  <Info className="w-6 h-6 text-emerald-500" />
+                  معلومات فنية تهمك
+                </h2>
+                <div class="grid gap-4">
+                  {technicalInfo.map((info) => (
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 hover:border-emerald-300 hover:shadow-md transition-all duration-300">
+                      <h3 class="font-bold text-lg text-slate-900 mb-2">
+                        {info.title}
+                      </h3>
+                      <p class="text-slate-600 leading-relaxed">{info.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )
+          }
+
+          {/* FAQ Section */}
+          <section>
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">أسئلة شائعة</h2>
+            <div class="space-y-4">
+              {
+                faq.map((item) => (
+                  <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+                    <details class="group">
+                      <summary class="flex justify-between items-center p-6 cursor-pointer hover:bg-slate-50 transition-colors">
+                        <span class="font-bold text-slate-900 text-lg">
+                          {item.q}
+                        </span>
+                        <ChevronDown className="w-5 h-5 text-slate-400 transform group-open:rotate-180 transition-transform" />
+                      </summary>
+                      <div class="px-6 pb-6 pt-0 text-slate-600 leading-relaxed">
+                        {item.a}
+                      </div>
+                    </details>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+        </div>
+
+        {/* Sidebar */}
+        <div class="lg:col-span-4 space-y-8">
+          <div class="sticky top-24 space-y-8">
+            {/* CTA Card */}
+            <div
+              class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 text-center text-white shadow-2xl shadow-slate-900/20 relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/20 rounded-full blur-3xl -mr-16 -mt-16"
+              >
+              </div>
+              <div
+                class="absolute bottom-0 left-0 w-32 h-32 bg-amber-500/20 rounded-full blur-3xl -ml-16 -mb-16"
+              >
+              </div>
+
+              <h3 class="text-2xl font-bold mb-2">جاهز للبيع؟</h3>
+              <p class="text-slate-300 mb-8">
+                احصل على أعلى سعر في السوق خلال دقائق
+              </p>
+
+              <a
+                href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
+                class="flex items-center justify-center gap-2 w-full py-4 rounded-xl bg-[#25D366] text-white font-bold hover:bg-[#20bd5a] transition-colors mb-4 shadow-lg shadow-emerald-900/20"
+              >
+                <MessageCircle className="w-5 h-5" />
+                واتساب (رد فوري)
+              </a>
+              <a
+                href={`tel:${SITE_CONFIG.phone}`}
+                class="flex items-center justify-center gap-2 w-full py-4 rounded-xl bg-white/10 text-white font-bold hover:bg-white/20 transition-colors backdrop-blur-sm"
+              >
+                <Phone className="w-5 h-5" />
+                اتصال هاتفي
+              </a>
+
+              <div class="mt-8 pt-6 border-t border-white/10">
+                <div
+                  class="flex items-center justify-center gap-2 text-sm text-emerald-400"
+                >
+                  <span
+                    class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"
+                  ></span>
+                  متاحون الآن في جميع الأحياء
+                </div>
+              </div>
+            </div>
+
+            {/* Don't Buy List */}
+            {
+              dontBuy && dontBuy.length > 0 && (
+                <div class="bg-red-50 rounded-3xl p-6 border border-red-100">
+                  <div class="flex items-center gap-2 mb-4">
+                    <XCircle className="w-5 h-5 text-red-500" />
+                    <h3 class="font-bold text-slate-900">نعتذر عن شراء:</h3>
+                  </div>
+                  <ul class="space-y-3">
+                    {dontBuy.map((item) => (
+                      <li class="flex items-start gap-3 text-sm text-slate-700">
+                        <span class="w-1.5 h-1.5 bg-red-400 rounded-full mt-2 shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            }
+
+            {/* Trust Indicators */}
+            <div
+              class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm"
+            >
+              <h3 class="font-bold text-slate-900 mb-4">لماذا العمدة؟</h3>
+              <ul class="space-y-4">
+                <li class="flex items-center gap-3 text-sm text-slate-700">
+                  <div
+                    class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0"
+                  >
+                    <Banknote className="w-4 h-4" />
+                  </div>
+                  <span>دفع كاش فوري عند الاستلام</span>
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-700">
+                  <div
+                    class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0"
+                  >
+                    <Truck className="w-4 h-4" />
+                  </div>
+                  <span>نقل وفك مجاني 100%</span>
+                </li>
+                <li class="flex items-center gap-3 text-sm text-slate-700">
+                  <div
+                    class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0"
+                  >
+                    <Clock className="w-4 h-4" />
+                  </div>
+                  <span>نصلك خلال 60 دقيقة</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </div>
+
+  {/* Full Width Map Section */}
+  <section class="py-16 bg-slate-50 border-t border-slate-200">
+    <Container>
+      <div class="max-w-4xl mx-auto text-center mb-10">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">
+          نخدم جميع أحياء الرياض
+        </h2>
+        <p class="text-slate-600">
+          سياراتنا متواجدة بالقرب منك لضمان سرعة الوصول.
+        </p>
+      </div>
+      <div
+        class="h-[400px] rounded-3xl overflow-hidden shadow-lg border border-slate-200"
+      >
+        <MapEmbed query="Riyadh, Saudi Arabia" />
+      </div>
+      <div class="mt-10">
+        <ServiceAreaList serviceTitle={titleAr} serviceSlug={service.slug} />
+      </div>
+    </Container>
+  </section>
+</Layout>

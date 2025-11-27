@@ -1,0 +1,103 @@
+---
+import Container from "../ui/Container.astro";
+import { Star, Quote } from "lucide-react";
+
+const testimonials = [
+    {
+        name: "أبو محمد القحطاني",
+        location: "حي الملقا، الرياض",
+        image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=200&auto=format&fit=crop",
+        text: "تجربة ممتازة جداً. اتصلت عليهم وبعد ساعة كانوا عندي. السعر كان عادل جداً مقارنة بالسوق، والدفع كاش فوراً. أنصح بالتعامل معهم.",
+        rating: 5,
+        date: "منذ يومين",
+    },
+    {
+        name: "سارة العتيبي",
+        location: "حي الياسمين، الرياض",
+        image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
+        text: "بعت لهم أثاث شقتي بالكامل. تعامل راقي واحترافي، والعمالة ماهرة جداً في الفك والنقل بدون أي إزعاج للجيران.",
+        rating: 5,
+        date: "منذ أسبوع",
+    },
+    {
+        name: "م. فهد الدوسري",
+        location: "حي النرجس، الرياض",
+        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&auto=format&fit=crop",
+        text: "أفضل شركة تعاملت معها في الرياض. المصداقية عالية، والأسعار ممتازة. شكراً للأخ إسلام على حسن التعامل.",
+        rating: 5,
+        date: "منذ 3 أيام",
+    },
+];
+---
+
+<section class="py-20 bg-white relative overflow-hidden">
+    {/* Background Pattern */}
+    <div class="absolute inset-0 bg-pattern-islamic opacity-5"></div>
+
+    <Container>
+        <div class="text-center max-w-3xl mx-auto mb-16 relative z-10">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-sm font-bold mb-6"
+            >
+                <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
+                آراء العملاء
+            </div>
+            <h2
+                class="text-3xl lg:text-5xl font-bold text-slate-900 leading-tight mb-6"
+            >
+                ماذا يقول عملاؤنا في <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-emerald-400"
+                    >الرياض</span
+                >؟
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+            {
+                testimonials.map((testimonial) => (
+                    <div class="group relative bg-white p-8 rounded-3xl shadow-lg shadow-slate-200/50 border border-slate-100 transition-all hover:-translate-y-2 hover:shadow-xl hover:border-emerald-100">
+                        <div class="absolute top-8 left-8 text-emerald-100 group-hover:text-emerald-50 transition-colors">
+                            <Quote className="w-12 h-12 rotate-180" />
+                        </div>
+
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="relative">
+                                <img
+                                    src={testimonial.image}
+                                    alt={testimonial.name}
+                                    class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-md"
+                                />
+                                <div class="absolute -bottom-1 -right-1 bg-emerald-500 text-white text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 border border-white">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                                    متحقق
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-900">
+                                    {testimonial.name}
+                                </h3>
+                                <p class="text-sm text-slate-500">
+                                    {testimonial.location}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-1 mb-4">
+                            {[...Array(testimonial.rating)].map(() => (
+                                <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+                            ))}
+                        </div>
+
+                        <p class="text-slate-600 leading-relaxed mb-4">
+                            "{testimonial.text}"
+                        </p>
+
+                        <div class="text-xs text-slate-400 font-medium pt-4 border-t border-slate-50">
+                            {testimonial.date}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </Container>
+</section>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alomda-sa.com/sitemap-index.xml

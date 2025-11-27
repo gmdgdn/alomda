@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Container from '../components/ui/Container.astro';
+
+const title = "شروط الخدمة | شركة العمدة";
+const description = "شروط وأحكام استخدام خدمات شركة العمدة لشراء الاثاث المستعمل.";
+---
+
+<Layout title={title} description={description}>
+  <section class="bg-emerald-900 text-white py-16">
+    <Container className="text-center">
+      <h1 class="text-4xl font-bold">شروط الخدمة</h1>
+    </Container>
+  </section>
+
+  <section class="py-16 bg-white">
+    <Container>
+      <div class="max-w-3xl mx-auto prose prose-lg prose-emerald">
+        <p>مرحباً بك في موقع شركة العمدة. باستخداك لموقعنا وخدماتنا، فإنك توافق على الشروط التالية:</p>
+        
+        <h3>1. خدماتنا</h3>
+        <p>نقدم خدمات شراء الاثاث المستعمل في الرياض. جميع العروض والأسعار تخضع للمعاينة والاتفاق بين الطرفين.</p>
+
+        <h3>2. المعاينة والتسعير</h3>
+        <p>الأسعار المذكورة عبر الهاتف أو الموقع هي تقديرية. السعر النهائي يتم تحديده بعد معاينة الاثاث على أرض الواقع.</p>
+
+        <h3>3. النقل والفك</h3>
+        <p>نتكفل بعملية الفك والنقل بعد الاتفاق على البيع. يجب على العميل تسهيل وصول فريق العمل إلى الاثاث.</p>
+
+        <h3>4. الدفع</h3>
+        <p>يتم الدفع نقداً أو تحويل بنكي فوري عند استلام الاثاث.</p>
+
+        <h3>5. التعديلات</h3>
+        <p>نحتفظ بالحق في تعديل هذه الشروط في أي وقت. يرجى مراجعة هذه الصفحة بشكل دوري.</p>
+      </div>
+    </Container>
+  </section>
+</Layout>

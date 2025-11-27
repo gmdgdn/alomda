@@ -1,0 +1,148 @@
+---
+import Container from "../ui/Container.astro";
+import { Banknote, Tag, Layers, ShieldCheck } from "lucide-react";
+---
+
+<section class="py-24 bg-slate-50 relative overflow-hidden">
+    <div
+        class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/graphy.png')] opacity-[0.03]"
+    >
+    </div>
+
+    <Container className="relative z-10">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Text Content */}
+            <div>
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 text-amber-800 text-sm font-bold mb-8"
+                >
+                    <Banknote className="w-4 h-4" />
+                    <span>شفافية الأسعار</span>
+                </div>
+
+                <h2
+                    class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight"
+                >
+                    كيف نسعر اثاثك <span class="text-emerald-600">بضمير</span>؟
+                </h2>
+
+                <p class="text-xl text-slate-600 mb-12 leading-relaxed">
+                    نعتمد معايير واضحة لتقييم الاثاث، لنضمن لك أعلى عائد مادي
+                    ممكن. لا نبخس الناس أشياءهم.
+                </p>
+
+                {/* Pricing Factors List */}
+                <div class="space-y-6">
+                    <div
+                        class="flex items-start gap-4 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
+                    >
+                        <div
+                            class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0"
+                        >
+                            <Tag className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 mb-1">
+                                الماركة والجودة
+                            </h3>
+                            <p class="text-slate-500 text-sm">
+                                الاثاث من الماركات المعروفة (ايكيا، هوم سنتر،
+                                المطلق) له سعر أعلى.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex items-start gap-4 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
+                    >
+                        <div
+                            class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 shrink-0"
+                        >
+                            <Layers className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 mb-1">
+                                حالة الاثاث
+                            </h3>
+                            <p class="text-slate-500 text-sm">
+                                النظافة، خلوه من الخدوش والكسور، وسلامة التنجيد
+                                ترفع السعر.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex items-start gap-4 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
+                    >
+                        <div
+                            class="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600 shrink-0"
+                        >
+                            <Banknote className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 mb-1">
+                                الطلب في السوق
+                            </h3>
+                            <p class="text-slate-500 text-sm">
+                                الموديلات الحديثة والألوان المرغوبة حالياً (مثل
+                                الرمادي والبيج) نشتريها بسعر أعلى.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Visual Image/Card */}
+            <div class="relative">
+                <div
+                    class="absolute inset-0 bg-gradient-to-tr from-emerald-200 to-amber-200 rounded-[3rem] rotate-3 opacity-30 blur-2xl"
+                >
+                </div>
+                <div
+                    class="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white bg-white"
+                >
+                    <img
+                        src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=2070&auto=format&fit=crop"
+                        alt="تقييم عادل للاثاث"
+                        class="w-full h-[500px] object-cover"
+                    />
+
+                    {/* Overlay Content */}
+                    <div
+                        class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent p-8 text-white"
+                    >
+                        <div class="flex items-center gap-3 mb-4">
+                            <div
+                                class="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center"
+                            >
+                                <ShieldCheck className="w-5 h-5 text-white" />
+                            </div>
+                            <span class="font-bold text-lg">ضمان العمدة</span>
+                        </div>
+                        <p class="text-slate-200 leading-relaxed">
+                            "نتعهد أمام الله وأمامكم بأن نعطي كل قطعة حقها.
+                            هدفنا الكسب الحلال ورضا العميل."
+                        </p>
+                    </div>
+                </div>
+
+                {/* Floating Stats Card */}
+                <div
+                    class="absolute -top-8 -left-8 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 animate-bounce-slow hidden md:block"
+                >
+                    <div class="text-center">
+                        <div class="text-3xl font-black text-emerald-600 mb-1">
+                            0%
+                        </div>
+                        <div class="text-sm font-bold text-slate-700">
+                            رسوم مخفية
+                        </div>
+                        <div class="text-xs text-slate-400 mt-1">
+                            نقل وفك مجاني
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Container>
+</section>

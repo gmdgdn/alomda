@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeroSection from "../components/home/HeroSection.astro";
+import IntroSection from "../components/home/IntroSection.astro";
+import ServicesBento from "../components/home/ServicesBento.astro";
+import HowItWorks from "../components/home/HowItWorks.astro";
+import ScrapSection from "../components/home/ScrapSection.astro";
+import LocationsGrid from "../components/home/LocationsGrid";
+import FAQSection from "../components/home/FAQSection.astro";
+import Testimonials from "../components/home/Testimonials.astro";
+import MapEmbed from "../components/ui/MapEmbed.astro";
+import Container from "../components/ui/Container.astro";
+import SafetyGuarantee from "../components/home/SafetyGuarantee.astro";
+import PricingReality from "../components/home/PricingReality.astro";
+---
+
+<Layout title="شراء اثاث مستعمل بالرياض | دفع فوري ونقل مجاني">
+  <main>
+    <HeroSection />
+    <IntroSection />
+    <ServicesBento />
+    <HowItWorks />
+    <SafetyGuarantee />
+    <PricingReality />
+    <Testimonials />
+    <ScrapSection />
+    <LocationsGrid client:visible />
+    <div class="py-12 bg-slate-50">
+      <Container>
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl font-bold text-center mb-8 text-slate-900">
+            موقعنا على الخريطة
+          </h2>
+          <MapEmbed query="Riyadh, Saudi Arabia" />
+        </div>
+      </Container>
+    </div>
+    <FAQSection />
+  </main>
+</Layout>

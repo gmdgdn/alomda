@@ -1,0 +1,277 @@
+---
+import { DISTRICTS } from '../../data/seo-data';
+import { SITE_CONFIG } from '../../data/site-config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article' | 'service';
+  district?: {
+    nameAr: string;
+    socioEconomic: 'High' | 'Mid' | 'Industrial';
+    landmarks: string[];
+    housingType: string;
+  };
+  service?: {
+    nameAr: string;
+    synonyms: string[];
+    priceRange: string;
+  };
+}
+
+const { 
+  title: propTitle, 
+  description: propDescription, 
+  image = "/og-image.jpg",
+  type = 'website',
+  district,
+  service
+} = Astro.props;
+
+// --- Logic for Dynamic Title & Description ---
+
+let title = propTitle;
+let description = propDescription;
+
+if (district) {
+  // Dynamic Title Logic based on SocioEconomic status
+  const mainKeyword = "شراء اثاث مستعمل";
+  const uniqueValue = district.socioEconomic === 'High' 
+    ? "تقييم عادل وسعر ممتاز" 
+    : "دفع كاش فوري ونقل مجاني";
+  
+  if (!title) {
+    title = `${mainKeyword} في ${district.nameAr} | ${uniqueValue}`;
+  }
+
+  // Dynamic Description Logic
+  if (!description) {
+    description = `تبيع اثاث في ${district.nameAr}؟ نحن نشتري من ${district.housingType === 'Luxury Villa' ? 'الفلل والقصور' : 'الشقق والمنازل'} بالقرب من ${district.landmarks[0]} لتقييم فوري.`;
+  }
+}
+
+if (service) {
+    if (!title) {
+        title = `شراء ${service.nameAr} مستعمل بالرياض | أفضل الأسعار`;
+    }
+    if (!description) {
+        description = `نشتري ${service.nameAr} و${service.synonyms[0]} بأفضل الأسعار في الرياض. ${service.priceRange}. اتصل نصلك فوراً.`;
+    }
+}
+
+// Fallback
+if (!title) title = "شراء اثاث مستعمل بالرياض | دفع فوري ونقل مجاني";
+if (!description) description = "نشتري الاثاث المستعمل بالرياض بأفضل الأسعار. خدمة سريعة، دفع فوري، ونقل مجاني. نشتري غرف النوم، المكيفات، المطابخ، والأجهزة الكهربائية.";
+
+
+// --- Schema.org Generation ---
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteUrl = Astro.site ? Astro.site.toString() : 'https://alomda-sa.pages.dev';
+
+// Base Schema (Organization) - Always present
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "العمدة لشراء الاثاث المستعمل",
+  "url": siteUrl,
+  "logo": `${siteUrl}logo.png`,
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": `+${SITE_CONFIG.whatsapp}`,
+    "contactType": "customer service",
+    "areaServed": "Riyadh",
+    "availableLanguage": ["ar", "en"]
+  }
+};
+
+let pageSchema: any = [];
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "الرئيسية",
+      "item": siteUrl
+    }
+  ]
+};
+
+if (district) {
+  breadcrumbSchema.itemListElement.push({
+    "@type": "ListItem",
+    "position": 2,
+    "name": district.nameAr,
+    "item": `${siteUrl}/riyadh/${district.nameAr}` // Ideally slug, but nameAr works for display if slug unavailable here
+  });
+} else if (service) {
+  breadcrumbSchema.itemListElement.push({
+    "@type": "ListItem",
+    "position": 2,
+    "name": "خدماتنا",
+    "item": `${siteUrl}/services`
+  });
+  breadcrumbSchema.itemListElement.push({
+    "@type": "ListItem",
+    "position": 3,
+    "name": service.nameAr,
+    "item": `${siteUrl}/services/${service.nameAr}` // Ideally slug
+  });
+}
+
+pageSchema.push(breadcrumbSchema);
+
+// Homepage Schema
+if (Astro.url.pathname === '/') {
+  pageSchema.push({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "العمدة لشراء الاثاث المستعمل بالرياض",
+    "image": `${siteUrl}og-image.jpg`,
+    "telephone": `+${SITE_CONFIG.whatsapp}`,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Riyadh",
+      "addressCountry": "SA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "24.7136",
+      "longitude": "46.6753"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "areaServed": DISTRICTS.map(d => d.nameAr), // All districts
+    "priceRange": "$$"
+  });
+}
+
+// District Page Schema
+if (district) {
+  pageSchema.push({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": `شراء اثاث مستعمل في ${district.nameAr}`,
+    "serviceType": "Furniture Buying",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "العمدة لشراء الاثاث المستعمل",
+      "image": `${siteUrl}og-image.jpg`,
+      "telephone": `+${SITE_CONFIG.whatsapp}`,
+      "priceRange": "$$"
+    },
+    "areaServed": {
+      "@type": "Place",
+      "name": district.nameAr
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "خدمات شراء الاثاث",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "شراء غرف نوم" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "شراء مكيفات" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "شراء مطابخ" } }
+      ]
+    }
+  });
+}
+
+// Service Page Schema
+if (service) {
+  pageSchema.push({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": `شراء ${service.nameAr}`,
+    "serviceType": service.nameAr,
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "العمدة لشراء الاثاث المستعمل",
+      "image": `${siteUrl}og-image.jpg`,
+      "telephone": `+${SITE_CONFIG.whatsapp}`,
+      "priceRange": service.priceRange || "$$"
+    },
+    "areaServed": "Riyadh",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "أنواع " + service.nameAr,
+      "itemListElement": service.synonyms.map(syn => ({
+        "@type": "Offer",
+        "itemOffered": { "@type": "Service", "name": syn }
+      }))
+    }
+  });
+  
+  // FAQ Schema for Service Pages
+  pageSchema.push({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": `هل تشترون ${service.nameAr} تالفة؟`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "نعم، نشتري جميع الحالات بما فيها السكراب والتالف."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": `كم سعر شراء ${service.nameAr}؟`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `تتراوح الأسعار تقريباً بين ${service.priceRange} حسب الحالة والموديل.`
+        }
+      }
+    ]
+  });
+}
+
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<meta name="generator" content={Astro.generator} />
+
+{/* Canonical URL */}
+<link rel="canonical" href={canonicalURL} />
+
+{/* Primary Meta Tags */}
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="robots" content="index, follow" />
+
+{/* Open Graph / Facebook */}
+<meta property="og:type" content={type} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+
+{/* Twitter */}
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+{/* Sitemap */}
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+{/* Schema.org Injection */}
+<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+{pageSchema.map((schema: any) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}

@@ -1,0 +1,4 @@
+/contact-us /contact 301
+/about-us /about 301
+# Catch-all for old WordPress blog posts to preserve link juice
+/category/* / 301

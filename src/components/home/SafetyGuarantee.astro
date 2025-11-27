@@ -1,0 +1,75 @@
+---
+import Container from "../ui/Container.astro";
+import { Shield, UserCheck, Clock } from "lucide-react";
+---
+
+<section class="py-16 bg-white relative overflow-hidden">
+    <div
+        class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"
+    >
+    </div>
+    <Container>
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                حرمة بيتك خط أحمر - لماذا يثق بنا العوائل؟
+            </h2>
+            <p class="text-lg text-slate-600">
+                نحن نتفهم خصوصية المنازل السعودية. فريقنا مدرب على العمل باحترام
+                وهدوء.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <div
+                class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition-all group"
+            >
+                <div
+                    class="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-6 group-hover:scale-110 transition-transform"
+                >
+                    <UserCheck size={32} />
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">
+                    فريق نظامي وموحد
+                </h3>
+                <p class="text-slate-600 leading-relaxed">
+                    لا نرسل عمالة عشوائية. فريقنا يرتدي زياً موحداً ويحمل هويات
+                    نظامية لضمان أمانك وراحتك.
+                </p>
+            </div>
+
+            <div
+                class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition-all group"
+            >
+                <div
+                    class="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-6 group-hover:scale-110 transition-transform"
+                >
+                    <Clock size={32} />
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">
+                    بدون مماطلة
+                </h3>
+                <p class="text-slate-600 leading-relaxed">
+                    ندخل للمعاينة، نتفق، نفك، ونحمل. لا نضيع وقتك في الأخذ والرد
+                    أو التجول في المنزل.
+                </p>
+            </div>
+
+            <div
+                class="bg-slate-50 p-8 rounded-2xl border border-slate-100 hover:shadow-lg transition-all group"
+            >
+                <div
+                    class="w-14 h-14 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-6 group-hover:scale-110 transition-transform"
+                >
+                    <Shield size={32} />
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">
+                    احترام الخصوصية
+                </h3>
+                <p class="text-slate-600 leading-relaxed">
+                    متعودون على العمل في الفلل والشقق العائلية. نغض البصر وننجز
+                    العمل بهدوء تام.
+                </p>
+            </div>
+        </div>
+    </Container>
+</section>

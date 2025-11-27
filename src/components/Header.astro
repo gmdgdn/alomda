@@ -1,0 +1,286 @@
+---
+import {
+  Menu,
+  Phone,
+  ChevronDown,
+  MapPin,
+  Truck,
+  Home,
+  Info,
+  FileText,
+} from "lucide-react";
+import Container from "./ui/Container.astro";
+import { SITE_CONFIG } from "../data/site-config";
+
+const navLinks = [
+  { name: "الرئيسية", href: "/", icon: Home },
+  {
+    name: "خدماتنا",
+    href: "/services",
+    icon: Truck,
+    dropdown: [
+      {
+        name: "شراء مكيفات مستعملة",
+        href: "/services/used-acs",
+        desc: "سبليت، شباك، ودولابي",
+      },
+      {
+        name: "شراء غرف نوم",
+        href: "/services/used-bedrooms",
+        desc: "غرف كاملة ومفردة",
+      },
+      {
+        name: "شراء مطابخ مستعملة",
+        href: "/services/used-kitchens",
+        desc: "المنيوم وخشب",
+      },
+      {
+        name: "شراء مجالس عربية",
+        href: "/services/used-majlis",
+        desc: "مجالس، كنب، بيوت شعر",
+      },
+      {
+        name: "شراء اثاث مكتبي",
+        href: "/services/used-office-furniture",
+        desc: "مكاتب، كراسي، تصفية شركات",
+      },
+      {
+        name: "شراء اثاث فلل",
+        href: "/services/villa-furniture",
+        desc: "اثاث فاخر، تحف، ثريات",
+      },
+      {
+        name: "شراء اثاث منزلي",
+        href: "/services/general-furniture",
+        desc: "شراء عفش شقة بالكامل",
+      },
+      {
+        name: "شراء معدات مطاعم",
+        href: "/services/used-kitchen-equipment",
+        desc: "أفران، ثلاجات، ومعدات",
+      },
+      {
+        name: "شراء أجهزة كهربائية",
+        href: "/services/used-appliances",
+        desc: "ثلاجات، غسالات، أفران",
+      },
+    ],
+  },
+  {
+    name: "مناطق الخدمة",
+    href: "/riyadh",
+    icon: MapPin,
+    dropdown: [
+      {
+        name: "شمال الرياض",
+        href: "/riyadh#north",
+        desc: "الملقا، الصحافة، الياسمين",
+      },
+      {
+        name: "شرق الرياض",
+        href: "/riyadh#east",
+        desc: "الرمال، الروضة، النسيم",
+      },
+      { name: "غرب الرياض", href: "/riyadh#west", desc: "لبن، طويق، السويدي" },
+      { name: "جنوب الرياض", href: "/riyadh#south", desc: "العزيزية، الشفاء" },
+    ],
+  },
+  {
+    name: "عن الشركة",
+    href: "/about",
+    icon: Info,
+    dropdown: [
+      { name: "من نحن", href: "/about", desc: "قصتنا ورؤيتنا" },
+      { name: "اتصل بنا", href: "/contact", desc: "تواصل معنا الآن" },
+      { name: "سياسة الخصوصية", href: "/privacy", desc: "حماية بياناتك" },
+    ],
+  },
+];
+---
+
+<header
+  class="sticky top-0 z-50 glass-premium transition-all duration-300"
+  id="main-header"
+>
+  <Container>
+    <div class="flex items-center justify-between h-20">
+      {/* Logo */}
+      <a
+        href="/"
+        class="flex items-center gap-3 group"
+        aria-label="شركة العمدة الرئيسية"
+      >
+        <div class="relative w-12 h-12 flex items-center justify-center">
+          <div
+            class="absolute inset-0 bg-gradient-to-tr from-emerald-600 to-emerald-400 rounded-xl rotate-3 group-hover:rotate-6 transition-transform shadow-lg"
+          >
+          </div>
+          <div
+            class="absolute inset-0 bg-white rounded-xl -rotate-3 group-hover:-rotate-6 transition-transform opacity-20"
+          >
+          </div>
+          <span class="relative text-white font-black text-2xl">ال</span>
+        </div>
+        <div class="flex flex-col">
+          <span
+            class="text-emerald-800 font-black tracking-tighter text-2xl leading-none group-hover:text-emerald-600 transition-colors"
+            >العمدة</span
+          >
+          <span
+            class="text-amber-500 font-bold text-xs tracking-wide leading-none mt-1"
+            >لشراء الاثاث المستعمل</span
+          >
+        </div>
+      </a>
+
+      {/* Desktop Nav */}
+      <nav class="hidden lg:flex items-center gap-8">
+        {
+          navLinks.map((link) => (
+            <div class="relative group">
+              <a
+                href={link.href}
+                class="flex items-center gap-1.5 text-slate-700 hover:text-emerald-600 font-bold transition-colors py-4 text-sm"
+              >
+                <link.icon className="w-4 h-4 opacity-70 group-hover:opacity-100" />
+                {link.name}
+                {link.dropdown && (
+                  <ChevronDown className="w-3 h-3 opacity-50 group-hover:rotate-180 transition-transform duration-300" />
+                )}
+              </a>
+
+              {/* Mega Menu Dropdown */}
+              {link.dropdown && (
+                <div class="absolute top-full right-0 w-72 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                  <div class="bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden p-2 ring-1 ring-black/5">
+                    {link.dropdown.map((item) => (
+                      <a
+                        href={item.href}
+                        class="flex flex-col px-4 py-3 hover:bg-emerald-50 rounded-xl transition-colors group/item"
+                      >
+                        <span class="text-slate-800 font-bold text-sm group-hover/item:text-emerald-700">
+                          {item.name}
+                        </span>
+                        <span class="text-slate-500 text-xs mt-0.5">
+                          {item.desc}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          ))
+        }
+      </nav>
+
+      {/* CTA Button */}
+      <div class="hidden md:flex items-center gap-4">
+        <a
+          href={`tel:${SITE_CONFIG.phone}`}
+          class="group relative overflow-hidden bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-full font-bold transition-all shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 hover:-translate-y-0.5"
+        >
+          <div
+            class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"
+          >
+          </div>
+          <div class="flex items-center gap-2 relative">
+            <Phone className="w-4 h-4" />
+            <span dir="ltr">{SITE_CONFIG.phone}</span>
+          </div>
+        </a>
+      </div>
+
+      {/* Mobile Menu Button */}
+      <button
+        id="mobile-menu-btn"
+        class="lg:hidden p-2 text-slate-600 hover:text-emerald-600 transition-colors bg-slate-50 rounded-lg hover:bg-emerald-50"
+        aria-label="القائمة"
+      >
+        <Menu className="w-6 h-6" />
+      </button>
+    </div>
+  </Container>
+
+  {/* Mobile Menu Overlay */}
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 z-50 bg-white transform translate-x-full transition-transform duration-300 lg:hidden overflow-y-auto"
+  >
+    <div class="p-6">
+      <div class="flex items-center justify-between mb-8">
+        <span class="text-2xl font-black text-emerald-800">القائمة</span>
+        <button
+          id="close-menu-btn"
+          class="p-2 text-slate-500 hover:text-red-500 bg-slate-50 rounded-full"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="flex flex-col gap-2">
+        {
+          navLinks.map((link) => (
+            <div class="border-b border-slate-50 pb-2">
+              <a
+                href={link.href}
+                class="flex items-center gap-3 text-lg font-bold text-slate-800 py-3"
+              >
+                <link.icon className="w-5 h-5 text-emerald-600" />
+                {link.name}
+              </a>
+              {link.dropdown && (
+                <div class="pr-8 flex flex-col gap-2 mt-1">
+                  {link.dropdown.map((item) => (
+                    <a
+                      href={item.href}
+                      class="text-slate-500 py-2 text-sm hover:text-emerald-600"
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))
+        }
+      </nav>
+
+      <div class="mt-8">
+        <a
+          href={`tel:${SITE_CONFIG.phone}`}
+          class="flex items-center justify-center gap-2 bg-emerald-600 text-white w-full py-4 rounded-xl font-bold text-lg shadow-xl"
+        >
+          <Phone className="w-5 h-5" />
+          <span>اتصل الآن</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const closeMenuBtn = document.getElementById("close-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  function toggleMenu() {
+    mobileMenu?.classList.toggle("translate-x-full");
+    document.body.classList.toggle("overflow-hidden");
+  }
+
+  mobileMenuBtn?.addEventListener("click", toggleMenu);
+  closeMenuBtn?.addEventListener("click", toggleMenu);
+</script>
