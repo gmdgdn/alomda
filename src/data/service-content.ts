@@ -1,3 +1,14 @@
+import type { ImageMetadata } from 'astro';
+import acsCoverImg from '../assets/images/services/acs-cover.webp';
+import appliancesCoverImg from '../assets/images/services/appliances-cover.webp';
+import bedroomCoverImg from '../assets/images/services/bedroom-cover.webp';
+import kitchenCoverImg from '../assets/images/services/kitchen-cover.webp';
+import officeCoverImg from '../assets/images/services/office-cover.webp';
+import generalCoverImg from '../assets/images/services/general-cover.webp';
+import majlisImg from '../assets/images/service-majlis.webp';
+import heroVillaImg from '../assets/images/hero-villa.webp';
+import furnitureMovingImg from '../assets/images/services/furniture-moving.webp';
+
 export interface ServiceContent {
     slug: string;
     titleAr: string;
@@ -6,7 +17,7 @@ export interface ServiceContent {
     hero: {
         h1: string;
         sub: string;
-        bgImage: string;
+        bgImage: ImageMetadata;  // Changed from string to ImageMetadata
     };
     keywords: string[];
     acceptance: {
@@ -37,7 +48,7 @@ export const SERVICE_TEMPLATES: Record<string, ServiceContent> = {
         hero: {
             h1: "شراء أجهزة كهربائية مستعملة بالرياض - ثلاجات وغسالات",
             sub: "نشتري الثلاجات الكبيرة، الغسالات الأتوماتيك، والأفران. نشتري الأجهزة الشغالة والعطلانة (سكراب).",
-            bgImage: "/images/services/appliances-cover.webp"
+            bgImage: appliancesCoverImg
         },
         keywords: ["ثلاجات مستعملة", "غسالات اتوماتيك", "افران غاز", "شاشات تلفزيون"],
         acceptance: [
@@ -72,7 +83,7 @@ export const SERVICE_TEMPLATES: Record<string, ServiceContent> = {
         hero: {
             h1: "شراء مكيفات مستعملة بالرياض - سبليت وشباك وسكراب",
             sub: "نشتري جميع أنواع المكيفات (LG, Gree, Samsung) بأعلى الأسعار. نشتري المكيفات الشغالة والخربانة (سكراب). فك ونقل فوري.",
-            bgImage: "/images/services/acs-cover.webp"
+            bgImage: acsCoverImg
         },
         keywords: ["مكيفات سبليت", "مكيفات شباك", "مكيفات دولابي", "سكراب مكيفات", "نحاس"],
         acceptance: [
@@ -106,7 +117,7 @@ export const SERVICE_TEMPLATES: Record<string, ServiceContent> = {
         hero: {
             h1: "شراء غرف نوم مستعملة بالرياض - ايكيا ووطني وصيني",
             sub: "نجدد منزلك؟ نشتري غرف النوم الكاملة، غرف الأطفال، والدواليب. فك محترف للحفاظ على جدران منزلك.",
-            bgImage: "/images/services/bedroom-cover.webp"
+            bgImage: bedroomCoverImg
         },
         keywords: ["غرف نوم ايكيا", "غرف نوم مصرية", "سرير مزدوج", "دولاب ملابس", "تسريحة"],
         acceptance: [
@@ -141,7 +152,7 @@ export const SERVICE_TEMPLATES: Record<string, ServiceContent> = {
         hero: {
             h1: "شراء مطابخ مستعملة بالرياض - المنيوم وخشب",
             sub: "نشتري المطابخ الجاهزة والتفصيل. فك الرخام والادراج بعناية. نشتري المطابخ الأمريكية ومطابخ المطاعم.",
-            bgImage: "/images/services/kitchen-cover.webp"
+            bgImage: kitchenCoverImg
         },
         keywords: ["مطابخ المنيوم", "مطابخ خشب", "رخام صناعي", "شفاط مطبخ", "دواليب"],
         acceptance: [
@@ -176,7 +187,7 @@ export const SERVICE_TEMPLATES: Record<string, ServiceContent> = {
         hero: {
             h1: "شراء معدات مطاعم مستعملة بالرياض - تجهيزات وكافيهات",
             sub: "نشتري معدات المطاعم والكافيهات والمخابز. ثلاجات عرض، أفران بيتزا، مكائن قهوة، ومعدات الستانلس ستيل. تصفية شاملة للمطاعم.",
-            bgImage: "/images/services/restaurant-cover.webp"
+            bgImage: generalCoverImg  // Using general as placeholder for restaurant
         },
         keywords: ["معدات مطاعم", "ثلاجات عرض", "أفران بيتزا", "مكائن قهوة", "طاولات ستيل"],
         acceptance: [
@@ -211,7 +222,7 @@ export const SERVICE_TEMPLATES: Record<string, ServiceContent> = {
         hero: {
             h1: "شراء مجالس مستعملة بالرياض - عربي، كلاسيك، ومغربي",
             sub: "نشتري المجالس العربية الأرضية، الكنب المتصل، وبيوت الشعر. نشتري اطقم الكنب الأمريكية والتركية بأعلى سعر.",
-            bgImage: "/images/service-majlis.png"
+            bgImage: majlisImg
         },
         keywords: ["مجالس عربية", "كنب مستعمل", "مجالس ارضية", "بيوت شعر", "موكيت وسجاد"],
         acceptance: [
@@ -246,7 +257,7 @@ export const SERVICE_TEMPLATES: Record<string, ServiceContent> = {
         hero: {
             h1: "شراء اثاث مكتبي مستعمل بالرياض - تصفية شركات ومكاتب",
             sub: "خدمة خاصة للشركات. نشتري الاثاث المكتبي، الكراسي، طاولات الاجتماعات، والدواليب. نشتري كميات كبيرة وتصفية كاملة.",
-            bgImage: "/images/services/office-cover.webp"
+            bgImage: officeCoverImg
         },
         keywords: ["اثاث مكتبي", "تصفية مكاتب", "كراسي مكتب", "طاولات اجتماعات", "بارتيشن"],
         acceptance: [
@@ -281,7 +292,7 @@ export const SERVICE_TEMPLATES: Record<string, ServiceContent> = {
         hero: {
             h1: "شراء اثاث الفلل والقصور بالرياض - الاثاث الفاخر والتحف",
             sub: "خدمة VIP لأصحاب الفلل. نشتري الاثاث المستورد، الماركات العالمية، التحف، والثريات. خصوصية تامة وأسعار تليق بفخامة اثاثكم.",
-            bgImage: "/images/hero-villa.png"
+            bgImage: heroVillaImg
         },
         keywords: ["اثاث فلل", "اثاث قصور", "تحف وثريات", "اثاث ماركات", "غرف نوم ماستر"],
         acceptance: [
@@ -315,7 +326,7 @@ export const SERVICE_TEMPLATES: Record<string, ServiceContent> = {
         hero: {
             h1: "شراء الاثاث المستعمل بالرياض - نشتري اثاث الشقة بالكامل",
             sub: "تنتقل لمنزل جديد؟ نشتري عفش بيتك بالكامل. غرف، مطابخ، اجهزة، ومكيفات. بيعة واحدة تريح بالك.",
-            bgImage: "/images/services/general-cover.webp"
+            bgImage: generalCoverImg
         },
         keywords: ["نقل عفش", "بيع اثاث شقة", "شراء عفش كامل", "اثاث منزلي"],
         acceptance: [
@@ -340,6 +351,45 @@ export const SERVICE_TEMPLATES: Record<string, ServiceContent> = {
         faq: [
             { q: "هل تفرغون الشقة بالكامل؟", a: "نعم، نأخذ كل شيء بما في ذلك الستائر والموكيت اذا رغبت." },
             { q: "هل تشترون الادوات المنزلية الصغيرة؟", a: "نشتريها كجزء من 'بيعة الشقة' الكاملة." }
+        ]
+    },
+    'furniture-moving': {
+        slug: 'furniture-moving',
+        titleAr: 'نقل عفش وتغليف اثاث',
+        shortName: 'نقل العفش',
+        itemNoun: 'القطعة',
+        hero: {
+            h1: "نقل عفش وتغليف اثاث بالرياض - خدمة نقل احترافية",
+            sub: "نوفر خدمة نقل العفش المحترف مع الفك والتركيب والتغليف. فريق مدرب، سيارات مجهزة، وضمان على سلامة اثاثك. خدمة شاملة لنقل المنازل والمكاتب.",
+            bgImage: furnitureMovingImg
+        },
+        keywords: ["نقل عفش", "تغليف اثاث", "فك وتركيب", "نقل منازل", "نقل شقق", "نقل مكاتب"],
+        acceptance: [
+            { title: "نقل المنازل والشقق", desc: "نقل محتويات الشقق والمنازل بالكامل مع الفك والتركيب المجاني." },
+            { title: "نقل المكاتب والشركات", desc: "خدمة متخصصة لنقل الاثاث المكتبي مع التنسيق المسبق لتقليل وقت التعطيل." },
+            { title: "التغليف الاحترافي", desc: "نستخدم مواد تغليف عالية الجودة (كرتون، فقاعات هوائية، بلاستيك) لحماية اثاثك." }
+        ],
+        dontBuy: [
+            "المواد الخطرة أو القابلة للاشتعال",
+            "الحيوانات الأليفة (نركز على العفش فقط)",
+            "النباتات الحية الكبيرة"
+        ],
+        technicalInfo: [
+            { title: "كيفية حساب التكلفة؟", desc: "يتم حساب التكلفة بناءً على: 1. عدد الغرف والمحتويات. 2. المسافة بين الموقعين. 3. الطابق (وجود مصعد أم لا). 4. الحاجة للتغليف والتخزين." },
+            { title: "التأمين على العفش", desc: "نوفر تأمين اختياري على محتويات المنزل ضد التلف أو الفقدان أثناء النقل." },
+            { title: "فك وتركيب الاثاث", desc: "لدينا نجارون محترفون لفك وتركيب غرف النوم، المطابخ، والدواليب الكبيرة دون إتلاف." }
+        ],
+        pricing: [
+            { item: "نقل شقة (غرفتين وصالة)", price: "800 - 1500 ريال" },
+            { item: "نقل شقة (3 غرف)", price: "1200 - 2200 ريال" },
+            { item: "نقل فيلا (5+ غرف)", price: "2500 - 5000 ريال" },
+            { item: "التغليف الكامل (إضافي)", price: "300 - 800 ريال" }
+        ],
+        faq: [
+            { q: "هل تشمل الخدمة الفك والتركيب؟", a: "نعم، نوفر خدمة الفك والتركيب المجاني لجميع قطع الاثاث التي تحتاج لذلك." },
+            { q: "هل توفرون مواد التغليف؟", a: "نعم، نوفر جميع مواد التغليف (كرتون، فقاعات، بلاستيك) ونتحمل تكلفتها في حال اخترت باقة التغليف الشامل." },
+            { q: "كم يستغرق نقل العفش؟", a: "شقة من غرفتين تستغرق عادة 4-6 ساعات شاملة الفك والتركيب. الفلل الكبيرة قد تستغرق يوم كامل." },
+            { q: "هل تنقلون بين المدن؟", a: "نعم، نوفر خدمة النقل داخل الرياض وبين المدن الرئيسية (جدة، الدمام، مكة)." }
         ]
     }
 };

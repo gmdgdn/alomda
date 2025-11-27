@@ -1,0 +1,117 @@
+---
+import { Image } from "astro:assets";
+
+import acsCoverImg from "../../assets/images/services/acs-cover.webp";
+import bedroomCoverImg from "../../assets/images/services/bedroom-cover.webp";
+import kitchenCoverImg from "../../assets/images/services/kitchen-cover.webp";
+import majlisImg from "../../assets/images/service-majlis.webp";
+import appliancesCoverImg from "../../assets/images/services/appliances-cover.webp";
+
+interface Props {
+    district?: string;
+}
+
+const { district } = Astro.props;
+
+const services = [
+    {
+        title: district ? `شراء مكيفات ب${district}` : "شراء مكيفات",
+        desc: "نشتري جميع أنواع المكيفات السبلت والشباك بأعلى سعر.",
+        image: acsCoverImg,
+        link: "/services/used-acs",
+    },
+    {
+        title: district ? `شراء غرف نوم ب${district}` : "غرف نوم",
+        desc: "نشتري غرف النوم الكاملة والمفردة بأفضل الأسعار.",
+        image: bedroomCoverImg,
+        link: "/services/used-bedrooms",
+    },
+    {
+        title: district ? `شراء مطابخ ب${district}` : "مطابخ",
+        desc: "مطابخ ألمنيوم وخشب مستعملة.",
+        image: kitchenCoverImg,
+        link: "/services/used-kitchens",
+    },
+    {
+        title: district ? `شراء مجالس ب${district}` : "مجالس وكنب",
+        desc: "مجالس عربية، كنب أمريكي، وبيوت شعر.",
+        image: majlisImg,
+        link: "/services/used-majlis",
+    },
+    {
+        title: district ? `شراء اجهزة ب${district}` : "اجهزة كهربائية",
+        desc: "ثلاجات، غسالات، وأفران.",
+        image: appliancesCoverImg,
+        link: "/services/used-appliances",
+    },
+    {
+        title: district ? `شراء اثاث مكتبي ب${district}` : "اثاث مكتبي",
+        desc: "مكاتب، كراسي، تصفية شركات.",
+        image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2070&auto=format&fit=crop",
+        link: "/services/used-office-furniture",
+    },
+    {
+        title: district ? `شراء اثاث فلل ب${district}` : "اثاث فلل",
+        desc: "اثاث فاخر، تحف، وثريات.",
+        image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2070&auto=format&fit=crop",
+        link: "/services/villa-furniture",
+    },
+    {
+        title: district ? `شراء معدات مطاعم ب${district}` : "معدات مطاعم",
+        desc: "أفران، ثلاجات، ومعدات مطاعم.",
+        image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop",
+        link: "/services/used-kitchen-equipment",
+    },
+    {
+        title: district ? `شراء اثاث ب${district}` : "شراء اثاث",
+        desc: "نشتري عفش بيتك كاملاً دفعة واحدة.",
+        image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2070&auto=format&fit=crop",
+        link: "/services/general-furniture",
+    },
+    {
+        title: district ? `نقل عفش ب${district}` : "نقل عفش",
+        desc: "خدمة نقل احترافية مع الفك والتركيب.",
+        image: "https://images.unsplash.com/photo-1600518464441-9154a4dea21b?q=80&w=2070&auto=format&fit=crop",
+        link: "/services/furniture-moving",
+    },
+];
+---
+
+<div class="grid grid-cols-1 gap-4">
+    {
+        services.map((service) => (
+            <a
+                href={service.link}
+                class="group relative overflow-hidden rounded-2xl aspect-[2.5/1] shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+            >
+                <div class="absolute inset-0">
+                    {typeof service.image === "string" ? (
+                        <img
+                            src={service.image}
+                            alt={service.title}
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%] contrast-110"
+                            loading="lazy"
+                        />
+                    ) : (
+                        <Image
+                            src={service.image}
+                            alt={service.title}
+                            width={400}
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%] contrast-110"
+                            format="webp"
+                        />
+                    )}
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+                </div>
+                <div class="absolute inset-0 p-5 flex flex-col justify-center h-full">
+                    <h3 class="text-white font-bold text-lg leading-tight drop-shadow-md mb-1">
+                        {service.title}
+                    </h3>
+                    <p class="text-slate-200 text-xs md:text-sm opacity-90 line-clamp-2 font-medium">
+                        {service.desc}
+                    </p>
+                </div>
+            </a>
+        ))
+    }
+</div>

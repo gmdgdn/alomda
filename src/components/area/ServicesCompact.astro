@@ -1,0 +1,117 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    districtName: string;
+}
+
+const { districtName } = Astro.props;
+
+const services = [
+    {
+        title: "شراء مكيفات",
+        icon: "❄️",
+        desc: `نشتري جميع المكيفات في ${districtName}`,
+        href: "/services/used-acs",
+        image: "https://images.unsplash.com/photo-1574966739987-65e38db0f7ce?q=80&w=800&auto=format&fit=crop",
+    },
+    {
+        title: "غرف نوم",
+        icon: "🛏️",
+        desc: `شراء غرف النوم في ${districtName}`,
+        href: "/services/used-bedrooms",
+        image: "https://images.unsplash.com/photo-1616594039964-40891a909d99?q=80&w=800&auto=format&fit=crop",
+    },
+    {
+        title: "مطابخ",
+        icon: "🍳",
+        desc: `شراء المطابخ في ${districtName}`,
+        href: "/services/used-kitchens",
+        image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=800&auto=format&fit=crop",
+    },
+    {
+        title: "مجالس وكنب",
+        icon: "🛋️",
+        desc: `شراء المجالس في ${districtName}`,
+        href: "/services/used-majlis",
+        image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=800&auto=format&fit=crop",
+    },
+    {
+        title: "أجهزة كهربائية",
+        icon: "🔌",
+        desc: `شراء الأجهزة في ${districtName}`,
+        href: "/services/used-appliances",
+        image: "https://images.unsplash.com/photo-1571175443880-49e1d58b794a?q=80&w=800&auto=format&fit=crop",
+    },
+    {
+        title: "نقل عفش",
+        icon: "🚚",
+        desc: `خدمة نقل احترافية في ${districtName}`,
+        href: "/services/furniture-moving",
+        image: "https://images.unsplash.com/photo-1600518464441-9154a4dea21b?q=80&w=800&auto=format&fit=crop",
+    },
+];
+---
+
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+        <h2
+            class="text-2xl md:text-3xl font-bold text-center mb-8 text-slate-900"
+        >
+            خدماتنا في {districtName}
+        </h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {
+                services.map((service) => (
+                    <a
+                        href={service.href}
+                        class="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 bg-slate-50 hover:bg-white"
+                    >
+                        <div class="aspect-[4/3] overflow-hidden">
+                            <img
+                                src={service.image}
+                                alt={service.title}
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale-[20%] group-hover:grayscale-0"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-2xl">{service.icon}</span>
+                                <h3 class="text-lg font-bold text-slate-800 group-hover:text-emerald-700 transition-colors">
+                                    {service.title}
+                                </h3>
+                            </div>
+                            <p class="text-sm text-slate-600 line-clamp-1">
+                                {service.desc}
+                            </p>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+
+        <div class="mt-8 text-center">
+            <a
+                href="/services"
+                class="inline-flex items-center gap-2 text-emerald-600 font-bold hover:text-emerald-700 transition-colors text-sm"
+            >
+                عرض جميع الخدمات
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>

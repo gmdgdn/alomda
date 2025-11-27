@@ -1,12 +1,23 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { DISTRICTS } from '../../data/districts';
-import { CONTENT_TEMPLATES } from '../../data/content-dictionaries';
-import NearbyDistricts from '../../components/NearbyDistricts.astro';
-import SeoHead from '../../components/seo/SeoHead.astro';
-import { SITE_CONFIG } from '../../data/site-config';
-import StickyActionBar from '../../components/StickyActionBar';
-import { Phone, MessageCircle, CheckCircle, MapPin, Star, ShieldCheck, Truck, Clock, DollarSign } from 'lucide-react';
+import Layout from "../../layouts/Layout.astro";
+import { DISTRICTS } from "../../data/districts";
+import { CONTENT_TEMPLATES } from "../../data/content-dictionaries";
+import NearbyDistricts from "../../components/NearbyDistricts.astro";
+import SeoHead from "../../components/seo/SeoHead.astro";
+import { SITE_CONFIG } from "../../data/site-config";
+import StickyActionBar from "../../components/StickyActionBar";
+import ServiceAreaList from "../../components/services/ServiceAreaList.astro";
+import {
+  Phone,
+  MessageCircle,
+  CheckCircle,
+  MapPin,
+  Star,
+  ShieldCheck,
+  Truck,
+  Clock,
+  DollarSign,
+} from "lucide-react";
 
 export const prerender = true;
 
@@ -21,7 +32,7 @@ const { district } = Astro.props;
 
 // 1. SELECT THE CONTENT VIBE
 // Fallback to 'Family' if vibe is not found in CONTENT_TEMPLATES (though we added fallbacks)
-const content = CONTENT_TEMPLATES[district.vibe] || CONTENT_TEMPLATES['Family'];
+const content = CONTENT_TEMPLATES[district.vibe] || CONTENT_TEMPLATES["Family"];
 
 // 2. INJECT VARIABLES INTO TEXT
 const formatText = (text) => text.replace(/{nameAr}/g, district.nameAr);
@@ -33,54 +44,54 @@ const mapQuery = encodeURIComponent(`${district.nameAr}, Riyadh, Saudi Arabia`);
 // 3. SERVICE GRID DATA (Reordered based on vibe)
 const services = [
   {
-    id: 'acs',
-    title: 'شراء مكيفات',
+    id: "acs",
+    title: "شراء مكيفات",
     desc: `نشتري جميع المكيفات في ${district.nameAr}، سواء كانت سبليت أو شباك، شغالة أو سكراب.`,
-    icon: '❄️'
+    icon: "❄️",
   },
   {
-    id: 'bedrooms',
-    title: 'شراء غرف نوم',
+    id: "bedrooms",
+    title: "شراء غرف نوم",
     desc: `نشتري غرف النوم المستعملة في ${district.nameAr} بأعلى سعر. فك وتركيب مجاني.`,
-    icon: '🛏️'
+    icon: "🛏️",
   },
   {
-    id: 'kitchens',
-    title: 'شراء مطابخ',
+    id: "kitchens",
+    title: "شراء مطابخ",
     desc: `نشتري المطابخ الألومنيوم والخشب في ${district.nameAr} مع الفك والنقل.`,
-    icon: '🍳'
+    icon: "🍳",
   },
   {
-    id: 'appliances',
-    title: 'أجهزة كهربائية',
+    id: "appliances",
+    title: "أجهزة كهربائية",
     desc: `شراء الثلاجات، الغسالات، والأفران في ${district.nameAr} والدفع كاش.`,
-    icon: '🔌'
+    icon: "🔌",
   },
   {
-    id: 'furniture',
-    title: 'اثاث منزلي',
+    id: "furniture",
+    title: "اثاث منزلي",
     desc: `نشتري الكنب، المجالس، والطاولات من جميع أحياء ${district.nameAr}.`,
-    icon: '🛋️'
+    icon: "🛋️",
   },
   {
-    id: 'scrap',
-    title: 'شراء سكراب',
+    id: "scrap",
+    title: "شراء سكراب",
     desc: `نشتري سكراب الحديد والنحاس والألومنيوم في ${district.nameAr} بأسعار السوق.`,
-    icon: '♻️'
-  }
+    icon: "♻️",
+  },
 ];
 
 // Reorder logic
 let orderedServices = [...services];
-if (content.servicesFocus === 'Scrap & ACs') {
-  const priority = ['acs', 'scrap', 'kitchens'];
+if (content.servicesFocus === "Scrap & ACs") {
+  const priority = ["acs", "scrap", "kitchens"];
   orderedServices.sort((a, b) => {
     const aP = priority.indexOf(a.id);
     const bP = priority.indexOf(b.id);
     return (aP === -1 ? 99 : aP) - (bP === -1 ? 99 : bP);
   });
-} else if (content.servicesFocus === 'Bedrooms & Kitchens') {
-  const priority = ['bedrooms', 'kitchens', 'furniture'];
+} else if (content.servicesFocus === "Bedrooms & Kitchens") {
+  const priority = ["bedrooms", "kitchens", "furniture"];
   orderedServices.sort((a, b) => {
     const aP = priority.indexOf(a.id);
     const bP = priority.indexOf(b.id);
@@ -92,39 +103,39 @@ if (content.servicesFocus === 'Scrap & ACs') {
 const faqData = [
   {
     question: `هل تشترون الاثاث المستعمل في ${district.nameAr}؟`,
-    answer: `نعم، نحن نشتري جميع أنواع الاثاث المستعمل في ${district.nameAr} والمناطق المجاورة. نشتري غرف النوم، المكيفات، المطابخ، والأجهزة الكهربائية.`
+    answer: `نعم، نحن نشتري جميع أنواع الاثاث المستعمل في ${district.nameAr} والمناطق المجاورة. نشتري غرف النوم، المكيفات، المطابخ، والأجهزة الكهربائية.`,
   },
   {
     question: `كيف يتم تحديد سعر الاثاث في ${district.nameAr}؟`,
-    answer: `يتم تحديد السعر بناءً على حالة الاثاث، الموديل، والعمر. نرسل مندوباً للمعاينة في ${district.nameAr} لتقديم عرض سعر عادل وفوري.`
+    answer: `يتم تحديد السعر بناءً على حالة الاثاث، الموديل، والعمر. نرسل مندوباً للمعاينة في ${district.nameAr} لتقديم عرض سعر عادل وفوري.`,
   },
   {
     question: `هل توفرون خدمة النقل من ${district.nameAr}؟`,
-    answer: `نعم، نوفر خدمة الفك والنقل المجاني من ${district.nameAr}. لدينا سيارات مجهزة وعمالة مدربة لنقل العفش دون أي تكاليف إضافية عليك.`
+    answer: `نعم، نوفر خدمة الفك والنقل المجاني من ${district.nameAr}. لدينا سيارات مجهزة وعمالة مدربة لنقل العفش دون أي تكاليف إضافية عليك.`,
   },
   {
     question: `متى يمكنكم الحضور إلى ${district.nameAr}؟`,
-    answer: `نحن متواجدون على مدار الساعة. بمجرد الاتصال، يمكننا الوصول إليك في ${district.nameAr} خلال 60 دقيقة أو في الوقت الذي يناسبك.`
-  }
+    answer: `نحن متواجدون على مدار الساعة. بمجرد الاتصال، يمكننا الوصول إليك في ${district.nameAr} خلال 60 دقيقة أو في الوقت الذي يناسبك.`,
+  },
 ];
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqData.map(item => ({
+  mainEntity: faqData.map((item) => ({
     "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": {
+    name: item.question,
+    acceptedAnswer: {
       "@type": "Answer",
-      "text": item.answer
-    }
-  }))
+      text: item.answer,
+    },
+  })),
 };
 ---
 
 <Layout title={heroHeadline}>
   <SeoHead title={heroHeadline} description={heroSubhead} />
-  
+
   {/* JSON-LD FAQ Schema */}
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
@@ -135,32 +146,57 @@ const faqSchema = {
   <section class="relative bg-emerald-900 text-white py-20 overflow-hidden">
     {/* Dynamic Background Overlay */}
     <div class="absolute inset-0 bg-black/60 z-10"></div>
-    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] opacity-10 z-0"></div>
-    
+    <div
+      class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] opacity-10 z-0"
+    >
+    </div>
+
     <div class="relative z-20 container mx-auto px-4 text-center">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8 animate-fade-up">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8 animate-fade-up"
+      >
         <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-        <span class="text-amber-300 font-bold tracking-wide">📍 متواجدون الآن بالقرب من {district.nameAr}</span>
+        <span class="text-amber-300 font-bold tracking-wide"
+          >📍 متواجدون الآن بالقرب من {district.nameAr}</span
+        >
       </div>
 
-      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight max-w-4xl mx-auto animate-fade-up [animation-delay:200ms]">
+      <h1
+        class="text-4xl md:text-6xl font-bold mb-6 leading-tight max-w-4xl mx-auto animate-fade-up [animation-delay:200ms]"
+      >
         <span class="text-gradient-gold">{heroHeadline}</span>
       </h1>
-      
-      <p class="text-xl text-emerald-50 mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-up [animation-delay:400ms]">{heroSubhead}</p>
-      
-      <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up [animation-delay:600ms]">
-        <a href={`https://wa.me/${SITE_CONFIG.whatsapp}`} class="group relative bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-bold py-4 px-8 rounded-full text-xl flex items-center justify-center gap-3 transition-all hover:scale-105 shadow-lg shadow-emerald-500/30 overflow-hidden">
-          <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"></span>
+
+      <p
+        class="text-xl text-emerald-50 mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-up [animation-delay:400ms]"
+      >
+        {heroSubhead}
+      </p>
+
+      <div
+        class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up [animation-delay:600ms]"
+      >
+        <a
+          href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
+          class="track-whatsapp group relative bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-bold py-4 px-8 rounded-full text-xl flex items-center justify-center gap-3 transition-all hover:scale-105 shadow-lg shadow-emerald-500/30 overflow-hidden"
+        >
+          <span
+            class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"
+          ></span>
           <div class="relative flex items-center gap-3">
             <div class="relative">
-              <span class="absolute -inset-1 rounded-full bg-white/30 animate-ping"></span>
+              <span
+                class="absolute -inset-1 rounded-full bg-white/30 animate-ping"
+              ></span>
               <MessageCircle className="w-6 h-6" />
             </div>
             <span>{formatText(content.hero.cta)}</span>
           </div>
         </a>
-        <a href={`tel:${SITE_CONFIG.phone}`} class="glass-premium text-emerald-900 hover:bg-white font-bold py-4 px-8 rounded-full text-xl flex items-center justify-center gap-2 transition-all hover:scale-105">
+        <a
+          href={`tel:${SITE_CONFIG.phone}`}
+          class="track-call glass-premium text-emerald-900 hover:bg-white font-bold py-4 px-8 rounded-full text-xl flex items-center justify-center gap-2 transition-all hover:scale-105"
+        >
           <Phone className="w-6 h-6" />
           <span>اتصل الآن</span>
         </a>
@@ -171,77 +207,100 @@ const faqSchema = {
   {/* SECTION 2: VALUE PROPOSITION (Why Us?) */}
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-slate-800">{formatText(content.valueProp.title)}</h2>
+      <h2 class="text-3xl font-bold text-center mb-12 text-slate-800">
+        {formatText(content.valueProp.title)}
+      </h2>
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {content.valueProp.points.map((point, index) => (
-          <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition hover:-translate-y-1">
-            <div class="text-emerald-600 mb-4 bg-emerald-100 w-12 h-12 rounded-full flex items-center justify-center">
-              {index === 0 ? <DollarSign className="w-6 h-6" /> : 
-               index === 1 ? <ShieldCheck className="w-6 h-6" /> : 
-               index === 2 ? <Truck className="w-6 h-6" /> : 
-               <Clock className="w-6 h-6" />}
+        {
+          content.valueProp.points.map((point, index) => (
+            <div class="bg-slate-50 p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition hover:-translate-y-1">
+              <div class="text-emerald-600 mb-4 bg-emerald-100 w-12 h-12 rounded-full flex items-center justify-center">
+                {index === 0 ? (
+                  <DollarSign className="w-6 h-6" />
+                ) : index === 1 ? (
+                  <ShieldCheck className="w-6 h-6" />
+                ) : index === 2 ? (
+                  <Truck className="w-6 h-6" />
+                ) : (
+                  <Clock className="w-6 h-6" />
+                )}
+              </div>
+              <p class="text-lg font-medium text-slate-700 leading-relaxed">
+                {point}
+              </p>
             </div>
-            <p class="text-lg font-medium text-slate-700 leading-relaxed">{point}</p>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </section>
 
-  {/* SECTION 3: SERVICES GRID (Reordered by Vibe) */}
-  <section class="py-16 bg-slate-50">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12 text-slate-900">نشتري جميع الاثاث في {district.nameAr}</h2>
-      
-      {/* GEO Optimization: Use Definition List for Semantic Richness */}
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {orderedServices.map((service) => (
-          <article class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border border-slate-100">
-            <div class="text-4xl mb-4">{service.icon}</div>
-            <h3 class="text-xl font-bold text-emerald-800 mb-3">{service.title}</h3>
-            <p class="text-slate-600 leading-relaxed">{service.desc}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
+  {/* SECTION 3: SERVICES LIST (Compact) */}
+  <div class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-bold mb-6 text-slate-900">
+      خدماتنا في {district.nameAr}
+    </h2>
+    <ServiceAreaList district={district.nameAr} />
+  </div>
 
   {/* SECTION 4: HIGHLIGHTED MAP & LOCATION PROOF */}
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center">
       <div>
-        <h2 class="text-3xl font-bold mb-6 text-slate-900">نصلك في {district.nameAr} خلال 60 دقيقة</h2>
+        <h2 class="text-3xl font-bold mb-6 text-slate-900">
+          نصلك في {district.nameAr} خلال 60 دقيقة
+        </h2>
         <p class="text-lg text-slate-600 mb-8 leading-relaxed">
-          شاحناتنا موزعة في {district.region === 'North' ? 'شمال الرياض' : district.region === 'South' ? 'جنوب الرياض' : district.region === 'East' ? 'شرق الرياض' : district.region === 'West' ? 'غرب الرياض' : 'وسط الرياض'} وبالقرب من {district.landmarks[0]}. 
-          لا داعي للانتظار، بمجرد الاتصال يتحرك المندوب الأقرب لموقعك في {district.nameAr}.
+          شاحناتنا موزعة في {
+            district.region === "North"
+              ? "شمال الرياض"
+              : district.region === "South"
+                ? "جنوب الرياض"
+                : district.region === "East"
+                  ? "شرق الرياض"
+                  : district.region === "West"
+                    ? "غرب الرياض"
+                    : "وسط الرياض"
+          } وبالقرب من {district.landmarks[0]}. لا داعي للانتظار، بمجرد الاتصال
+          يتحرك المندوب الأقرب لموقعك في {district.nameAr}.
         </p>
         <ul class="space-y-4">
           <li class="flex items-center gap-3">
             <CheckCircle className="w-6 h-6 text-green-500 shrink-0" />
-            <span class="text-slate-700 font-medium">سرعة في الوصول والمعاينة</span>
+            <span class="text-slate-700 font-medium"
+              >سرعة في الوصول والمعاينة</span
+            >
           </li>
           <li class="flex items-center gap-3">
             <CheckCircle className="w-6 h-6 text-green-500 shrink-0" />
-            <span class="text-slate-700 font-medium">معرفة تامة بمداخل ومخارج {district.nameAr}</span>
+            <span class="text-slate-700 font-medium"
+              >معرفة تامة بمداخل ومخارج {district.nameAr}</span
+            >
           </li>
           <li class="flex items-center gap-3">
             <CheckCircle className="w-6 h-6 text-green-500 shrink-0" />
-            <span class="text-slate-700 font-medium">نقل فوري دون إزعاج الجيران</span>
+            <span class="text-slate-700 font-medium"
+              >نقل فوري دون إزعاج الجيران</span
+            >
           </li>
         </ul>
       </div>
-      <div class="h-[400px] w-full rounded-2xl overflow-hidden shadow-xl border-4 border-slate-100 relative group">
+      <div
+        class="h-[400px] w-full rounded-2xl overflow-hidden shadow-xl border-4 border-slate-100 relative group"
+      >
         {/* Highlighted Map Overlay */}
-        <div class="absolute top-4 right-4 bg-white/95 backdrop-blur px-4 py-2 rounded-lg shadow-md z-10 text-sm font-bold text-emerald-800 flex items-center gap-2">
+        <div
+          class="absolute top-4 right-4 bg-white/95 backdrop-blur px-4 py-2 rounded-lg shadow-md z-10 text-sm font-bold text-emerald-800 flex items-center gap-2"
+        >
           <MapPin className="w-4 h-4" />
           تغطية حي {district.nameAr}
         </div>
-        <iframe 
-          width="100%" 
-          height="100%" 
-          frameborder="0" 
-          style="border:0" 
-          loading="lazy" 
+        <iframe
+          width="100%"
+          height="100%"
+          frameborder="0"
+          style="border:0"
+          loading="lazy"
           src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
           allowfullscreen
           class="grayscale group-hover:grayscale-0 transition duration-700"
@@ -254,18 +313,32 @@ const faqSchema = {
   {/* SECTION 5: SOCIAL PROOF (Localized) */}
   <section class="py-16 bg-emerald-50">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-3xl font-bold mb-12 text-slate-900">آراء جيرانك في {district.nameAr}</h2>
-      <div class="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-lg relative">
-        <div class="text-6xl text-emerald-100 absolute top-4 right-8 font-serif">❝</div>
-        <div class="flex justify-center mb-6">
-          {[1, 2, 3, 4, 5].map(() => (
-            <Star className="w-6 h-6 text-amber-400 fill-current" />
-          ))}
+      <h2 class="text-3xl font-bold mb-12 text-slate-900">
+        آراء جيرانك في {district.nameAr}
+      </h2>
+      <div
+        class="max-w-3xl mx-auto bg-white p-8 md:p-12 rounded-2xl shadow-lg relative"
+      >
+        <div
+          class="text-6xl text-emerald-100 absolute top-4 right-8 font-serif"
+        >
+          ❝
         </div>
-        <p class="text-xl md:text-2xl text-slate-700 italic mb-8 leading-relaxed relative z-10">
+        <div class="flex justify-center mb-6">
+          {
+            [1, 2, 3, 4, 5].map(() => (
+              <Star className="w-6 h-6 text-amber-400 fill-current" />
+            ))
+          }
+        </div>
+        <p
+          class="text-xl md:text-2xl text-slate-700 italic mb-8 leading-relaxed relative z-10"
+        >
           "{formatText(content.review)}"
         </p>
-        <div class="font-bold text-emerald-800 text-lg">— {formatText(content.reviewer)}</div>
+        <div class="font-bold text-emerald-800 text-lg">
+          — {formatText(content.reviewer)}
+        </div>
       </div>
     </div>
   </section>
@@ -273,37 +346,53 @@ const faqSchema = {
   {/* SECTION 6: GEO PRICING TABLE (For Snippets) */}
   <section class="py-16 bg-white">
     <div class="container mx-auto px-4 max-w-4xl">
-      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-slate-900">متوسط أسعار شراء الاثاث في {district.nameAr}</h2>
-      <p class="text-center text-slate-500 mb-10">هذه الأسعار تقديرية وتعتمد على نظافة الاثاث والموديل.</p>
-      
+      <h2
+        class="text-2xl md:text-3xl font-bold mb-6 text-center text-slate-900"
+      >
+        متوسط أسعار شراء الاثاث في {district.nameAr}
+      </h2>
+      <p class="text-center text-slate-500 mb-10">
+        هذه الأسعار تقديرية وتعتمد على نظافة الاثاث والموديل.
+      </p>
+
       <div class="overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
         <table class="w-full text-right bg-white">
           <thead class="bg-slate-50 text-slate-700">
             <tr>
               <th class="p-4 border-b border-slate-200 font-bold">النوع</th>
-              <th class="p-4 border-b border-slate-200 font-bold">السعر التقديري</th>
+              <th class="p-4 border-b border-slate-200 font-bold"
+                >السعر التقديري</th
+              >
               <th class="p-4 border-b border-slate-200 font-bold">ملاحظات</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-100">
             <tr class="hover:bg-slate-50 transition">
               <td class="p-4 text-slate-700 font-medium">مكيف سبليت (نظيف)</td>
-              <td class="p-4 text-emerald-600 font-bold" dir="ltr">500 - 1500 SAR</td>
+              <td class="p-4 text-emerald-600 font-bold" dir="ltr"
+                >500 - 1500 SAR</td
+              >
               <td class="p-4 text-slate-500 text-sm">حسب الطن والماركة</td>
             </tr>
-             <tr class="hover:bg-slate-50 transition">
+            <tr class="hover:bg-slate-50 transition">
               <td class="p-4 text-slate-700 font-medium">غرفة نوم كاملة</td>
-              <td class="p-4 text-emerald-600 font-bold" dir="ltr">300 - 2000 SAR</td>
+              <td class="p-4 text-emerald-600 font-bold" dir="ltr"
+                >300 - 2000 SAR</td
+              >
               <td class="p-4 text-slate-500 text-sm">ايكيا، وطني، أو صيني</td>
             </tr>
-             <tr class="hover:bg-slate-50 transition">
-              <td class="p-4 text-slate-700 font-medium">سكراب (حديد/المنيوم)</td>
+            <tr class="hover:bg-slate-50 transition">
+              <td class="p-4 text-slate-700 font-medium"
+                >سكراب (حديد/المنيوم)</td
+              >
               <td class="p-4 text-emerald-600 font-bold">حسب الوزن</td>
               <td class="p-4 text-slate-500 text-sm">نقل فوري</td>
             </tr>
-             <tr class="hover:bg-slate-50 transition">
+            <tr class="hover:bg-slate-50 transition">
               <td class="p-4 text-slate-700 font-medium">مجلس عربي / كنب</td>
-              <td class="p-4 text-emerald-600 font-bold" dir="ltr">200 - 1000 SAR</td>
+              <td class="p-4 text-emerald-600 font-bold" dir="ltr"
+                >200 - 1000 SAR</td
+              >
               <td class="p-4 text-slate-500 text-sm">حسب النظافة وعدد القطع</td>
             </tr>
           </tbody>
@@ -315,27 +404,46 @@ const faqSchema = {
   {/* SECTION 7: FAQ SCHEMA */}
   <section class="py-16 bg-slate-50">
     <div class="container mx-auto px-4 max-w-3xl">
-      <h2 class="text-3xl font-bold mb-10 text-center text-slate-900">أسئلة شائعة من سكان {district.nameAr}</h2>
+      <h2 class="text-3xl font-bold mb-10 text-center text-slate-900">
+        أسئلة شائعة من سكان {district.nameAr}
+      </h2>
       <div class="space-y-4">
-        {faqData.map((item) => (
-          <details class="group bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-            <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
-              <span class="font-bold text-slate-800 text-lg">{item.question}</span>
-              <span class="transition group-open:rotate-180">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-emerald-500">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                </svg>
-              </span>
-            </summary>
-            <div class="px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
-              {item.answer}
-            </div>
-          </details>
-        ))}
+        {
+          faqData.map((item) => (
+            <details class="group bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+              <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+                <span class="font-bold text-slate-800 text-lg">
+                  {item.question}
+                </span>
+                <span class="transition group-open:rotate-180">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6 text-emerald-500"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    />
+                  </svg>
+                </span>
+              </summary>
+              <div class="px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                {item.answer}
+              </div>
+            </details>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <NearbyDistricts currentRegion={district.region} currentDistrictSlug={district.slug} />
-
+  <NearbyDistricts
+    currentRegion={district.region}
+    currentDistrictSlug={district.slug}
+  />
 </Layout>

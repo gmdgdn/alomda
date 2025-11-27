@@ -6,6 +6,8 @@ export interface DistrictInterface {
     socioEconomic: 'High' | 'Mid' | 'Industrial';
     landmarks: string[];
     urgencyTrigger: string;
+    localContext: string;
+    vibe: 'Luxury' | 'Family' | 'Industrial' | 'Commercial';
 }
 
 export interface ServiceInterface {
@@ -64,6 +66,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'High',
         landmarks: ['طريق الملك سلمان', 'الرياض بارك', 'مستشفى الحبيب'],
         urgencyTrigger: 'تجديد الاثاث',
+        localContext: 'حي الملقا هو واجهة الرياض الشمالية الحديثة، يتميز بالفلل الراقية والقصور.',
+        vibe: 'Luxury',
     },
     {
         slug: 'al-yasmin',
@@ -73,6 +77,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'High',
         landmarks: ['طريق أنس بن مالك', 'الياسمين بلازا'],
         urgencyTrigger: 'الانتقال لمنزل جديد',
+        localContext: 'حي الياسمين يجمع بين الهدوء والرقي، وهو خيار العائلات الباحثة عن الاستقرار.',
+        vibe: 'Family',
     },
     {
         slug: 'al-aqiq',
@@ -82,6 +88,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'High',
         landmarks: ['مركز الملك عبدالله المالي', 'العقيق سكوير'],
         urgencyTrigger: 'تغيير الديكور',
+        localContext: 'حي العقيق هو القلب النابض لشمال الرياض، قريب من المركز المالي والخدمات.',
+        vibe: 'Commercial',
     },
     {
         slug: 'al-sahafa',
@@ -91,6 +99,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Mid',
         landmarks: ['طريق الملك فهد', 'نادي الشباب'],
         urgencyTrigger: 'الخروج النهائي',
+        localContext: 'حي الصحافة يتميز بموقعه الاستراتيجي وتنوع خيارات السكن فيه.',
+        vibe: 'Commercial',
     },
     {
         slug: 'al-narjis',
@@ -100,6 +110,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Mid',
         landmarks: ['جامعة الأميرة نورة', 'طريق عثمان بن عفان'],
         urgencyTrigger: 'تصفية الشقة',
+        localContext: 'حي النرجس هو مستقبل الشمال، يشهد تطوراً عمرانياً متسارعاً.',
+        vibe: 'Family',
     },
 
     // East Riyadh (Mid/Mixed)
@@ -111,6 +123,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'High',
         landmarks: ['ممشى الملك عبدالله', 'الحمراء مول'],
         urgencyTrigger: 'تجديد الفيلا',
+        localContext: 'حي الحمراء من الأحياء الراقية في شرق الرياض، يتميز بتخطيطه المنظم.',
+        vibe: 'Luxury',
     },
     {
         slug: 'al-yarmuk',
@@ -120,6 +134,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Mid',
         landmarks: ['طريق الدمام', 'اطياف مول'],
         urgencyTrigger: 'نقل عفش',
+        localContext: 'حي اليرموك حي حيوي متكامل الخدمات، مناسب للعائلات.',
+        vibe: 'Family',
     },
     {
         slug: 'al-munsiyah',
@@ -129,6 +145,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Mid',
         landmarks: ['محطة القطار', 'طريق الثمامة'],
         urgencyTrigger: 'بيع اثاث زائد',
+        localContext: 'حي المونسية يشهد نهضة عمرانية وقرب من واجهة الرياض.',
+        vibe: 'Family',
     },
     {
         slug: 'al-rawdah',
@@ -138,6 +156,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Mid',
         landmarks: ['خريص مول', 'شارع الحسن بن علي'],
         urgencyTrigger: 'ترميم المنزل',
+        localContext: 'حي الروضة من أعرق أحياء الشرق، يتميز بفلله الواسعة وشوارعه المشجرة.',
+        vibe: 'Family',
     },
     {
         slug: 'al-khaleej',
@@ -147,6 +167,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Mid',
         landmarks: ['استاد الملك فهد', 'طريق الملك عبدالله'],
         urgencyTrigger: 'السفر',
+        localContext: 'حي الخليج حي هادئ ومرغوب للسكن، تتوفر فيه كافة الخدمات.',
+        vibe: 'Family',
     },
 
     // West Riyadh (Mid/Old)
@@ -158,6 +180,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Mid',
         landmarks: ['الجسر المعلق', 'نادي الرياض'],
         urgencyTrigger: 'تغيير الاثاث',
+        localContext: 'حي لبن يتميز بإطلالته على الوادي وهدوئه النسبي.',
+        vibe: 'Family',
     },
     {
         slug: 'al-mahdiyah',
@@ -167,6 +191,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Mid',
         landmarks: ['وادي حنيفة', 'المخرج الغربي'],
         urgencyTrigger: 'تأثيث جديد',
+        localContext: 'حي المهدية حي جديد وواعد، يتميز بأسعاره المناسبة ومساحاته الواسعة.',
+        vibe: 'Family',
     },
     {
         slug: 'al-suwaidi',
@@ -176,6 +202,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Mid',
         landmarks: ['القصر مول', 'حديقة السويدي'],
         urgencyTrigger: 'بيع المستعمل',
+        localContext: 'حي السويدي من الأحياء القديمة والمعروفة في الغرب، يتميز بكثافته السكانية.',
+        vibe: 'Family',
     },
     {
         slug: 'al-badiah',
@@ -185,6 +213,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Mid',
         landmarks: ['سوق الرياض الدولي', 'العثيم مول'],
         urgencyTrigger: 'تجديد الشقة',
+        localContext: 'حي البديعة يتميز بقربه من وسط المدينة وتوفر الأسواق.',
+        vibe: 'Commercial',
     },
     {
         slug: 'dhahrat-al-badiah',
@@ -194,6 +224,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Mid',
         landmarks: ['طريق المدينة', 'سوق الخضار'],
         urgencyTrigger: 'اخلاء طرف',
+        localContext: 'ظهرة البديعة حي سكني هادئ، مناسب للعائلات المتوسطة.',
+        vibe: 'Family',
     },
 
     // South Riyadh (Industrial/Old)
@@ -205,6 +237,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Industrial',
         landmarks: ['سوق الحراج', 'النقل الجماعي'],
         urgencyTrigger: 'بيع سكراب',
+        localContext: 'حي العزيزية هو مركز الخدمات اللوجستية والنقل في الجنوب.',
+        vibe: 'Industrial',
     },
     {
         slug: 'al-shifa',
@@ -214,6 +248,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Industrial',
         landmarks: ['معارض السيارات', 'الشفاء مول'],
         urgencyTrigger: 'تصفية مستودع',
+        localContext: 'حي الشفاء يشتهر بمعارض السيارات والنشاط التجاري.',
+        vibe: 'Industrial',
     },
     {
         slug: 'al-mansourah',
@@ -223,6 +259,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Industrial',
         landmarks: ['طريق الخرج', 'حديقة المنصورة'],
         urgencyTrigger: 'بيع خردة',
+        localContext: 'حي المنصورة حي شعبي قديم، يتميز بترابطه الاجتماعي.',
+        vibe: 'Family',
     },
     {
         slug: 'al-suwaidi-al-gharb',
@@ -232,6 +270,8 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Mid',
         landmarks: ['الدائري الجنوبي', 'اسواق السدحان'],
         urgencyTrigger: 'نقل سكن',
+        localContext: 'السويدي الغربي يجمع بين الخدمات التجارية والسكن المريح.',
+        vibe: 'Family',
     },
     {
         slug: 'nemar',
@@ -241,5 +281,7 @@ export const DISTRICTS: DistrictInterface[] = [
         socioEconomic: 'Mid',
         landmarks: ['منتزه نمار', 'طريق ديراب'],
         urgencyTrigger: 'تغيير عفش',
+        localContext: 'حي نمار يتميز بمنتزهه الشهير وطبيعته الجبلية.',
+        vibe: 'Family',
     },
 ];

@@ -1,87 +1,132 @@
 ---
-import { DISTRICTS } from "../../data/districts";
+import { Image } from "astro:assets";
+import { ArrowLeft, Star } from "lucide-react";
+
+import acsCoverImg from "../../assets/images/services/acs-cover.webp";
+import bedroomCoverImg from "../../assets/images/services/bedroom-cover.webp";
+import kitchenCoverImg from "../../assets/images/services/kitchen-cover.webp";
+import majlisImg from "../../assets/images/service-majlis.webp";
+import appliancesCoverImg from "../../assets/images/services/appliances-cover.webp";
 
 interface Props {
-  serviceTitle: string;
-  serviceSlug?: string;
+  district?: string;
+  class?: string;
 }
 
-const { serviceTitle, serviceSlug } = Astro.props;
+const { district, class: className } = Astro.props;
 
-// Filter districts based on service type (Seller Persona Strategy)
-let filteredDistricts = DISTRICTS;
-
-if (serviceSlug === "villa-furniture") {
-  // Targets VIPs/North Riyadh (High Margin)
-  filteredDistricts = DISTRICTS.filter((d) => d.region === "North");
-} else if (serviceSlug === "used-office-furniture") {
-  // Targets B2B/Companies closing down (Bulk/High Cash)
-  // Link to Olaya, Murabba, and Commercial areas
-  const commercialSlugs = ["al-olaya", "al-murabba", "al-aqiq", "al-sahafa"];
-  filteredDistricts = DISTRICTS.filter(
-    (d) => commercialSlugs.includes(d.slug) || d.region === "Central",
-  );
-} else if (serviceSlug === "used-majlis") {
-  // Targets local Saudi families (Volume)
-  // Link to East and West Riyadh (High density family areas)
-  filteredDistricts = DISTRICTS.filter(
-    (d) => d.region === "East" || d.region === "West",
-  );
-} else if (serviceSlug === "general-furniture") {
-  // General furniture - prioritize high density residential
-  filteredDistricts = DISTRICTS.filter(
-    (d) => d.housing === "Apartments" || d.vibe === "Family",
-  );
-}
-
-// Get top districts (first 12)
-const topDistricts = filteredDistricts.slice(0, 12);
+const services = [
+  {
+    title: district ? `شراء مكيفات ب${district}` : "شراء مكيفات",
+    desc: "سبلت، شباك، ودولابي",
+    image: acsCoverImg,
+    link: "/services/used-acs",
+  },
+  {
+    title: district ? `شراء غرف نوم ب${district}` : "شراء غرف نوم",
+    desc: "غرف كاملة ومفردة",
+    image: bedroomCoverImg,
+    link: "/services/used-bedrooms",
+  },
+  {
+    title: district ? `شراء مطابخ ب${district}` : "شراء مطابخ",
+    desc: "مطابخ ألمنيوم وخشب",
+    image: kitchenCoverImg,
+    link: "/services/used-kitchens",
+  },
+  {
+    title: district ? `شراء مجالس ب${district}` : "شراء مجالس",
+    desc: "مجالس عربية وكنب",
+    image: majlisImg,
+    link: "/services/used-majlis",
+  },
+  {
+    title: district ? `شراء اجهزة ب${district}` : "شراء اجهزة",
+    desc: "ثلاجات وغسالات",
+    image: appliancesCoverImg,
+    link: "/services/used-appliances",
+  },
+  {
+    title: district ? `اثاث مكتبي ب${district}` : "اثاث مكتبي",
+    desc: "تصفية مكاتب وشركات",
+    image:
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=200&auto=format&fit=crop",
+    link: "/services/used-office-furniture",
+  },
+  {
+    title: district ? `اثاث فلل ب${district}` : "اثاث فلل",
+    desc: "اثاث فاخر وتحف",
+    image:
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=200&auto=format&fit=crop",
+    link: "/services/villa-furniture",
+  },
+  {
+    title: district ? `معدات مطاعم ب${district}` : "معدات مطاعم",
+    desc: "أفران وثلاجات عرض",
+    image:
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=200&auto=format&fit=crop",
+    link: "/services/used-kitchen-equipment",
+  },
+  {
+    title: district ? `شراء اثاث ب${district}` : "شراء اثاث",
+    desc: "شراء اثاث الشقق بالكامل",
+    image:
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=200&auto=format&fit=crop",
+    link: "/services/general-furniture",
+  },
+  {
+    title: district ? `نقل عفش ب${district}` : "نقل عفش",
+    desc: "فك وتركيب ونقل",
+    image:
+      "https://images.unsplash.com/photo-1600518464441-9154a4dea21b?q=80&w=200&auto=format&fit=crop",
+    link: "/services/furniture-moving",
+  },
+];
 ---
 
-<section class="py-12 bg-gray-50">
-  <div class="container mx-auto px-4">
-    <h2 class="text-2xl font-bold text-center mb-8 text-gray-900">
-      نشتري {serviceTitle} في جميع أحياء الرياض
-    </h2>
-    <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
-      سياراتنا مجهزة لنقل {serviceTitle} من جميع المناطق. سواء كنت في الشمال أو الجنوب،
-      نصل إليك فوراً.
-    </p>
-
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {
-        topDistricts.map((district) => (
-          <a
-            href={`/riyadh/${district.slug}`}
-            class="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-100 text-gray-700 hover:text-primary-600 hover:border-primary-100"
-          >
-            <span class="text-sm font-medium">
-              بيع {serviceTitle} في {district.nameAr}
-            </span>
-          </a>
-        ))
-      }
-    </div>
-
-    <div class="mt-8 text-center">
+<div
+  class={`grid gap-3 ${className || "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"}`}
+>
+  {
+    services.map((service) => (
       <a
-        href="/riyadh"
-        class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium"
+        href={service.link}
+        class="group flex items-center gap-4 p-3 rounded-xl bg-slate-50 border border-slate-100 hover:bg-white hover:border-emerald-200 hover:shadow-md transition-all duration-300"
       >
-        عرض جميع الأحياء
-        <svg
-          class="w-4 h-4 mr-1 rotate-180"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-        </svg>
+        {/* Thumbnail */}
+        <div class="relative w-16 h-16 shrink-0 rounded-lg overflow-hidden shadow-sm group-hover:shadow-md transition-shadow">
+          {typeof service.image === "string" ? (
+            <img
+              src={service.image}
+              alt={service.title}
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              loading="lazy"
+            />
+          ) : (
+            <Image
+              src={service.image}
+              alt={service.title}
+              width={64}
+              height={64}
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              format="webp"
+            />
+          )}
+        </div>
+
+        {/* Content */}
+        <div class="flex-1 min-w-0">
+          <h3 class="font-bold text-slate-800 text-sm group-hover:text-emerald-700 transition-colors truncate">
+            {service.title}
+          </h3>
+          <p class="text-xs text-slate-500 truncate mt-0.5">{service.desc}</p>
+        </div>
+
+        {/* Action Icon */}
+        <div class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-400 group-hover:bg-emerald-500 group-hover:border-emerald-500 group-hover:text-white transition-all duration-300">
+          <ArrowLeft className="w-4 h-4" />
+        </div>
       </a>
-    </div>
-  </div>
-</section>
+    ))
+  }
+</div>

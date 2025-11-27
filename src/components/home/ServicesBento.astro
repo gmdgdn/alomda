@@ -3,6 +3,12 @@ import Container from "../ui/Container.astro";
 import { Image } from "astro:assets";
 import { ArrowUpLeft } from "lucide-react";
 
+import acsCoverImg from "../../assets/images/services/acs-cover.webp";
+import bedroomCoverImg from "../../assets/images/services/bedroom-cover.webp";
+import kitchenCoverImg from "../../assets/images/services/kitchen-cover.webp";
+import majlisImg from "../../assets/images/service-majlis.webp";
+import appliancesCoverImg from "../../assets/images/services/appliances-cover.webp";
+
 const services = [
   {
     title: "شراء غرف النوم",
@@ -63,18 +69,19 @@ const services = [
     <div
       class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]"
     >
-      {/* 1. Used ACs (Large) */}
+      {/* 1. ACs (Hero Card) */}
       <a
         href="/services/used-acs"
         class="group relative col-span-2 row-span-2 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
       >
         <div class="absolute inset-0">
           <Image
-            src="/images/services/acs-cover.webp"
+            src={acsCoverImg}
             alt="شراء مكيفات"
             width={1092}
             height={728}
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%] contrast-110"
+            format="webp"
           />
           <div
             class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"
@@ -100,11 +107,12 @@ const services = [
       >
         <div class="absolute inset-0">
           <Image
-            src="/images/services/bedroom-cover.webp"
+            src={bedroomCoverImg}
             alt="غرف نوم"
             width={525}
             height={350}
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+            format="webp"
           />
           <div
             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
@@ -123,11 +131,12 @@ const services = [
       >
         <div class="absolute inset-0">
           <Image
-            src="/images/services/kitchen-cover.webp"
+            src={kitchenCoverImg}
             alt="مطابخ"
             width={350}
             height={350}
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+            format="webp"
           />
           <div
             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
@@ -145,12 +154,13 @@ const services = [
         class="group relative col-span-2 row-span-1 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
       >
         <div class="absolute inset-0">
-          <img
-            src="/images/service-majlis.png"
+          <Image
+            src={majlisImg}
             alt="مجالس عربية"
-            width="665"
-            height="350"
+            width={665}
+            height={350}
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+            format="webp"
           />
           <div
             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
@@ -173,12 +183,11 @@ const services = [
         class="group relative col-span-1 row-span-1 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
       >
         <div class="absolute inset-0">
-          <Image
+          <img
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2070&auto=format&fit=crop"
             alt="اثاث مكتبي"
-            width={525}
-            height={350}
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+            loading="lazy"
           />
           <div
             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
@@ -196,12 +205,11 @@ const services = [
         class="group relative col-span-1 row-span-1 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
       >
         <div class="absolute inset-0">
-          <Image
+          <img
             src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2070&auto=format&fit=crop"
             alt="اثاث فلل"
-            width={350}
-            height={350}
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+            loading="lazy"
           />
           <div
             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
@@ -219,12 +227,11 @@ const services = [
         class="group relative col-span-1 row-span-1 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
       >
         <div class="absolute inset-0">
-          <Image
+          <img
             src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop"
             alt="معدات مطاعم"
-            width={525}
-            height={350}
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+            loading="lazy"
           />
           <div
             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
@@ -243,11 +250,12 @@ const services = [
       >
         <div class="absolute inset-0">
           <Image
-            src="/images/services/appliances-cover.webp"
+            src={appliancesCoverImg}
             alt="أجهزة كهربائية"
             width={525}
             height={350}
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+            format="webp"
           />
           <div
             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
@@ -265,12 +273,11 @@ const services = [
         class="group relative col-span-2 row-span-1 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
       >
         <div class="absolute inset-0">
-          <Image
+          <img
             src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2070&auto=format&fit=crop"
             alt="اثاث منزلي عام"
-            width={665}
-            height={350}
             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+            loading="lazy"
           />
           <div
             class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
@@ -283,6 +290,33 @@ const services = [
             class="text-slate-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           >
             نشتري عفش بيتك كاملاً دفعة واحدة
+          </p>
+        </div>
+      </a>
+
+      {/* 10. Furniture Moving (Wide) */}
+      <a
+        href="/services/furniture-moving"
+        class="group relative col-span-2 row-span-1 overflow-hidden rounded-3xl shadow-sm hover:shadow-xl transition-all duration-500"
+      >
+        <div class="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1600518464441-9154a4dea21b?q=80&w=2070&auto=format&fit=crop"
+            alt="نقل عفش وتغليف"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[10%]"
+            loading="lazy"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-70 group-hover:opacity-90 transition-opacity"
+          >
+          </div>
+        </div>
+        <div class="absolute inset-0 p-6 flex flex-col justify-end">
+          <h3 class="text-xl font-bold text-white">نقل عفش وتغليف اثاث</h3>
+          <p
+            class="text-slate-200 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          >
+            خدمة نقل احترافية مع الفك والتركيب
           </p>
         </div>
       </a>

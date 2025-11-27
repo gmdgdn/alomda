@@ -1,9 +1,12 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import Container from "../../components/ui/Container.astro";
 import SeoHead from "../../components/seo/SeoHead.astro";
 import NearbyDistricts from "../../components/NearbyDistricts.astro";
-import { DISTRICTS, SERVICES } from "../../data/seo-data";
+import ServiceAreaList from "../../components/services/ServiceAreaList.astro";
+import { DISTRICTS } from "../../data/seo-data";
+import heroVillaImg from "../../assets/images/hero-villa.webp";
 import {
   MessageCircle,
   Phone,
@@ -60,7 +63,7 @@ const priorityItems =
       ];
 
 // Hero Image Logic
-const heroImage = "/images/hero-villa.png"; // Default to generated villa image
+const heroImage = heroVillaImg;
 ---
 
 <Layout title={h1Title}>
@@ -69,10 +72,11 @@ const heroImage = "/images/hero-villa.png"; // Default to generated villa image
   {/* Localized Hero */}
   <section class="relative bg-slate-900 py-24 text-white overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <img
+      <Image
         src={heroImage}
         alt={district.nameAr}
         class="w-full h-full object-cover grayscale-[20%] contrast-125"
+        format="webp"
       />
       <div class="absolute inset-0 bg-emerald-950/80 mix-blend-multiply"></div>
     </div>
@@ -133,14 +137,14 @@ const heroImage = "/images/hero-villa.png"; // Default to generated villa image
         >
           <a
             href="https://wa.me/966500000000"
-            class="flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-8 py-4 text-lg font-bold text-white transition-all hover:bg-emerald-500 hover:scale-105 hover:shadow-lg hover:shadow-emerald-600/30 sm:w-auto"
+            class="track-whatsapp flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-8 py-4 text-lg font-bold text-white transition-all hover:bg-emerald-500 hover:scale-105 hover:shadow-lg hover:shadow-emerald-600/30 sm:w-auto"
           >
             <MessageCircle className="h-6 w-6" />
             ارسل الصور واتساب
           </a>
           <a
             href="tel:0500000000"
-            class="flex w-full items-center justify-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-8 py-4 text-lg font-bold text-white transition-all hover:bg-white/20 hover:scale-105 sm:w-auto"
+            class="track-call flex w-full items-center justify-center gap-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 px-8 py-4 text-lg font-bold text-white transition-all hover:bg-white/20 hover:scale-105 sm:w-auto"
           >
             <Phone className="h-6 w-6" />
             اتصل للمعاينة
@@ -265,23 +269,7 @@ const heroImage = "/images/hero-villa.png"; // Default to generated villa image
               <span class="w-1.5 h-6 bg-emerald-500 rounded-full"></span>
               خدماتنا الأخرى
             </h3>
-            <ul class="space-y-3">
-              {
-                SERVICES.map((service) => (
-                  <li>
-                    <a
-                      href={`/services/${service.slug}`}
-                      class="flex items-center justify-between p-3 rounded-xl hover:bg-emerald-50 text-slate-600 hover:text-emerald-700 transition-all group"
-                    >
-                      <span class="font-medium">{service.nameAr}</span>
-                      <span class="text-slate-300 group-hover:text-emerald-500 transform group-hover:-translate-x-1 transition-all">
-                        &larr;
-                      </span>
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
+            <ServiceAreaList district={district.nameAr} class="grid-cols-1" />
           </div>
 
           <div
@@ -306,7 +294,7 @@ const heroImage = "/images/hero-villa.png"; // Default to generated villa image
               </p>
               <a
                 href="tel:0500000000"
-                class="block w-full rounded-xl bg-white py-4 font-bold text-emerald-800 hover:bg-emerald-50 hover:scale-105 transition-all shadow-lg"
+                class="track-call block w-full rounded-xl bg-white py-4 font-bold text-emerald-800 hover:bg-emerald-50 hover:scale-105 transition-all shadow-lg"
               >
                 اتصل الآن
               </a>

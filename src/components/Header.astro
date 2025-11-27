@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import {
   Menu,
   Phone,
@@ -11,6 +12,7 @@ import {
 } from "lucide-react";
 import Container from "./ui/Container.astro";
 import { SITE_CONFIG } from "../data/site-config";
+import logoImg from "../assets/branding/alomda-logo.png";
 
 const navLinks = [
   { name: "الرئيسية", href: "/", icon: Home },
@@ -64,6 +66,11 @@ const navLinks = [
         href: "/services/used-appliances",
         desc: "ثلاجات، غسالات، أفران",
       },
+      {
+        name: "نقل عفش وتغليف",
+        href: "/services/furniture-moving",
+        desc: "نقل احترافي مع الفك والتركيب",
+      },
     ],
   },
   {
@@ -115,10 +122,12 @@ const navLinks = [
         class="flex items-center gap-3 group"
         aria-label="شركة العمدة الرئيسية"
       >
-        <img
-          src="/images/branding/alomda-logo.png"
+        <Image
+          src={logoImg}
           alt="شركة العمدة لشراء الاثاث المستعمل"
           class="h-14 w-auto object-contain transition-transform group-hover:scale-105"
+          loading="eager"
+          format="webp"
         />
       </a>
 
@@ -140,21 +149,27 @@ const navLinks = [
 
               {/* Mega Menu Dropdown */}
               {link.dropdown && (
-                <div class="absolute top-full right-0 w-72 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                <div
+                  class={`absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-50 ${link.name === "خدماتنا" ? "w-[600px]" : "w-[300px]"}`}
+                >
                   <div class="bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden p-2 ring-1 ring-black/5">
-                    {link.dropdown.map((item) => (
-                      <a
-                        href={item.href}
-                        class="flex flex-col px-4 py-3 hover:bg-emerald-50 rounded-xl transition-colors group/item"
-                      >
-                        <span class="text-slate-800 font-bold text-sm group-hover/item:text-emerald-700">
-                          {item.name}
-                        </span>
-                        <span class="text-slate-500 text-xs mt-0.5">
-                          {item.desc}
-                        </span>
-                      </a>
-                    ))}
+                    <div
+                      class={`grid gap-1 ${link.name === "خدماتنا" ? "grid-cols-2" : "grid-cols-1"}`}
+                    >
+                      {link.dropdown.map((item) => (
+                        <a
+                          href={item.href}
+                          class="flex flex-col px-4 py-3 hover:bg-emerald-50 rounded-xl transition-colors group/item"
+                        >
+                          <span class="text-slate-800 font-bold text-sm group-hover/item:text-emerald-700">
+                            {item.name}
+                          </span>
+                          <span class="text-slate-500 text-xs mt-0.5">
+                            {item.desc}
+                          </span>
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 </div>
               )}
@@ -167,7 +182,7 @@ const navLinks = [
       <div class="hidden md:flex items-center gap-4">
         <a
           href={`tel:${SITE_CONFIG.phone}`}
-          class="group relative overflow-hidden bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-full font-bold transition-all shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 hover:-translate-y-0.5"
+          class="track-call group relative overflow-hidden bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-full font-bold transition-all shadow-lg shadow-emerald-600/20 hover:shadow-emerald-600/40 hover:-translate-y-0.5"
         >
           <div
             class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer"
@@ -253,7 +268,7 @@ const navLinks = [
     <div class="mt-8">
       <a
         href={`tel:${SITE_CONFIG.phone}`}
-        class="flex items-center justify-center gap-2 bg-emerald-600 text-white w-full py-4 rounded-xl font-bold text-lg shadow-xl"
+        class="track-call flex items-center justify-center gap-2 bg-emerald-600 text-white w-full py-4 rounded-xl font-bold text-lg shadow-xl"
       >
         <Phone className="w-5 h-5" />
         <span>اتصل الآن</span>

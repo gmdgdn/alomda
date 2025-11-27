@@ -33,16 +33,26 @@ const {
 
 let title = propTitle;
 let description = propDescription;
-let image = propImage;
 
-// Generate Dynamic OG Image URL if not provided
-if (!image) {
-  const pathname = Astro.url.pathname.replace(/\/$/, ""); // Remove trailing slash
-  if (pathname === "" || pathname === "/") {
-    image = "/og-image.jpg"; // Fallback for homepage
-  } else {
-    image = `/og${pathname}.png`;
-  }
+// --- OG Image Logic (Robust with Fallback) ---
+
+// 1. Define the Site URL (Handle Localhost vs Production)
+const ogSiteUrl = Astro.site ? Astro.site.href : "https://alomda-sa.com";
+
+// 2. Construct the Dynamic Image URL
+// Logic: Use the path to construct OG image URL
+const path = Astro.url.pathname.replace(/^\/|\/$/g, "") || "index";
+const dynamicOgUrl = new URL(`/og/${path}.png`, ogSiteUrl).href;
+
+// 3. Select the Final Image (Override -> Dynamic)
+const defaultFallback = new URL("/default-og.png", ogSiteUrl).href;
+let image: string;
+
+if (propImage) {
+  image = new URL(propImage, ogSiteUrl).href;
+} else {
+  // Use dynamic OG image
+  image = dynamicOgUrl;
 }
 
 if (district) {
@@ -270,7 +280,7 @@ if (service) {
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/png" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" href="/apple-touch-icon.png" />
 <meta name="generator" content={Astro.generator} />
 
 {/* Canonical URL */}

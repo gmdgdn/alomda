@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import Container from "./ui/Container.astro";
 import {
   MapPin,
@@ -8,6 +9,7 @@ import {
   Twitter,
   Instagram,
 } from "lucide-react";
+import logoWhiteImg from "../assets/branding/alomda-logo-white.png";
 
 const currentYear = new Date().getFullYear();
 ---
@@ -20,10 +22,11 @@ const currentYear = new Date().getFullYear();
       {/* Column 1: About */}
       <div class="space-y-6">
         <div class="flex items-center gap-2">
-          <img
-            src="/images/branding/alomda-logo-white.png"
+          <Image
+            src={logoWhiteImg}
             alt="شركة العمدة"
             class="h-12 w-auto object-contain"
+            format="webp"
           />
         </div>
         <p class="text-slate-400 leading-relaxed">
