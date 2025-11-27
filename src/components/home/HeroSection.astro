@@ -1,5 +1,6 @@
 ---
 import Container from "../ui/Container.astro";
+import { Image } from "astro:assets";
 import { MessageCircle, Phone, TrendingUp, MapPin } from "lucide-react";
 import { SITE_CONFIG } from "../../data/site-config";
 
@@ -13,9 +14,13 @@ const HERO_IMAGE =
 >
   {/* Background Image */}
   <div class="absolute inset-0 z-0">
-    <img
+    <Image
       src={HERO_IMAGE}
       alt="Luxury Saudi Home"
+      width={2070}
+      height={1380}
+      loading="eager"
+      fetchpriority="high"
       class="w-full h-full object-cover grayscale-[20%] contrast-125"
     />
     {/* Gradient Overlay - Radial for depth */}
@@ -80,6 +85,7 @@ const HERO_IMAGE =
     >
       <a
         href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
+        aria-label="تواصل معنا عبر واتساب"
         class="group relative flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-brand-primary to-emerald-600 text-white text-lg font-bold shadow-lg shadow-brand-primary/30 overflow-hidden transition-transform hover:scale-105"
       >
         <div class="absolute inset-0 bg-white/20 animate-shimmer"></div>
@@ -89,6 +95,7 @@ const HERO_IMAGE =
 
       <a
         href={`tel:${SITE_CONFIG.phone}`}
+        aria-label="اتصل بنا الآن"
         class="flex items-center justify-center gap-3 px-8 py-4 rounded-full glass-card text-white text-lg font-bold hover:bg-white/20 transition-all hover:scale-105 animate-pulse-glow"
       >
         <Phone className="w-6 h-6" />

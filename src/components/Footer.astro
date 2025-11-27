@@ -73,28 +73,32 @@ const currentYear = new Date().getFullYear();
               href="/"
               class="hover:text-emerald-400 transition-colors flex items-center gap-2"
               ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"
-              ></span>الرئيسية</a>
+              ></span>الرئيسية</a
+            >
           </li>
           <li>
             <a
               href="/blog"
               class="hover:text-emerald-400 transition-colors flex items-center gap-2"
               ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"
-              ></span>المدونة</a>
+              ></span>المدونة</a
+            >
           </li>
           <li>
             <a
               href="/privacy"
               class="hover:text-emerald-400 transition-colors flex items-center gap-2"
               ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"
-              ></span>سياسة الخصوصية</a>
+              ></span>سياسة الخصوصية</a
+            >
           </li>
           <li>
             <a
               href="#contact"
               class="hover:text-emerald-400 transition-colors flex items-center gap-2"
               ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>اتصل
-              بنا</a>
+              بنا</a
+            >
           </li>
         </ul>
       </div>
@@ -113,56 +117,64 @@ const currentYear = new Date().getFullYear();
               href="/services/used-acs"
               class="hover:text-emerald-400 transition-colors flex items-center gap-2"
               ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>شراء
-              مكيفات مستعملة</a>
+              مكيفات مستعملة</a
+            >
           </li>
           <li>
             <a
               href="/services/used-bedrooms"
               class="hover:text-emerald-400 transition-colors flex items-center gap-2"
               ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>شراء
-              غرف نوم</a>
+              غرف نوم</a
+            >
           </li>
           <li>
             <a
               href="/services/used-kitchens"
               class="hover:text-emerald-400 transition-colors flex items-center gap-2"
               ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>شراء
-              مطابخ مستعملة</a>
+              مطابخ مستعملة</a
+            >
           </li>
           <li>
             <a
               href="/services/used-majlis"
               class="hover:text-emerald-400 transition-colors flex items-center gap-2"
               ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>شراء
-              مجالس عربية</a>
+              مجالس عربية</a
+            >
           </li>
           <li>
             <a
               href="/services/used-office-furniture"
               class="hover:text-emerald-400 transition-colors flex items-center gap-2"
               ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>شراء
-              اثاث مكتبي</a>
+              اثاث مكتبي</a
+            >
           </li>
           <li>
             <a
               href="/services/villa-furniture"
               class="hover:text-emerald-400 transition-colors flex items-center gap-2"
               ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>شراء
-              اثاث فلل</a>
+              اثاث فلل</a
+            >
           </li>
           <li>
             <a
               href="/services/general-furniture"
               class="hover:text-emerald-400 transition-colors flex items-center gap-2"
               ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>شراء
-              اثاث منزلي</a>
+              اثاث منزلي</a
+            >
           </li>
           <li>
             <a
               href="/services/furniture-moving"
               class="hover:text-emerald-400 transition-colors flex items-center gap-2"
               ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>نقل
-              عفش بالرياض</a>
+              عفش بالرياض</a
+            >
           </li>
         </ul>
       </div>
@@ -200,16 +212,44 @@ const currentYear = new Date().getFullYear();
       </div>
     </div>
 
-    <div
-      class="border-t border-slate-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4"
-    >
-      <p class="text-slate-500 text-sm">
-        © {currentYear} شركة العمدة. جميع الحقوق محفوظة.
-      </p>
-      <div class="flex items-center gap-6 text-sm text-slate-500">
-        <div class="flex items-center gap-2">
-          <MapPin className="w-4 h-4" />
-          <span>الرياض، المملكة العربية السعودية</span>
+    <div class="border-t border-slate-800 pt-8 space-y-6">
+      {/* Top row: Copyright & Location */}
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-slate-500 text-sm">
+          © {currentYear} شركة العمدة. جميع الحقوق محفوظة.
+        </p>
+        <div class="flex items-center gap-6 text-sm text-slate-500">
+          <div class="flex items-center gap-2">
+            <MapPin className="w-4 h-4" />
+            <span>الرياض، المملكة العربية السعودية</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Developer Credits */}
+      <div class="text-center">
+        <div
+          class="text-xs text-slate-500 flex items-center justify-center gap-2 font-medium"
+          dir="rtl"
+        >
+          <span>تم انشاء هذا الموقع بواسطة</span>
+          <a
+            href="https://www.gmd.gdn/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-slate-400 hover:text-amber-400 transition-colors duration-300 font-bold"
+          >
+            جمد جدن
+          </a>
+          <span class="opacity-30">|</span>
+          <a
+            href="https://wa.me/201033778660?text=%D9%84%D9%82%D8%AF%20%D8%B1%D8%A3%D9%8A%D8%AA%20%D8%B9%D9%85%D9%84%D9%83%D9%85%20%D9%81%D9%8A%20%D9%85%D9%88%D9%82%D8%B9%20%D8%A7%D9%84%D8%B9%D9%85%D8%AF%D8%A9"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-slate-300 transition-colors border-b border-transparent hover:border-emerald-400/50"
+          >
+            اضغط للتواصل
+          </a>
         </div>
       </div>
     </div>

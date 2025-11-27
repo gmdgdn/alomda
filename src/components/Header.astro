@@ -95,6 +95,11 @@ const navLinks = [
       { name: "سياسة الخصوصية", href: "/privacy", desc: "حماية بياناتك" },
     ],
   },
+  {
+    name: "المدونة",
+    href: "/blog",
+    icon: FileText,
+  },
 ];
 ---
 
@@ -201,86 +206,99 @@ const navLinks = [
       </button>
     </div>
   </Container>
+</header>
 
-  {/* Mobile Menu Overlay */}
-  <div
-    id="mobile-menu"
-    class="fixed inset-0 z-50 bg-white transform translate-x-full transition-transform duration-300 lg:hidden overflow-y-auto"
-  >
-    <div class="p-6">
-      <div class="flex items-center justify-between mb-8">
-        <span class="text-2xl font-black text-emerald-800">القائمة</span>
-        <button
-          id="close-menu-btn"
-          class="p-2 text-slate-500 hover:text-red-500 bg-slate-50 rounded-full"
+{
+  /* Mobile Menu Overlay - Moved outside header to avoid stacking context issues */
+}
+<div
+  id="mobile-menu"
+  class="fixed inset-0 z-[100] bg-white transform translate-x-full transition-transform duration-300 lg:hidden overflow-y-auto"
+>
+  <div class="p-6">
+    <div class="flex items-center justify-between mb-8">
+      <span class="text-2xl font-black text-emerald-800">القائمة</span>
+      <button
+        id="close-menu-btn"
+        class="p-2 text-slate-500 hover:text-red-500 bg-slate-50 rounded-full"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
 
-      <nav class="flex flex-col gap-2">
-        {
-          navLinks.map((link) => (
-            <div class="border-b border-slate-50 pb-2">
-              <a
-                href={link.href}
-                class="flex items-center gap-3 text-lg font-bold text-slate-800 py-3"
-              >
-                <link.icon className="w-5 h-5 text-emerald-600" />
-                {link.name}
-              </a>
-              {link.dropdown && (
-                <div class="pr-8 flex flex-col gap-2 mt-1">
-                  {link.dropdown.map((item) => (
-                    <a
-                      href={item.href}
-                      class="text-slate-500 py-2 text-sm hover:text-emerald-600"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))
-        }
-      </nav>
+    <nav class="flex flex-col gap-2" id="mobile-nav-links">
+      {
+        navLinks.map((link) => (
+          <div class="border-b border-slate-50 pb-2">
+            <a
+              href={link.href}
+              class="flex items-center gap-3 text-lg font-bold text-slate-800 py-3 mobile-link"
+            >
+              <link.icon className="w-5 h-5 text-emerald-600" />
+              {link.name}
+            </a>
+            {link.dropdown && (
+              <div class="pr-8 flex flex-col gap-2 mt-1">
+                {link.dropdown.map((item) => (
+                  <a
+                    href={item.href}
+                    class="text-slate-500 py-2 text-sm hover:text-emerald-600 mobile-link"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </nav>
 
-      <div class="mt-8">
-        <a
-          href={`tel:${SITE_CONFIG.phone}`}
-          class="flex items-center justify-center gap-2 bg-emerald-600 text-white w-full py-4 rounded-xl font-bold text-lg shadow-xl"
-        >
-          <Phone className="w-5 h-5" />
-          <span>اتصل الآن</span>
-        </a>
-      </div>
+    <div class="mt-8">
+      <a
+        href={`tel:${SITE_CONFIG.phone}`}
+        class="flex items-center justify-center gap-2 bg-emerald-600 text-white w-full py-4 rounded-xl font-bold text-lg shadow-xl"
+      >
+        <Phone className="w-5 h-5" />
+        <span>اتصل الآن</span>
+      </a>
     </div>
   </div>
-</header>
+</div>
 
 <script>
   const mobileMenuBtn = document.getElementById("mobile-menu-btn");
   const closeMenuBtn = document.getElementById("close-menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
 
   function toggleMenu() {
     mobileMenu?.classList.toggle("translate-x-full");
     document.body.classList.toggle("overflow-hidden");
   }
 
+  function closeMenu() {
+    mobileMenu?.classList.add("translate-x-full");
+    document.body.classList.remove("overflow-hidden");
+  }
+
   mobileMenuBtn?.addEventListener("click", toggleMenu);
   closeMenuBtn?.addEventListener("click", toggleMenu);
+
+  // Close menu when clicking any link
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
 </script>

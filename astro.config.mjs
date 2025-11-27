@@ -12,10 +12,19 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://alomda-sa.com', // Replace with actual domain if available
   output: 'static',
+  image: {
+    domains: ["images.unsplash.com", "www.transparenttextures.com"],
+  },
   integrations: [react(), sitemap(), mdx()],
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    ssr: {
+      external: ['@resvg/resvg-js']
+    },
+    optimizeDeps: {
+      exclude: ['@resvg/resvg-js']
+    }
   },
 
   adapter: cloudflare()

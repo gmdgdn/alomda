@@ -1,11 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
-  return blogEntries.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
+  const blogEntries = await getCollection("blog");
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
   }));
 }
 
@@ -17,16 +18,63 @@ const { Content } = await entry.render();
   <main class="container mx-auto px-4 py-12">
     <article class="prose prose-lg prose-emerald mx-auto rtl" dir="rtl">
       <div class="mb-8 text-center">
-        <h1 class="text-3xl md:text-5xl font-bold mb-4 leading-tight text-brand-dark">{entry.data.title}</h1>
-        <div class="flex justify-center items-center gap-4 text-gray-600 text-sm">
-          <span>{entry.data.pubDate?.toLocaleDateString('ar-SA')}</span>
+        <h1
+          class="text-3xl md:text-5xl font-bold mb-4 leading-tight text-brand-dark"
+        >
+          {entry.data.title}
+        </h1>
+        <div
+          class="flex justify-center items-center gap-4 text-gray-600 text-sm"
+        >
+          <span>{entry.data.pubDate?.toLocaleDateString("ar-SA")}</span>
           <span>•</span>
           <span>{entry.data.author}</span>
         </div>
       </div>
-      
-      <div class="prose-headings:text-brand-dark prose-a:text-brand-primary hover:prose-a:text-brand-accent prose-img:rounded-xl prose-img:shadow-lg">
+
+      <div
+        class="prose-headings:text-brand-dark prose-a:text-brand-primary hover:prose-a:text-brand-accent prose-img:rounded-xl prose-img:shadow-lg"
+      >
         <Content />
+      </div>
+
+      {/* Social Sharing */}
+      <div class="mt-12 pt-8 border-t border-slate-100 not-prose">
+        <h3 class="text-lg font-bold text-slate-900 mb-4">شارك المقال:</h3>
+        <div class="flex flex-wrap gap-3">
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(entry.data.title + " " + Astro.url)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#25D366] text-white font-bold hover:opacity-90 transition-opacity no-underline"
+          >
+            <span>WhatsApp</span>
+          </a>
+          <a
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(entry.data.title)}&url=${encodeURIComponent(Astro.url.toString())}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1DA1F2] text-white font-bold hover:opacity-90 transition-opacity no-underline"
+          >
+            <span>Twitter</span>
+          </a>
+          <a
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(Astro.url.toString())}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1877F2] text-white font-bold hover:opacity-90 transition-opacity no-underline"
+          >
+            <span>Facebook</span>
+          </a>
+          <a
+            href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(Astro.url.toString())}&title=${encodeURIComponent(entry.data.title)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0A66C2] text-white font-bold hover:opacity-90 transition-opacity no-underline"
+          >
+            <span>LinkedIn</span>
+          </a>
+        </div>
       </div>
     </article>
   </main>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { MapPin } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { DISTRICTS } from '../../data/districts';
 
 // Group districts by region
@@ -54,34 +53,26 @@ export default function LocationsGrid() {
                 </div>
 
                 {/* Grid */}
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={activeRegion}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.3 }}
-                        className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-                    >
-                        {districtsByRegion[activeRegion].map((district, index) => (
-                            <motion.a
-                                key={district.slug}
-                                href={`/riyadh/${district.slug}`}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: index * 0.05 }}
-                                className="group flex items-center justify-between rounded-2xl bg-white p-5 shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-lg hover:border-emerald-200 hover:-translate-y-1 cursor-pointer block"
-                            >
-                                <div className="flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                                        <MapPin className="h-5 w-5" />
-                                    </div>
-                                    <span className="font-bold text-slate-800 group-hover:text-emerald-800 transition-colors">{district.nameAr}</span>
+                <div
+                    key={activeRegion}
+                    className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 animate-fade-up"
+                >
+                    {districtsByRegion[activeRegion].map((district, index) => (
+                        <a
+                            key={district.slug}
+                            href={`/riyadh/${district.slug}`}
+                            className="group flex items-center justify-between rounded-2xl bg-white p-5 shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-lg hover:border-emerald-200 hover:-translate-y-1 cursor-pointer block"
+                            style={{ animationDelay: `${index * 50}ms` }}
+                        >
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                                    <MapPin className="h-5 w-5" />
                                 </div>
-                            </motion.a>
-                        ))}
-                    </motion.div>
-                </AnimatePresence>
+                                <span className="font-bold text-slate-800 group-hover:text-emerald-800 transition-colors">{district.nameAr}</span>
+                            </div>
+                        </a>
+                    ))}
+                </div>
             </div>
         </section>
     );
