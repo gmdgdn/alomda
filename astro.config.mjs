@@ -10,7 +10,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://alomda-sa.com', // Replace with actual domain if available
+  site: 'https://elomda-sa.com', // Replace with actual domain if available
   output: 'static',
   image: {
     domains: ["images.unsplash.com", "www.transparenttextures.com"],

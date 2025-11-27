@@ -1,10 +1,10 @@
-# Al-Omda (العمدة) - Riyadh Used Furniture Buying Service
+# El-Omda (العمدة) - Riyadh Used Furniture Buying Service
 
-**Al-Omda** is a premium, SEO-optimized website for a used furniture buying service in Riyadh, Saudi Arabia. The platform connects sellers with buyers through a fast, transparent, and localized experience.
+**El-Omda** is a premium, SEO-optimized website for a used furniture buying service in Riyadh, Saudi Arabia. The platform connects sellers with buyers through a fast, transparent, and localized experience.
 
 ## 🎯 Project Overview
 
-Al-Omda specializes in buying used furniture and items from homes, offices, and commercial spaces across Riyadh. The website is designed to:
+El-Omda specializes in buying used furniture and items from homes, offices, and commercial spaces across Riyadh. The website is designed to:
 
 - Dominate local search results for Riyadh furniture buying keywords
 - Provide hyper-local content for each district in Riyadh
@@ -167,7 +167,7 @@ This project is configured for deployment on **Cloudflare Pages**.
 npm run build
 
 # Deploy using Wrangler
-npx wrangler pages deploy dist --project-name alomda-sa
+npx wrangler pages deploy dist --project-name elomda-sa
 ```
 
 ## 📊 SEO Strategy
@@ -245,7 +245,7 @@ This project is proprietary. All rights reserved.
 
 ## 📞 Contact
 
-- **Website:** [alomda-sa.com](https://alomda-sa.com)
+- **Website:** [elomda-sa.com](https://elomda-sa.com)
 - **Phone:** 0558085827
 - **Email:** <anagmdgdn@gmail.com>
 

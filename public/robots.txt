@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alomda-sa.com/sitemap-index.xml
+Sitemap: https://elomda-sa.com/sitemap-index.xml

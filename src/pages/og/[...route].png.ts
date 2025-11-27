@@ -38,10 +38,10 @@ export const GET: APIRoute = async ({ props }) => {
   const markup = satoriHtml(`
     <div style="display: flex; height: 100%; width: 100%; background-color: #022c22; color: white; justify-content: center; align-items: center; font-family: 'Tajawal', sans-serif;">
       <div style="display: flex; border: 4px solid #f59e0b; padding: 40px; border-radius: 20px; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.4); width: 90%; height: 80%; position: relative;">
-        <div style="display: flex; font-size: 30px; color: #f59e0b; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;">AL-OMDA</div>
+        <div style="display: flex; font-size: 30px; color: #f59e0b; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;">EL-OMDA</div>
         <div style="display: flex; font-size: 70px; font-weight: 900; text-align: center; direction: rtl; line-height: 1.1; margin-bottom: 20px;">${title}</div>
         <div style="display: flex; font-size: 35px; color: #e2e8f0; text-align: center; direction: rtl;">${subtitle}</div>
-        <div style="display: flex; position: absolute; bottom: 30px; font-size: 24px; color: #10b981; font-weight: bold;">alomda-sa.com</div>
+        <div style="display: flex; position: absolute; bottom: 30px; font-size: 24px; color: #10b981; font-weight: bold;">elomda-sa.com</div>
       </div>
     </div>
   `);

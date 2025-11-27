@@ -37,7 +37,7 @@ let description = propDescription;
 // --- OG Image Logic (Robust with Fallback) ---
 
 // 1. Define the Site URL (Handle Localhost vs Production)
-const ogSiteUrl = Astro.site ? Astro.site.href : "https://alomda-sa.com";
+const ogSiteUrl = Astro.site ? Astro.site.href : "https://elomda-sa.com";
 
 // 2. Construct the Dynamic Image URL
 // Logic: Use the path to construct OG image URL
@@ -93,7 +93,7 @@ if (!description)
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteUrl = Astro.site
   ? Astro.site.toString()
-  : "https://alomda-sa.pages.dev";
+  : "https://elomda-sa.pages.dev";
 
 // Base Schema (Organization) - Always present
 const organizationSchema = {
