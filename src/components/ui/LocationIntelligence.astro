@@ -1,0 +1,131 @@
+---
+interface Props {
+    query: string; // e.g. "Al Malqa, Riyadh"
+    districtName: string;
+    landmark?: string;
+}
+
+const { query, districtName, landmark = "المعالم الرئيسية" } = Astro.props;
+const encodedQuery = encodeURIComponent(query);
+const mapUrl = `https://maps.google.com/maps?q=${encodedQuery}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${encodedQuery}`;
+---
+
+<!-- Main Container: Rounded & Shadowed -->
+<div
+    class="relative bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100 my-12"
+>
+    <div class="grid lg:grid-cols-12 min-h-[500px]">
+        <!-- 1. The Map Area (Takes 2/3 of space on desktop) -->
+        <!-- Order-1 on mobile, Order-2 on desktop (Right side) -->
+        <div
+            class="relative h-[300px] lg:h-auto lg:col-span-8 lg:order-2 bg-slate-100 shadow-inner"
+        >
+            <iframe
+                width="100%"
+                height="100%"
+                id="gmap_canvas"
+                src={mapUrl}
+                frameborder="0"
+                scrolling="no"
+                marginheight="0"
+                marginwidth="0"
+                loading="lazy"
+                title={`Map of ${districtName}`}
+                class="absolute inset-0 w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700"
+            ></iframe>
+
+            <!-- Live Badge Overlay (Small & Cornered) -->
+            <div class="absolute top-4 left-4 z-10">
+                <div
+                    class="flex items-center gap-2 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg border border-emerald-100"
+                >
+                    <span class="relative flex h-3 w-3">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+                        ></span>
+                        <span
+                            class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"
+                        ></span>
+                    </span>
+                    <span class="text-xs font-bold text-emerald-800"
+                        >نشط الآن</span
+                    >
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. The Details Side Panel (Takes 1/3 of space) -->
+        <!-- Order-2 on mobile, Order-1 on desktop (Left side) -->
+        <div
+            class="bg-white p-8 lg:p-10 flex flex-col justify-center relative z-20 lg:order-1 lg:col-span-4 border-b lg:border-b-0 lg:border-l border-slate-100"
+        >
+            <div class="mb-6">
+                <h3
+                    class="text-2xl font-bold text-slate-800 mb-2 leading-tight"
+                >
+                    نصلك في <span class="text-emerald-600">{districtName}</span>
+                    أسرع مما تتوقع
+                </h3>
+                <p class="text-slate-500 text-sm">
+                    لدينا فرق ميدانية موزعة بالقرب من {landmark}. نقطة التجمع
+                    الأقرب لك تبعد دقائق فقط.
+                </p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 gap-4 mb-8">
+                <div
+                    class="bg-emerald-50 p-4 rounded-xl border border-emerald-100"
+                >
+                    <div
+                        class="text-emerald-600 text-xs font-bold uppercase tracking-wider mb-1"
+                    >
+                        وصول خلال
+                    </div>
+                    <div class="text-2xl font-black text-emerald-900">
+                        60 دقيقة
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 p-4 rounded-xl border border-amber-100">
+                    <div
+                        class="text-amber-600 text-xs font-bold uppercase tracking-wider mb-1"
+                    >
+                        حالة التغطية
+                    </div>
+                    <div
+                        class="text-lg font-bold text-amber-900 flex items-center gap-2"
+                    >
+                        <span>متاح الآن</span>
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            ><path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M5 13l4 4L19 7"></path></svg
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="space-y-3">
+                <a
+                    href={googleMapsLink}
+                    target="_blank"
+                    class="block w-full py-4 bg-slate-900 hover:bg-slate-800 text-white text-center font-bold rounded-xl transition-colors shadow-lg shadow-slate-900/20"
+                >
+                    📍 فتح الموقع في الخريطة
+                </a>
+                <div class="text-center text-xs text-slate-400 mt-2">
+                    يتم توجيه السائقين عبر GPS فور الاتصال
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

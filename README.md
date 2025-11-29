@@ -21,6 +21,7 @@ El-Omda specializes in buying used furniture and items from homes, offices, and 
 - **Icons:** Lucide React
 - **Fonts:** Tajawal (Arabic web font)
 - **OG Images:** Dynamic generation with Satori + Resvg
+- **Performance:** Partytown (off-main-thread scripts)
 - **Deployment:** Cloudflare Pages
 - **Adapter:** @astrojs/cloudflare
 
@@ -72,6 +73,7 @@ El-Omda specializes in buying used furniture and items from homes, offices, and 
 - **Dynamic Content:** Vibe-based content engine adapts messaging based on district characteristics (luxury, family, industrial)
 - **Internal Linking:** Strategic cross-linking between districts, services, and blog content
 - **Schema.org JSON-LD:** Rich structured data for organizations, services, local businesses, and FAQs
+- **Performance:** Partytown integration for off-thread analytics and aggressive Cloudflare caching policies
 
 ### 2. **Hyper-Local Optimization**
 
@@ -192,9 +194,10 @@ npx wrangler pages deploy dist --project-name elomda-sa
 - Static site generation for maximum performance
 - Automatic sitemap generation
 - Optimized meta tags and Open Graph images
-- Canonical URLs
+- Canonical URLs (trailing slash optimized)
 - Mobile-responsive design
-- Fast Core Web Vitals
+- Fast Core Web Vitals (Partytown + Font Optimization)
+- `robots.txt` and `_redirects` configuration
 
 ## 🎨 Design Philosophy
 
@@ -246,8 +249,8 @@ This project is proprietary. All rights reserved.
 ## 📞 Contact
 
 - **Website:** [elomda-sa.com](https://elomda-sa.com)
-- **Phone:** 0558085827
-- **Email:** <anagmdgdn@gmail.com>
+- **Phone:** 056 564 7753
+- **Email:** <info@elomda-sa.com>
 
 ---
 

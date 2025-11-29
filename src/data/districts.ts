@@ -9,11 +9,14 @@ export interface District {
     nearbySlugs: string[];
     lat: number;
     lng: number;
-    localContext: string;
     heroImageKeyword: string;
+    localContext: string;
+    mainStreet?: string;
+    priceTier?: 'High' | 'Mid' | 'Standard';
+    coordinates?: { lat: number; lng: number };
 }
 
-export const DISTRICTS: District[] = [
+export const RIYADH_DISTRICTS: District[] = [
     // North Riyadh
     {
         slug: 'al-malqa',
@@ -27,7 +30,10 @@ export const DISTRICTS: District[] = [
         lat: 24.8167,
         lng: 46.6167,
         heroImageKeyword: 'Riyadh modern villas',
-        localContext: 'باعتبار الملقا من أرقى أحياء شمال الرياض بالقرب من طريق الملك سلمان، نحن نرسل أفضل فرقنا للتعامل مع اثاث الفلل الفاخر والماركات العالمية.'
+        localContext: 'باعتبار الملقا من أرقى أحياء شمال الرياض بالقرب من طريق الملك سلمان، نحن نرسل أفضل فرقنا للتعامل مع اثاث الفلل الفاخر والماركات العالمية.',
+        mainStreet: 'طريق الملك فهد',
+        priceTier: 'High',
+        coordinates: { lat: 24.8167, lng: 46.6167 }
     },
     {
         slug: 'al-yasmin',
@@ -41,7 +47,10 @@ export const DISTRICTS: District[] = [
         lat: 24.8333,
         lng: 46.6500,
         heroImageKeyword: 'Riyadh luxury street',
-        localContext: 'نتواجد يومياً في مربعات الياسمين. نشتري الاثاث من الشقق والفلل، ونضمن عدم خدش الأرضيات أو الجدران أثناء النقل.'
+        localContext: 'نتواجد يومياً في مربعات الياسمين. نشتري الاثاث من الشقق والفلل، ونضمن عدم خدش الأرضيات أو الجدران أثناء النقل.',
+        mainStreet: 'طريق أنس بن مالك',
+        priceTier: 'High',
+        coordinates: { lat: 24.8245, lng: 46.6470 }
     },
     {
         slug: 'al-aqiq',
@@ -55,7 +64,10 @@ export const DISTRICTS: District[] = [
         lat: 24.7833,
         lng: 46.6333,
         heroImageKeyword: 'KAFD Riyadh',
-        localContext: 'حي العقيق هو واجهة الرياض الجديدة. نشتري الاثاث المودرن والمكاتب من الشركات والافراد بالقرب من المركز المالي.'
+        localContext: 'حي العقيق هو واجهة الرياض الجديدة. نشتري الاثاث المودرن والمكاتب من الشركات والافراد بالقرب من المركز المالي.',
+        mainStreet: 'طريق الأمير محمد بن سلمان',
+        priceTier: 'High',
+        coordinates: { lat: 24.7636, lng: 46.6416 }
     },
     {
         slug: 'al-sahafa',
@@ -69,7 +81,10 @@ export const DISTRICTS: District[] = [
         lat: 24.8000,
         lng: 46.6500,
         heroImageKeyword: 'Riyadh newspaper district',
-        localContext: 'نخدم حي الصحافة بالكامل. سواء كنت في فيلا أو شقة، فريقنا جاهز لشراء الاثاث المستعمل بأفضل الأسعار.'
+        localContext: 'نخدم حي الصحافة بالكامل. سواء كنت في فيلا أو شقة، فريقنا جاهز لشراء الاثاث المستعمل بأفضل الأسعار.',
+        mainStreet: 'طريق الملك فهد',
+        priceTier: 'High',
+        coordinates: { lat: 24.8000, lng: 46.6500 }
     },
     {
         slug: 'al-narjis',
@@ -83,7 +98,10 @@ export const DISTRICTS: District[] = [
         lat: 24.8500,
         lng: 46.6833,
         heroImageKeyword: 'New construction Riyadh',
-        localContext: 'حي النرجس ينمو بسرعة. سواء كنت تنتقل إلى فيلا جديدة أو شقة تمليك، نساعدك في التخلص من الاثاث القديم بسرعة لترتيب منزلك الجديد.'
+        localContext: 'حي النرجس ينمو بسرعة. سواء كنت تنتقل إلى فيلا جديدة أو شقة تمليك، نساعدك في التخلص من الاثاث القديم بسرعة لترتيب منزلك الجديد.',
+        mainStreet: 'طريق عثمان بن عفان',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.8583, lng: 46.6582 }
     },
     {
         slug: 'al-arid',
@@ -97,7 +115,10 @@ export const DISTRICTS: District[] = [
         lat: 24.8833,
         lng: 46.6667,
         heroImageKeyword: 'North Riyadh villas',
-        localContext: 'نصل إلى حي العارض بسرعة. نشتري اثاث الفلل الجديدة والمستخدمة ونوفر خدمة فك وتركيب احترافية.'
+        localContext: 'نصل إلى حي العارض بسرعة. نشتري اثاث الفلل الجديدة والمستخدمة ونوفر خدمة فك وتركيب احترافية.',
+        mainStreet: 'طريق الملك عبدالعزيز',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.8833, lng: 46.6667 }
     },
     {
         slug: 'al-qirawan',
@@ -111,7 +132,10 @@ export const DISTRICTS: District[] = [
         lat: 24.8667,
         lng: 46.6000,
         heroImageKeyword: 'Riyadh north expansion',
-        localContext: 'القيروان من الأحياء الهادئة والراقية. نحترم خصوصيتك ونقدم خدمة سريعة لشراء الاثاث الفاخر.'
+        localContext: 'القيروان من الأحياء الهادئة والراقية. نحترم خصوصيتك ونقدم خدمة سريعة لشراء الاثاث الفاخر.',
+        mainStreet: 'طريق الملك سلمان',
+        priceTier: 'High',
+        coordinates: { lat: 24.8667, lng: 46.6000 }
     },
     {
         slug: 'hittin',
@@ -125,7 +149,10 @@ export const DISTRICTS: District[] = [
         lat: 24.7667,
         lng: 46.6000,
         heroImageKeyword: 'Riyadh Boulevard night',
-        localContext: 'نخدم منطقة حطين والثغر. نعرف قيمة الاثاث في هذه المنطقة ونقدم تقييماً خاصاً للمجالس الفاخرة وغرف النوم المستوردة.'
+        localContext: 'نخدم منطقة حطين والثغر. نعرف قيمة الاثاث في هذه المنطقة ونقدم تقييماً خاصاً للمجالس الفاخرة وغرف النوم المستوردة.',
+        mainStreet: 'طريق الأمير تركي الأول',
+        priceTier: 'High',
+        coordinates: { lat: 24.7667, lng: 46.6000 }
     },
     {
         slug: 'al-nakheel',
@@ -139,7 +166,10 @@ export const DISTRICTS: District[] = [
         lat: 24.7500,
         lng: 46.6333,
         heroImageKeyword: 'Riyadh palm trees luxury',
-        localContext: 'حي النخيل الغربي والشرقي من تخصصنا. نشتري الاثاث الراقي والتحف والمجالس الملكية بأسعار تنافسية.'
+        localContext: 'حي النخيل الغربي والشرقي من تخصصنا. نشتري الاثاث الراقي والتحف والمجالس الملكية بأسعار تنافسية.',
+        mainStreet: 'طريق التخصصي',
+        priceTier: 'High',
+        coordinates: { lat: 24.7500, lng: 46.6333 }
     },
     {
         slug: 'al-ghadeer',
@@ -153,7 +183,10 @@ export const DISTRICTS: District[] = [
         lat: 24.7833,
         lng: 46.6667,
         heroImageKeyword: 'Riyadh skyline view',
-        localContext: 'موقع الغدير الاستراتيجي يجعل وصولنا إليك سريعاً جداً. نشتري الاثاث المكتبي والمنزلي.'
+        localContext: 'موقع الغدير الاستراتيجي يجعل وصولنا إليك سريعاً جداً. نشتري الاثاث المكتبي والمنزلي.',
+        mainStreet: 'الطريق الدائري الشمالي',
+        priceTier: 'High',
+        coordinates: { lat: 24.7833, lng: 46.6667 }
     },
     {
         slug: 'al-rabea',
@@ -167,7 +200,10 @@ export const DISTRICTS: District[] = [
         lat: 24.8000,
         lng: 46.6833,
         heroImageKeyword: 'Riyadh green streets',
-        localContext: 'حي الربيع يتميز بالهدوء. فريقنا يعمل بهدوء واحترافية لنقل الاثاث دون إزعاج الجيران.'
+        localContext: 'حي الربيع يتميز بالهدوء. فريقنا يعمل بهدوء واحترافية لنقل الاثاث دون إزعاج الجيران.',
+        mainStreet: 'طريق الملك عبدالعزيز',
+        priceTier: 'High',
+        coordinates: { lat: 24.8000, lng: 46.6833 }
     },
     {
         slug: 'al-falah',
@@ -181,7 +217,10 @@ export const DISTRICTS: District[] = [
         lat: 24.8000,
         lng: 46.7167,
         heroImageKeyword: 'Riyadh university area',
-        localContext: 'نخدم حي الفلاح وسكن أعضاء هيئة التدريس. نشتري الكتب والمكتبات والاثاث المنزلي.'
+        localContext: 'نخدم حي الفلاح وسكن أعضاء هيئة التدريس. نشتري الكتب والمكتبات والاثاث المنزلي.',
+        mainStreet: 'طريق عثمان بن عفان',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.8000, lng: 46.7167 }
     },
     {
         slug: 'al-wady',
@@ -195,7 +234,10 @@ export const DISTRICTS: District[] = [
         lat: 24.7833,
         lng: 46.7000,
         heroImageKeyword: 'Riyadh residential street',
-        localContext: 'حي الوادي من الأحياء الحيوية. نصلك فوراً لشراء المكيفات وغرف النوم.'
+        localContext: 'حي الوادي من الأحياء الحيوية. نصلك فوراً لشراء المكيفات وغرف النوم.',
+        mainStreet: 'طريق عثمان بن عفان',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.7833, lng: 46.7000 }
     },
     {
         slug: 'al-nfl',
@@ -209,7 +251,10 @@ export const DISTRICTS: District[] = [
         lat: 24.7833,
         lng: 46.6833,
         heroImageKeyword: 'Riyadh north villas',
-        localContext: 'نشتري الاثاث من حي النفل. سواء كنت تجدد عفشك أو تنتقل، نحن خيارك الأفضل.'
+        localContext: 'نشتري الاثاث من حي النفل. سواء كنت تجدد عفشك أو تنتقل، نحن خيارك الأفضل.',
+        mainStreet: 'طريق الملك عبدالعزيز',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.7833, lng: 46.6833 }
     },
     {
         slug: 'al-masif',
@@ -223,7 +268,10 @@ export const DISTRICTS: District[] = [
         lat: 24.7667,
         lng: 46.6833,
         heroImageKeyword: 'Riyadh classic neighborhood',
-        localContext: 'حي المصيف يتوسط الشمال. نصلك بسرعة ونشتري جميع أنواع الاثاث المنزلي.'
+        localContext: 'حي المصيف يتوسط الشمال. نصلك بسرعة ونشتري جميع أنواع الاثاث المنزلي.',
+        mainStreet: 'طريق الإمام سعود بن عبدالعزيز',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.7667, lng: 46.6833 }
     },
 
     // East Riyadh
@@ -239,7 +287,10 @@ export const DISTRICTS: District[] = [
         lat: 24.7833,
         lng: 46.7500,
         heroImageKeyword: 'Riyadh park walkway',
-        localContext: 'الحمراء حي راقي وهادئ. نشتري الاثاث الفاخر ونحافظ على نظافة المكان.'
+        localContext: 'الحمراء حي راقي وهادئ. نشتري الاثاث الفاخر ونحافظ على نظافة المكان.',
+        mainStreet: 'طريق الملك عبدالله',
+        priceTier: 'High',
+        coordinates: { lat: 24.7769, lng: 46.7527 }
     },
     {
         slug: 'al-yarmuk',
@@ -253,7 +304,10 @@ export const DISTRICTS: District[] = [
         lat: 24.8167,
         lng: 46.7833,
         heroImageKeyword: 'Riyadh apartment buildings',
-        localContext: 'نخدم الشقق السكنية في اليرموك. إذا كنت في دور علوي بدون مصعد، لا تقلق، عمالنا يقومون بالتحميل دون أي تكلفة إضافية عليك.'
+        localContext: 'نخدم الشقق السكنية في اليرموك. إذا كنت في دور علوي بدون مصعد، لا تقلق، عمالنا يقومون بالتحميل دون أي تكلفة إضافية عليك.',
+        mainStreet: 'طريق الدمام',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.8088, lng: 46.7753 }
     },
     {
         slug: 'al-munsiyah',
@@ -267,7 +321,10 @@ export const DISTRICTS: District[] = [
         lat: 24.8333,
         lng: 46.7667,
         heroImageKeyword: 'Riyadh suburb sunset',
-        localContext: 'المونسية قريبة من طريق الدمام. نصلك بسرعة لشراء المكيفات والمطابخ. نركز هنا على الاثاث شبه الجديد.'
+        localContext: 'المونسية قريبة من طريق الدمام. نصلك بسرعة لشراء المكيفات والمطابخ. نركز هنا على الاثاث شبه الجديد.',
+        mainStreet: 'طريق الثمامة',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.8194, lng: 46.7620 }
     },
     {
         slug: 'al-rawdah',
@@ -281,7 +338,10 @@ export const DISTRICTS: District[] = [
         lat: 24.7333,
         lng: 46.7667,
         heroImageKeyword: 'Riyadh rawdah street',
-        localContext: 'حي الروضة من الأحياء الكبيرة. نشتري الاثاث من الفلل والشقق ونغطي جميع مربعات الحي.'
+        localContext: 'حي الروضة من الأحياء الكبيرة. نشتري الاثاث من الفلل والشقق ونغطي جميع مربعات الحي.',
+        mainStreet: 'طريق خريص',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.7347, lng: 46.7678 }
     },
     {
         slug: 'al-khaleej',
@@ -295,7 +355,10 @@ export const DISTRICTS: District[] = [
         lat: 24.7667,
         lng: 46.8000,
         heroImageKeyword: 'Riyadh east apartments',
-        localContext: 'نشتري الاثاث المستعمل في حي الخليج. أسعارنا مميزة للمكيفات وغرف النوم.'
+        localContext: 'نشتري الاثاث المستعمل في حي الخليج. أسعارنا مميزة للمكيفات وغرف النوم.',
+        mainStreet: 'طريق الملك عبدالله',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.7876, lng: 46.8158 }
     },
     {
         slug: 'al-qurtubah',
@@ -305,11 +368,14 @@ export const DISTRICTS: District[] = [
         vibe: 'Modern',
         housing: 'Mixed',
         landmarks: ['Granada Mall', 'Business Gate'],
-        nearbySlugs: ['al-munsiyah', 'al-yarmuk', 'ghirnatah'],
-        lat: 24.8167,
+        nearbySlugs: ['al-munsiyah', 'al-shuhada', 'ghirnatah'],
+        lat: 24.8000,
         lng: 46.7333,
         heroImageKeyword: 'Riyadh business gate',
-        localContext: 'بجوار البوابة الاقتصادية، نشتري الاثاث المكتبي والمنزلي في قرطبة بسرعة واحترافية.'
+        localContext: 'قرطبة حي حيوي بالقرب من البوابة الاقتصادية. نشتري الاثاث المكتبي والمنزلي.',
+        mainStreet: 'طريق الثمامة',
+        priceTier: 'High',
+        coordinates: { lat: 24.8000, lng: 46.7333 }
     },
     {
         slug: 'ghirnatah',
@@ -317,13 +383,16 @@ export const DISTRICTS: District[] = [
         nameEn: 'Ghirnatah',
         region: 'East',
         vibe: 'Modern',
-        housing: 'Mixed',
+        housing: 'Villas',
         landmarks: ['Granada Mall', 'Eastern Ring Rd'],
-        nearbySlugs: ['al-qurtubah', 'al-hamra', 'al-shuhada'],
-        lat: 24.8000,
+        nearbySlugs: ['al-hamra', 'al-shuhada', 'al-yarmuk'],
+        lat: 24.7833,
         lng: 46.7333,
-        heroImageKeyword: 'Granada mall riyadh',
-        localContext: 'حي غرناطة حي حيوي. نصلك في أي وقت لشراء الاثاث الزائد عن حاجتك.'
+        heroImageKeyword: 'Granada Mall Riyadh',
+        localContext: 'نخدم حي غرناطة بالكامل. نشتري الاثاث الفاخر ونقدم خدمة سريعة.',
+        mainStreet: 'الطريق الدائري الشرقي',
+        priceTier: 'High',
+        coordinates: { lat: 24.7833, lng: 46.7333 }
     },
     {
         slug: 'al-shuhada',
@@ -331,13 +400,16 @@ export const DISTRICTS: District[] = [
         nameEn: 'Al-Shuhada',
         region: 'East',
         vibe: 'Modern',
-        housing: 'Mixed',
-        landmarks: ['Ghirnatah Business Park', 'Imam Abdullah Rd'],
+        housing: 'Villas',
+        landmarks: ['Ghirnatah Mall', 'Imam Abdullah Bin Saud Rd'],
         nearbySlugs: ['ghirnatah', 'al-hamra', 'al-izdiher'],
         lat: 24.7833,
-        lng: 46.7333,
-        heroImageKeyword: 'Riyadh modern district',
-        localContext: 'نخدم حي الشهداء والمناطق المجاورة. نشتري الاثاث النظيف بأفضل الأسعار.'
+        lng: 46.7167,
+        heroImageKeyword: 'Riyadh modern neighborhood',
+        localContext: 'حي الشهداء يتميز بموقعه. نصلك بسرعة ونشتري الاثاث بأفضل الأسعار.',
+        mainStreet: 'طريق الإمام عبدالله بن سعود',
+        priceTier: 'High',
+        coordinates: { lat: 24.7833, lng: 46.7167 }
     },
     {
         slug: 'al-izdiher',
@@ -345,13 +417,16 @@ export const DISTRICTS: District[] = [
         nameEn: 'Al-Izdiher',
         region: 'East',
         vibe: 'Modern',
-        housing: 'Mixed',
-        landmarks: ['Nakheel Mall', 'Northern Ring Rd'],
-        nearbySlugs: ['al-shuhada', 'al-taawun', 'al-falah'],
+        housing: 'Villas',
+        landmarks: ['Al-Nakheel Mall', 'Northern Ring Rd'],
+        nearbySlugs: ['al-taawun', 'al-shuhada', 'al-falah'],
         lat: 24.7833,
-        lng: 46.7167,
-        heroImageKeyword: 'Riyadh nakheel mall area',
-        localContext: 'موقعنا قريب من الازدهار. نشتري الاثاث والتحف من الفلل والشقق الراقية.'
+        lng: 46.7000,
+        heroImageKeyword: 'Al Nakheel Mall area',
+        localContext: 'بالقرب من النخيل مول، نخدم حي الازدهار ونشتري الاثاث الراقي.',
+        mainStreet: 'الطريق الدائري الشمالي',
+        priceTier: 'High',
+        coordinates: { lat: 24.7833, lng: 46.7000 }
     },
     {
         slug: 'al-taawun',
@@ -359,13 +434,16 @@ export const DISTRICTS: District[] = [
         nameEn: 'Al-Taawun',
         region: 'East',
         vibe: 'Modern',
-        housing: 'Mixed',
-        landmarks: ['Imam Saud Rd', 'Othman Bin Affan Rd'],
-        nearbySlugs: ['al-izdiher', 'al-masif', 'al-wady'],
-        lat: 24.7833,
+        housing: 'Villas',
+        landmarks: ['Northern Ring Rd', 'Imam Saud Rd'],
+        nearbySlugs: ['al-izdiher', 'al-masif', 'al-rabea'],
+        lat: 24.7667,
         lng: 46.7000,
-        heroImageKeyword: 'Riyadh taawun street',
-        localContext: 'حي التعاون من الأحياء المميزة. نقدم خدمة VIP لشراء الاثاث في هذا الحي.'
+        heroImageKeyword: 'Riyadh quiet street',
+        localContext: 'حي التعاون هادئ وراقي. نشتري الاثاث ونحافظ على هدوء الحي أثناء النقل.',
+        mainStreet: 'طريق الإمام سعود بن عبدالعزيز',
+        priceTier: 'High',
+        coordinates: { lat: 24.7667, lng: 46.7000 }
     },
     {
         slug: 'al-ishbiliyah',
@@ -375,53 +453,65 @@ export const DISTRICTS: District[] = [
         vibe: 'Family',
         housing: 'Villas',
         landmarks: ['King Abdullah Rd', 'Ishbiliyah Park'],
-        nearbySlugs: ['al-yarmuk', 'al-khaleej', 'al-hamra'],
+        nearbySlugs: ['al-yarmuk', 'al-khaleej', 'al-qadisiyah'],
         lat: 24.7833,
-        lng: 46.7833,
-        heroImageKeyword: 'Riyadh ishbiliyah park',
-        localContext: 'نشتري الاثاث من مجمعات اشبيلية السكنية. تعامل راقي وسرعة في التنفيذ.'
+        lng: 46.8000,
+        heroImageKeyword: 'Riyadh east villas',
+        localContext: 'اشبيلية حي عائلي كبير. نشتري الاثاث من الفلل والشقق ونوفر سيارات نقل كبيرة.',
+        mainStreet: 'طريق الملك عبدالله',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.7833, lng: 46.8000 }
     },
     {
         slug: 'al-qadisiyah',
         nameAr: 'حي القادسية',
         nameEn: 'Al-Qadisiyah',
         region: 'East',
-        vibe: 'Family',
+        vibe: 'New',
         housing: 'Mixed',
-        landmarks: ['King Fahd Security College', 'Dammam Rd'],
-        nearbySlugs: ['al-yarmuk', 'al-remal', 'al-khaleej'],
+        landmarks: ['Northern Ring Rd', 'Dammam Rd'],
+        nearbySlugs: ['al-ishbiliyah', 'al-munsiyah', 'al-remal'],
         lat: 24.8167,
         lng: 46.8167,
-        heroImageKeyword: 'Riyadh east suburbs',
-        localContext: 'القادسية حي ينمو. نساعدك في بيع الاثاث القديم لتجديد منزلك.'
+        heroImageKeyword: 'Riyadh new east',
+        localContext: 'القادسية ينمو بسرعة. نشتري اثاثك القديم لتجديد منزلك.',
+        mainStreet: 'طريق الدمام',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.8167, lng: 46.8167 }
     },
     {
         slug: 'al-remal',
         nameAr: 'حي الرمال',
         nameEn: 'Al-Remal',
         region: 'East',
-        vibe: 'Industrial',
+        vibe: 'New',
         housing: 'Mixed',
-        landmarks: ['Thumamah Rd', 'Riyadh Auction'],
-        nearbySlugs: ['al-munsiyah', 'al-qadisiyah', 'al-janadriyah'],
+        landmarks: ['Thumamah Rd', 'Airport'],
+        nearbySlugs: ['al-munsiyah', 'al-qadisiyah'],
         lat: 24.8667,
-        lng: 46.8000,
-        heroImageKeyword: 'Riyadh desert road',
-        localContext: 'نصل إلى الرمال والاستراحات. نشتري اثاث الاستراحات والمخيمات والمنازل.'
+        lng: 46.8333,
+        heroImageKeyword: 'Riyadh desert edge',
+        localContext: 'حي الرمال واسع. نصلك أينما كنت في الرمال ونشتري الاثاث والمكيفات.',
+        mainStreet: 'طريق الثمامة',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.8667, lng: 46.8333 }
     },
     {
         slug: 'al-andalus',
-        nameAr: 'حي الاندلس',
+        nameAr: 'حي الأندلس',
         nameEn: 'Al-Andalus',
         region: 'East',
         vibe: 'Family',
         housing: 'Villas',
-        landmarks: ['Khurais Rd', 'Andalus Park'],
+        landmarks: ['Khurais Rd', 'Al-Andalus Mall'],
         nearbySlugs: ['al-rawdah', 'al-nahda', 'al-khaleej'],
         lat: 24.7333,
         lng: 46.7833,
-        heroImageKeyword: 'Riyadh andalus district',
-        localContext: 'حي الاندلس الهادئ. نشتري الاثاث بعناية ونحافظ على هدوء الحي أثناء النقل.'
+        heroImageKeyword: 'Riyadh classic villas',
+        localContext: 'الأندلس حي عريق. نشتري الاثاث الكلاسيكي والحديث بأسعار ممتازة.',
+        mainStreet: 'طريق خريص',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.7333, lng: 46.7833 }
     },
     {
         slug: 'al-nahda',
@@ -430,12 +520,15 @@ export const DISTRICTS: District[] = [
         region: 'East',
         vibe: 'Family',
         housing: 'Mixed',
-        landmarks: ['Khurais Rd', 'Nahda Park'],
-        nearbySlugs: ['al-andalus', 'al-khaleej', 'al-rawdah'],
+        landmarks: ['Khurais Rd', 'King Fahd Stadium'],
+        nearbySlugs: ['al-khaleej', 'al-andalus', 'al-rawdah'],
         lat: 24.7500,
-        lng: 46.8000,
-        heroImageKeyword: 'Riyadh nahda street',
-        localContext: 'نخدم سكان حي النهضة. نشتري جميع أنواع الاثاث المنزلي والكهربائي.'
+        lng: 46.8167,
+        heroImageKeyword: 'Riyadh stadium area',
+        localContext: 'نخدم حي النهضة بالكامل. نشتري الاثاث المستعمل وننقل العفش.',
+        mainStreet: 'طريق خريص',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.7500, lng: 46.8167 }
     },
     {
         slug: 'al-naseem',
@@ -443,13 +536,16 @@ export const DISTRICTS: District[] = [
         nameEn: 'Al-Naseem',
         region: 'East',
         vibe: 'Family',
-        housing: 'Mixed',
-        landmarks: ['Khurais Rd', 'Naseem Market'],
-        nearbySlugs: ['al-rawdah', 'al-nahda', 'al-khaleej'],
-        lat: 24.7333,
-        lng: 46.8167,
+        housing: 'Apartments',
+        landmarks: ['Khurais Rd', 'Al-Naseem Market', 'Peace Park'],
+        nearbySlugs: ['al-nahda', 'al-manar', 'al-salam'],
+        lat: 24.7167,
+        lng: 46.8333,
         heroImageKeyword: 'Riyadh busy street',
-        localContext: 'حي النسيم من أعرق الأحياء. نشتري كميات كبيرة من المكيفات الشباك والمجالس العربية من سكان الحي. خدمتنا سريعة جداً هنا.'
+        localContext: 'النسيم حي حيوي جداً. نشتري جميع أنواع الاثاث والمكيفات ونصلك فوراً.',
+        mainStreet: 'طريق خريص',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.7167, lng: 46.8333 }
     },
 
     // West Riyadh
@@ -458,28 +554,34 @@ export const DISTRICTS: District[] = [
         nameAr: 'حي لبن',
         nameEn: 'Al-Laban',
         region: 'West',
-        vibe: 'Family',
+        vibe: 'New',
         housing: 'Villas',
-        landmarks: ['Suspension Bridge', 'Riyadh Club'],
-        nearbySlugs: ['al-mahdiyah', 'al-arija', 'dhahrat-al-laban'],
+        landmarks: ['Wadi Hanifa', 'Suspension Bridge'],
+        nearbySlugs: ['al-mahdiyah', 'dhahrat-al-laban', 'al-arija'],
         lat: 24.6333,
         lng: 46.5667,
-        heroImageKeyword: 'Wadi Hanifa bridge',
-        localContext: 'لبن والمهدية مناطقنا اليومية. نصلك بسرعة لشراء الاثاث ونقله.'
+        heroImageKeyword: 'Riyadh suspension bridge',
+        localContext: 'ضاحية لبن تتميز بالهدوء والفلل الجديدة. نشتري الاثاث الحديث ونقدم خدمة راقية.',
+        mainStreet: 'طريق مكة المكرمة',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.5966, lng: 46.6264 }
     },
     {
         slug: 'al-mahdiyah',
         nameAr: 'حي المهدية',
         nameEn: 'Al-Mahdiyah',
         region: 'West',
-        vibe: 'Family',
+        vibe: 'New',
         housing: 'Villas',
-        landmarks: ['Wadi Hanifa', 'West Exit'],
-        nearbySlugs: ['al-laban', 'al-arija', 'al-khuzama'],
+        landmarks: ['Wadi Hanifa', 'Diplomatic Quarter Access'],
+        nearbySlugs: ['al-laban', 'al-khuzama', 'al-raed'],
         lat: 24.6667,
         lng: 46.5333,
-        heroImageKeyword: 'Riyadh west hills',
-        localContext: 'المهدية حي جديد ومرتفع. سياراتنا تصل لأي مكان في المهدية لنقل الاثاث.'
+        heroImageKeyword: 'Riyadh valley view',
+        localContext: 'المهدية حي واعد. نصلك لشراء الاثاث من الفلل الجديدة والمجمعات السكنية.',
+        mainStreet: 'الطريق الدائري الغربي',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.6589, lng: 46.5170 }
     },
     {
         slug: 'al-suwaidi',
@@ -488,12 +590,15 @@ export const DISTRICTS: District[] = [
         region: 'West',
         vibe: 'Family',
         housing: 'Old Houses',
-        landmarks: ['Al-Qasr Mall', 'Suwaidi Park'],
-        nearbySlugs: ['al-badiah', 'shubra', 'al-suwaidi-al-gharb'],
+        landmarks: ['Suwaidi Park', 'Al-Qasr Mall'],
+        nearbySlugs: ['al-badiah', 'shubra', 'al-arija'],
         lat: 24.5833,
         lng: 46.6500,
         heroImageKeyword: 'Riyadh traditional houses',
-        localContext: 'حي السويدي من الأحياء الحيوية. نشتري المجالس الأرضية والكنب والمكيفات القديمة من الفلل والبيوت الشعبية.'
+        localContext: 'السويدي من الأحياء العريقة. نشتري الاثاث الشعبي والحديث والمكيفات بأسعار عادلة.',
+        mainStreet: 'شارع السويدي العام',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.6021, lng: 46.7029 }
     },
     {
         slug: 'al-badiah',
@@ -502,12 +607,15 @@ export const DISTRICTS: District[] = [
         region: 'West',
         vibe: 'Family',
         housing: 'Old Houses',
-        landmarks: ['Riyadh International Market', 'Othaim Mall'],
-        nearbySlugs: ['al-suwaidi', 'dhahrat-al-badiah', 'al-arija'],
+        landmarks: ['King Saud University (Old)', 'Madinah Rd'],
+        nearbySlugs: ['al-suwaidi', 'al-arija', 'dhahrat-al-badiah'],
         lat: 24.6000,
         lng: 46.6333,
-        heroImageKeyword: 'Riyadh old market',
-        localContext: 'البديعة وسوق الرياض الدولي. نشتري الاثاث من السكان وأصحاب المحلات.'
+        heroImageKeyword: 'Riyadh old streets',
+        localContext: 'نخدم البديعة القديمة والجديدة. نشتري الاثاث والمجالس العربية.',
+        mainStreet: 'طريق المدينة المنورة',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.6000, lng: 46.6333 }
     },
     {
         slug: 'dhahrat-al-badiah',
@@ -515,13 +623,16 @@ export const DISTRICTS: District[] = [
         nameEn: 'Dhahrat Al-Badiah',
         region: 'West',
         vibe: 'Family',
-        housing: 'Old Houses',
-        landmarks: ['Madinah Rd', 'Vegetable Market'],
-        nearbySlugs: ['al-badiah', 'al-arija', 'al-suwaidi'],
-        lat: 24.6000,
+        housing: 'Mixed',
+        landmarks: ['Al-Badiah Mall', 'Western Ring Rd'],
+        nearbySlugs: ['al-badiah', 'al-suwaidi', 'al-arija'],
+        lat: 24.5833,
         lng: 46.6167,
-        heroImageKeyword: 'Riyadh west streets',
-        localContext: 'نخدم ظهرة البديعة بالكامل. نشتري الاثاث المستعمل وندفع كاش.'
+        heroImageKeyword: 'Riyadh west mall',
+        localContext: 'ظهرة البديعة حي نشط. نصلك بسرعة لشراء الاثاث والأجهزة الكهربائية.',
+        mainStreet: 'الطريق الدائري الغربي',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.5833, lng: 46.6167 }
     },
     {
         slug: 'al-arija',
@@ -530,26 +641,32 @@ export const DISTRICTS: District[] = [
         region: 'West',
         vibe: 'Family',
         housing: 'Mixed',
-        landmarks: ['King Saud University for Health Sciences', 'Arija Park'],
-        nearbySlugs: ['al-badiah', 'dhahrat-al-badiah', 'al-laban'],
-        lat: 24.6167,
+        landmarks: ['King Salman Park (West)', 'Taif Rd'],
+        nearbySlugs: ['al-suwaidi', 'al-badiah', 'tuwaiq'],
+        lat: 24.6000,
         lng: 46.6000,
-        heroImageKeyword: 'Riyadh arija district',
-        localContext: 'العريجاء الوسطى والغربية. نشتري الاثاث من البيوت والفلل القديمة والجديدة.'
+        heroImageKeyword: 'Riyadh west park',
+        localContext: 'العريجاء الوسطى والغربية. نشتري الاثاث من جميع المربعات.',
+        mainStreet: 'طريق الطائف',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.6000, lng: 46.6000 }
     },
     {
         slug: 'dhahrat-al-laban',
         nameAr: 'ظهرة لبن',
         nameEn: 'Dhahrat Al-Laban',
         region: 'West',
-        vibe: 'Family',
+        vibe: 'New',
         housing: 'Villas',
-        landmarks: ['Taif Rd', 'Laban Exit'],
-        nearbySlugs: ['al-laban', 'al-mahdiyah', 'tuwaiq'],
-        lat: 24.6333,
+        landmarks: ['Taif Rd', 'Suspension Bridge'],
+        nearbySlugs: ['al-laban', 'tuwaiq', 'al-mahdiyah'],
+        lat: 24.6167,
         lng: 46.5500,
-        heroImageKeyword: 'Wadi Hanifa bridge',
-        localContext: 'ظهرة لبن منطقة مرتفعة وجميلة. سياراتنا قوية وتصل لأي مكان في الحي لنقل غرف النوم والمطابخ الثقيلة.'
+        heroImageKeyword: 'Riyadh hill view',
+        localContext: 'ظهرة لبن منطقة مرتفعة وجميلة. نشتري الاثاث من الفلل والشقق.',
+        mainStreet: 'طريق الطائف',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.6216, lng: 46.5470 }
     },
     {
         slug: 'tuwaiq',
@@ -558,12 +675,15 @@ export const DISTRICTS: District[] = [
         region: 'West',
         vibe: 'New',
         housing: 'Mixed',
-        landmarks: ['Tuwaiq Mountain', 'Makkah Rd'],
-        nearbySlugs: ['dhahrat-al-laban', 'nemar', 'al-fawaz'],
-        lat: 24.6000,
-        lng: 46.5000,
-        heroImageKeyword: 'Tuwaiq mountain view',
-        localContext: 'مع التوسع العمراني في طويق، نساعد السكان الجدد والقدامى في بيع الاثاث الزائد. نشتري المكيفات السبلت والشبابيك.'
+        landmarks: ['Tuwaiq Mountains View', 'Makkah Rd'],
+        nearbySlugs: ['dhahrat-al-laban', 'al-arija'],
+        lat: 24.5833,
+        lng: 46.5167,
+        heroImageKeyword: 'Tuwaiq mountains',
+        localContext: 'حي طويق ينمو بسرعة. نشتري الاثاث من المخططات الجديدة ونوفر خدمة مميزة.',
+        mainStreet: 'شارع نجم الدين الأيوبي',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.5573, lng: 46.5085 }
     },
     {
         slug: 'al-khuzama',
@@ -573,11 +693,14 @@ export const DISTRICTS: District[] = [
         vibe: 'Luxury',
         housing: 'Villas',
         landmarks: ['King Khalid Rd', 'Diplomatic Quarter'],
-        nearbySlugs: ['al-mahdiyah', 'al-raid', 'hittin'],
+        nearbySlugs: ['al-mahdiyah', 'al-raed', 'hittin'],
         lat: 24.7000,
         lng: 46.5833,
-        heroImageKeyword: 'Riyadh diplomatic quarter area',
-        localContext: 'الخزامى حي النخبة. نقدم خدمة خاصة لشراء الاثاث الفاخر والماركات العالمية.'
+        heroImageKeyword: 'Riyadh diplomatic area',
+        localContext: 'الخزامى حي النخبة. نشتري الاثاث الفاخر والتحف بأسعار خاصة.',
+        mainStreet: 'طريق الملك خالد',
+        priceTier: 'High',
+        coordinates: { lat: 24.7000, lng: 46.5833 }
     },
     {
         slug: 'al-raed',
@@ -586,12 +709,15 @@ export const DISTRICTS: District[] = [
         region: 'West',
         vibe: 'Luxury',
         housing: 'Villas',
-        landmarks: ['King Saud University', 'King Abdullah Rd'],
+        landmarks: ['King Saud University', 'King Khalid Eye Hospital'],
         nearbySlugs: ['al-khuzama', 'al-nakheel', 'al-mohammadiyah'],
         lat: 24.7167,
-        lng: 46.6167,
-        heroImageKeyword: 'Riyadh KSU area',
-        localContext: 'بجوار جامعة الملك سعود، نشتري الاثاث من حي الرائد. تعامل راقي وسرعة في الإنجاز.'
+        lng: 46.6000,
+        heroImageKeyword: 'Riyadh university district',
+        localContext: 'حي الرائد الهادئ. نخدم سكان الحي ونشتري الاثاث والمكتبات الخاصة.',
+        mainStreet: 'طريق الملك عبدالله',
+        priceTier: 'High',
+        coordinates: { lat: 24.7167, lng: 46.6000 }
     },
 
     // South Riyadh
@@ -602,40 +728,49 @@ export const DISTRICTS: District[] = [
         region: 'South',
         vibe: 'Industrial',
         housing: 'Old Houses',
-        landmarks: ['Haraj Market', 'Public Transport Station'],
+        landmarks: ['Haraj Bin Qasim', 'Public Transport Station', 'Al Aziziyah Mall'],
         nearbySlugs: ['al-mansourah', 'al-dar-al-baida', 'al-shifa'],
         lat: 24.5667,
-        lng: 46.7500,
-        heroImageKeyword: 'Riyadh industrial area',
-        localContext: 'لقرب العزيزية من حراج بن قاسم، نحن ننافس أسعار الحراج ونعطيك سعراً أفضل. نشتري السكراب والكميات الكبيرة وتصفية الشقق.'
+        lng: 46.7667,
+        heroImageKeyword: 'Riyadh south market',
+        localContext: 'العزيزية هي المركز التجاري النشط جنوب الرياض، وتتميز بقربها من حراج بن قاسم والمستودعات الكبرى.',
+        mainStreet: 'طريق الحائر',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.5927, lng: 46.7575 }
     },
     {
         slug: 'al-shifa',
-        nameAr: 'حي الشفاء',
+        nameAr: 'حي الشفا',
         nameEn: 'Al-Shifa',
         region: 'South',
-        vibe: 'Industrial',
-        housing: 'Old Houses',
-        landmarks: ['Car Showrooms', 'Al-Shifa Mall'],
-        nearbySlugs: ['al-aziziyah', 'al-marwah', 'al-badr'],
+        vibe: 'Family',
+        housing: 'Mixed',
+        landmarks: ['Shifa Industrial Area', 'Al-Shifa Mall'],
+        nearbySlugs: ['al-badr', 'al-marwah', 'al-aziziyah'],
         lat: 24.5333,
         lng: 46.7000,
-        heroImageKeyword: 'Riyadh workshops',
-        localContext: 'نشتري من معارض الشفاء، الورش، والمنازل. نركز على شراء المكيفات السكراب (حديد ونحاس) والأجهزة الكهربائية.'
+        heroImageKeyword: 'Riyadh industrial area',
+        localContext: 'حي الشفا كبير ومتنوع. نشتري الاثاث من المنازل والورش والمكاتب.',
+        mainStreet: 'طريق ديراب',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.5786, lng: 46.7019 }
     },
     {
         slug: 'al-mansourah',
         nameAr: 'حي المنصورة',
         nameEn: 'Al-Mansourah',
         region: 'South',
-        vibe: 'Industrial',
+        vibe: 'Family',
         housing: 'Old Houses',
-        landmarks: ['Al-Kharj Rd', 'Mansourah Park'],
-        nearbySlugs: ['al-aziziyah', 'al-khalidiyah', 'ghubaira'],
+        landmarks: ['Southern Ring Rd', 'Al-Kharj Rd'],
+        nearbySlugs: ['al-aziziyah', 'al-yamamah', 'manfuha'],
         lat: 24.6000,
         lng: 46.7500,
         heroImageKeyword: 'Riyadh south streets',
-        localContext: 'المنصورة وحي البطحاء. نشتري الاثاث القديم والسكراب بكميات كبيرة.'
+        localContext: 'المنصورة حي شعبي وحيوي. نشتري الاثاث المستعمل بأسعار ترضيك.',
+        mainStreet: 'طريق الخرج',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.6092, lng: 46.7422 }
     },
     {
         slug: 'al-suwaidi-al-gharb',
@@ -643,27 +778,33 @@ export const DISTRICTS: District[] = [
         nameEn: 'Al-Suwaidi Al-Gharb',
         region: 'South',
         vibe: 'Family',
-        housing: 'Old Houses',
-        landmarks: ['Southern Ring Rd', 'Sadhan Markets'],
-        nearbySlugs: ['al-suwaidi', 'shubra', 'nemar'],
+        housing: 'Mixed',
+        landmarks: ['Western Ring Rd', 'Suwaidi Park'],
+        nearbySlugs: ['al-suwaidi', 'shubra', 'al-badr'],
         lat: 24.5667,
         lng: 46.6333,
-        heroImageKeyword: 'Riyadh suwaidi west',
-        localContext: 'نخدم السويدي الغربي وشبرا. نشتري الاثاث المنزلي والمكيفات.'
+        heroImageKeyword: 'Riyadh sunset park',
+        localContext: 'نخدم السويدي الغربي. نصلك بسرعة ونشتري الاثاث والمكيفات.',
+        mainStreet: 'الطريق الدائري الغربي',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.5667, lng: 46.6333 }
     },
     {
         slug: 'nemar',
         nameAr: 'حي نمار',
         nameEn: 'Nemar',
         region: 'South',
-        vibe: 'Family',
+        vibe: 'New',
         housing: 'Villas',
-        landmarks: ['Nemar Park', 'Dirab Rd'],
-        nearbySlugs: ['al-shifa', 'al-suwaidi-al-gharb', 'tuwaiq'],
-        lat: 24.5500,
-        lng: 46.6000,
-        heroImageKeyword: 'Riyadh nemar park',
-        localContext: 'نمار ووادي نمار. نصلك للاستراحات والشاليهات لشراء الاثاث المستعمل.'
+        landmarks: ['Wadi Nemar', 'Nemar Park'],
+        nearbySlugs: ['al-hazm', 'al-fawaz', 'al-shifa'],
+        lat: 24.5167,
+        lng: 46.6500,
+        heroImageKeyword: 'Wadi Nemar lake',
+        localContext: 'نمار منطقة جميلة ومطلة. نشتري الاثاث من الاستراحات والفلل.',
+        mainStreet: 'طريق ديراب',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.5167, lng: 46.6500 }
     },
     {
         slug: 'al-dar-al-baida',
@@ -672,12 +813,15 @@ export const DISTRICTS: District[] = [
         region: 'South',
         vibe: 'Industrial',
         housing: 'Mixed',
-        landmarks: ['Al-Kharj Rd', 'Defense City'],
-        nearbySlugs: ['al-aziziyah', 'al-mansourah', 'al-taybah'],
+        landmarks: ['Al-Kharj Rd', 'Industrial Area'],
+        nearbySlugs: ['al-aziziyah', 'al-mansourah'],
         lat: 24.5333,
-        lng: 46.7833,
-        heroImageKeyword: 'Riyadh south industrial',
-        localContext: 'الدار البيضاء والعزيزية. نشتري اثاث العمال والشركات والسكراب.'
+        lng: 46.8000,
+        heroImageKeyword: 'Riyadh warehouse district',
+        localContext: 'الدار البيضاء قريبة من المصانع. نشتري الاثاث وسكن العمال والمكيفات.',
+        mainStreet: 'طريق الخرج',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.5333, lng: 46.8000 }
     },
     {
         slug: 'al-marwah',
@@ -686,26 +830,32 @@ export const DISTRICTS: District[] = [
         region: 'South',
         vibe: 'Family',
         housing: 'Mixed',
-        landmarks: ['Dirab Rd', 'Uhud St'],
-        nearbySlugs: ['al-shifa', 'al-hazm', 'al-okaz'],
+        landmarks: ['Dirab Rd', 'Al-Shifa Hospital'],
+        nearbySlugs: ['al-shifa', 'al-hazm'],
         lat: 24.5167,
-        lng: 46.6833,
-        heroImageKeyword: 'Riyadh marwah district',
-        localContext: 'حي المروة والشفاء. نشتري الاثاث من الشقق والفلل.'
+        lng: 46.7167,
+        heroImageKeyword: 'Riyadh south residential',
+        localContext: 'حي المروة هادئ. نشتري الاثاث المنزلي وننقل العفش بعناية.',
+        mainStreet: 'طريق ديراب',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.5167, lng: 46.7167 }
     },
     {
         slug: 'al-hazm',
         nameAr: 'حي الحزم',
         nameEn: 'Al-Hazm',
         region: 'South',
-        vibe: 'Family',
-        housing: 'Mixed',
-        landmarks: ['Dirab Rd', 'Hamza Bin Abdulmuttalib St'],
-        nearbySlugs: ['al-marwah', 'al-shifa', 'nemar'],
-        lat: 24.5333,
-        lng: 46.6500,
-        heroImageKeyword: 'Riyadh hazm district',
-        localContext: 'نخدم حي الحزم. نشتري المكيفات والمطابخ وغرف النوم.'
+        vibe: 'New',
+        housing: 'Villas',
+        landmarks: ['Dirab Rd', 'Nemar Valley'],
+        nearbySlugs: ['nemar', 'al-fawaz', 'al-marwah'],
+        lat: 24.5000,
+        lng: 46.6833,
+        heroImageKeyword: 'Riyadh new south',
+        localContext: 'الحزم حي جديد ومنظم. نشتري الاثاث الحديث والمكيفات الاسبليت.',
+        mainStreet: 'طريق ديراب',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.5000, lng: 46.6833 }
     },
     {
         slug: 'al-fawaz',
@@ -715,25 +865,31 @@ export const DISTRICTS: District[] = [
         vibe: 'Family',
         housing: 'Villas',
         landmarks: ['Dirab Rd', 'Al-Fawaz Housing'],
-        nearbySlugs: ['al-hazm', 'tuwaiq', 'al-shifa'],
-        lat: 24.5500,
-        lng: 46.6167,
-        heroImageKeyword: 'Riyadh fawaz housing',
-        localContext: 'إسكان الفواز والحزم. نشتري الاثاث من الشقق والفلل السكنية.'
+        nearbySlugs: ['al-hazm', 'al-shifa'],
+        lat: 24.4833,
+        lng: 46.6667,
+        heroImageKeyword: 'Riyadh housing project',
+        localContext: 'سكن الفواز معروف. نشتري الاثاث من الشقق والفلل في المشروع.',
+        mainStreet: 'طريق ديراب',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.4833, lng: 46.6667 }
     },
     {
         slug: 'al-badr',
-        nameAr: 'حي البدر',
+        nameAr: 'حي بدر',
         nameEn: 'Al-Badr',
         region: 'South',
-        vibe: 'Industrial',
-        housing: 'Old Houses',
-        landmarks: ['Al-Kharj Rd', 'Industrial City 2'],
-        nearbySlugs: ['al-shifa', 'al-aziziyah', 'al-marwah'],
-        lat: 24.5000,
-        lng: 46.7333,
-        heroImageKeyword: 'Riyadh industrial city',
-        localContext: 'حي البدر والمصانع. نشتري سكراب المصانع والشركات والاثاث القديم.'
+        vibe: 'Family',
+        housing: 'Mixed',
+        landmarks: ['Al-Imam Muslim Rd', 'Uhud Park'],
+        nearbySlugs: ['al-shifa', 'al-suwaidi-al-gharb'],
+        lat: 24.5500,
+        lng: 46.6833,
+        heroImageKeyword: 'Riyadh south park',
+        localContext: 'حي بدر حيوي. نشتري الاثاث المستعمل ونقدم خدمة سريعة.',
+        mainStreet: 'شارع الإمام مسلم',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.5500, lng: 46.6833 }
     },
 
     // Central Riyadh
@@ -742,42 +898,51 @@ export const DISTRICTS: District[] = [
         nameAr: 'حي العليا',
         nameEn: 'Al-Olaya',
         region: 'Central',
-        vibe: 'Luxury',
+        vibe: 'Modern',
         housing: 'Mixed',
-        landmarks: ['Kingdom Tower', 'Faisaliah Tower', 'Tahlia St'],
-        nearbySlugs: ['al-sulaimaniyah', 'al-wurud', 'al-malaz'],
+        landmarks: ['Kingdom Centre', 'Al Faisaliah Center', 'Olaya Towers'],
+        nearbySlugs: ['al-sulaimaniyah', 'al-wurud', 'al-mohammadiyah'],
         lat: 24.6833,
         lng: 46.6833,
-        heroImageKeyword: 'Riyadh olaya towers',
-        localContext: 'قلب الرياض النابض. نشتري الاثاث المكتبي من الشركات والاثاث المنزلي من الأبراج السكنية.'
+        heroImageKeyword: 'Riyadh skyline kingdom centre',
+        localContext: 'العليا قلب الرياض النابض. نشتري الاثاث المكتبي والمنزلي الفاخر من الأبراج والعمائر السكنية.',
+        mainStreet: 'طريق الملك فهد',
+        priceTier: 'High',
+        coordinates: { lat: 24.6953, lng: 46.6817 }
     },
     {
         slug: 'al-sulaimaniyah',
         nameAr: 'حي السليمانية',
         nameEn: 'Al-Sulaimaniyah',
         region: 'Central',
-        vibe: 'Luxury',
-        housing: 'Mixed',
-        landmarks: ['Military Hospital', 'Tahlia St'],
-        nearbySlugs: ['al-olaya', 'al-wurud', 'al-malaz'],
+        vibe: 'Modern',
+        housing: 'Apartments',
+        landmarks: ['Tahlia St', 'Military Hospital'],
+        nearbySlugs: ['al-olaya', 'al-malaz', 'al-wurud'],
         lat: 24.7000,
-        lng: 46.7000,
-        heroImageKeyword: 'Riyadh sulaimaniyah restaurants',
-        localContext: 'السليمانية والتحلية. نشتري معدات المطاعم والاثاث المنزلي الفاخر.'
+        lng: 46.7167,
+        heroImageKeyword: 'Riyadh tahlia street',
+        localContext: 'السليمانية حي المطاعم والشركات. نشتري اثاث المطاعم والمكاتب والشقق.',
+        mainStreet: 'شارع التحلية',
+        priceTier: 'High',
+        coordinates: { lat: 24.7000, lng: 46.7167 }
     },
     {
         slug: 'al-wurud',
         nameAr: 'حي الورود',
         nameEn: 'Al-Wurud',
         region: 'Central',
-        vibe: 'Modern',
-        housing: 'Mixed',
+        vibe: 'Family',
+        housing: 'Villas',
         landmarks: ['King Abdullah Rd', 'Olaya St'],
         nearbySlugs: ['al-olaya', 'al-sulaimaniyah', 'al-rahmaniyah'],
         lat: 24.7167,
         lng: 46.6833,
-        heroImageKeyword: 'Riyadh wurud district',
-        localContext: 'حي الورود الحيوي. نصلك بسرعة لشراء الاثاث والمكيفات.'
+        heroImageKeyword: 'Riyadh central villas',
+        localContext: 'الورود حي راقي في الوسط. نشتري الاثاث المنزلي والمكتبي.',
+        mainStreet: 'طريق الملك عبدالله',
+        priceTier: 'High',
+        coordinates: { lat: 24.7167, lng: 46.6833 }
     },
     {
         slug: 'al-malaz',
@@ -786,12 +951,15 @@ export const DISTRICTS: District[] = [
         region: 'Central',
         vibe: 'Historic',
         housing: 'Old Houses',
-        landmarks: ['King Fahd Stadium', 'Riyadh Zoo'],
-        nearbySlugs: ['al-olaya', 'al-dhubbat', 'al-murabba'],
+        landmarks: ['King Fahd Stadium (Old)', 'Riyadh Zoo', 'Prince Faisal bin Fahd Stadium'],
+        nearbySlugs: ['al-dhubbat', 'al-murabba', 'al-sulaimaniyah'],
         lat: 24.6667,
-        lng: 46.7167,
-        heroImageKeyword: 'Riyadh malaz stadium',
-        localContext: 'الملز من أقدم أحياء الرياض. نشتري الاثاث القديم والانتيك والمكيفات.'
+        lng: 46.7333,
+        heroImageKeyword: 'Riyadh zoo area',
+        localContext: 'الملز من أقدم أحياء الرياض الراقية. نشتري الاثاث القديم والتحف والمكتبات.',
+        mainStreet: 'شارع الجامعة',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.6667, lng: 46.7333 }
     },
     {
         slug: 'al-murabba',
@@ -799,27 +967,33 @@ export const DISTRICTS: District[] = [
         nameEn: 'Al-Murabba',
         region: 'Central',
         vibe: 'Historic',
-        housing: 'Old Houses',
+        housing: 'Mixed',
         landmarks: ['King Abdulaziz Historical Center', 'National Museum'],
-        nearbySlugs: ['al-malaz', 'al-futah', 'al-batha'],
+        nearbySlugs: ['al-malaz', 'al-batha', 'al-futah'],
         lat: 24.6500,
-        lng: 46.7000,
-        heroImageKeyword: 'Riyadh historical center',
-        localContext: 'حي المربع التاريخي. نشتري الاثاث من البيوت والدوائر الحكومية المحيطة.'
+        lng: 46.7167,
+        heroImageKeyword: 'Riyadh national museum',
+        localContext: 'المربع مركز تاريخي. نشتري الاثاث من المنطقة المحيطة بالمتحف الوطني.',
+        mainStreet: 'طريق الملك عبدالعزيز',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.6500, lng: 46.7167 }
     },
     {
         slug: 'al-batha',
         nameAr: 'حي البطحاء',
         nameEn: 'Al-Batha',
         region: 'Central',
-        vibe: 'Historic',
+        vibe: 'Industrial',
         housing: 'Old Houses',
         landmarks: ['Batha Market', 'Gold Souq'],
-        nearbySlugs: ['al-murabba', 'manfuha', 'al-oud'],
+        nearbySlugs: ['al-murabba', 'manfuha', 'al-dirah'],
         lat: 24.6333,
         lng: 46.7167,
-        heroImageKeyword: 'Riyadh batha market',
-        localContext: 'سوق البطحاء التجاري. نشتري الاثاث التجاري والمنزلي والسكراب.'
+        heroImageKeyword: 'Riyadh old market',
+        localContext: 'البطحاء سوق تجاري ضخم. نشتري الاثاث المستعمل والسكراب بكميات كبيرة.',
+        mainStreet: 'شارع البطحاء',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.6333, lng: 46.7167 }
     },
     {
         slug: 'manfuha',
@@ -828,26 +1002,32 @@ export const DISTRICTS: District[] = [
         region: 'Central',
         vibe: 'Historic',
         housing: 'Old Houses',
-        landmarks: ['Al-Asha St', 'Manfuha Park'],
-        nearbySlugs: ['al-batha', 'al-yamamah', 'ghubaira'],
+        landmarks: ['Al-Asha Rd', 'Old Manfuha'],
+        nearbySlugs: ['al-batha', 'al-yamamah', 'al-mansourah'],
         lat: 24.6167,
         lng: 46.7167,
-        heroImageKeyword: 'Riyadh old streets',
-        localContext: 'منفوحة القديمة. نشتري الاثاث الشعبي والمكيفات القديمة.'
+        heroImageKeyword: 'Riyadh historic alley',
+        localContext: 'منفوحة حي تاريخي. نشتري الاثاث الشعبي والقديم من البيوت الشعبية.',
+        mainStreet: 'طريق البطحاء',
+        priceTier: 'Standard',
+        coordinates: { lat: 24.6167, lng: 46.7167 }
     },
     {
         slug: 'al-dhubbat',
         nameAr: 'حي الضباط',
         nameEn: 'Al-Dhubbat',
         region: 'Central',
-        vibe: 'Historic',
+        vibe: 'Family',
         housing: 'Mixed',
-        landmarks: ['Officers Club', 'Old Airport Rd'],
-        nearbySlugs: ['al-malaz', 'al-olaya', 'al-sulaimaniyah'],
+        landmarks: ['Security Forces Hospital', 'Old Airport Rd'],
+        nearbySlugs: ['al-malaz', 'al-sulaimaniyah'],
         lat: 24.6833,
-        lng: 46.7167,
-        heroImageKeyword: 'Riyadh dhubbat district',
-        localContext: 'حي الضباط والملز. نشتري الاثاث من الشقق والفلل.'
+        lng: 46.7333,
+        heroImageKeyword: 'Riyadh officers district',
+        localContext: 'حي الضباط موقع استراتيجي. نشتري الاثاث من الشقق والفلل القديمة.',
+        mainStreet: 'طريق المطار القديم',
+        priceTier: 'Mid',
+        coordinates: { lat: 24.6833, lng: 46.7333 }
     },
     {
         slug: 'al-rahmaniyah',
@@ -856,12 +1036,15 @@ export const DISTRICTS: District[] = [
         region: 'Central',
         vibe: 'Luxury',
         housing: 'Villas',
-        landmarks: ['Takhasusi St', 'King Abdullah Rd'],
-        nearbySlugs: ['al-wurud', 'al-mohammadiyah', 'al-raed'],
+        landmarks: ['King Abdullah Rd', 'Takhasusi St'],
+        nearbySlugs: ['al-mohammadiyah', 'al-wurud', 'al-raed'],
         lat: 24.7167,
         lng: 46.6667,
-        heroImageKeyword: 'Riyadh rahmaniyah villas',
-        localContext: 'الرحمانية حي راقي. نشتري الاثاث الفاخر والمجالس الكبيرة.'
+        heroImageKeyword: 'Riyadh luxury central',
+        localContext: 'الرحمانية حي هادئ وراقي. نشتري الاثاث الفاخر والمجالس الكبيرة.',
+        mainStreet: 'طريق التخصصي',
+        priceTier: 'High',
+        coordinates: { lat: 24.7167, lng: 46.6667 }
     },
     {
         slug: 'al-mohammadiyah',
@@ -870,11 +1053,14 @@ export const DISTRICTS: District[] = [
         region: 'Central',
         vibe: 'Luxury',
         housing: 'Villas',
-        landmarks: ['King Abdullah Rd', 'Takhasusi St'],
-        nearbySlugs: ['al-rahmaniyah', 'al-nakheel', 'al-raed'],
+        landmarks: ['King Fahd Rd', 'Takhassusi St'],
+        nearbySlugs: ['al-nakheel', 'al-rahmaniyah', 'al-olaya'],
         lat: 24.7333,
         lng: 46.6500,
-        heroImageKeyword: 'Riyadh mohammadiyah',
-        localContext: 'المحمدية من أرقى الأحياء. نشتري الاثاث المودرن والكلاسيك بأسعار خاصة.'
+        heroImageKeyword: 'Riyadh high class',
+        localContext: 'المحمدية من أرقى الأحياء. نشتري الاثاث الماركات والتحف الثمينة.',
+        mainStreet: 'طريق الملك فهد',
+        priceTier: 'High',
+        coordinates: { lat: 24.7333, lng: 46.6500 }
     }
 ];

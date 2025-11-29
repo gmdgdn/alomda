@@ -8,35 +8,72 @@ import ScrapSection from "../components/home/ScrapSection.astro";
 import LocationsGrid from "../components/home/LocationsGrid";
 import FAQSection from "../components/home/FAQSection.astro";
 import Testimonials from "../components/home/Testimonials.astro";
-import MapEmbed from "../components/ui/MapEmbed.astro";
 import Container from "../components/ui/Container.astro";
 import SafetyGuarantee from "../components/home/SafetyGuarantee.astro";
-import PricingReality from "../components/home/PricingReality.astro";
 import BlogSection from "../components/home/BlogSection.astro";
+import LocationIntelligence from "../components/ui/LocationIntelligence.astro";
+import DynamicPricingTable from "../components/ui/DynamicPricingTable.astro";
 ---
 
 <Layout title="شراء اثاث مستعمل بالرياض | دفع فوري ونقل مجاني">
-  <main>
-    <HeroSection />
-    <IntroSection />
-    <ServicesBento />
-    <HowItWorks />
-    <SafetyGuarantee />
-    <PricingReality />
-    <Testimonials />
-    <ScrapSection />
-    <LocationsGrid client:visible />
-    <div class="py-12 bg-slate-50">
-      <Container>
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl font-bold text-center mb-8 text-slate-900">
-            موقعنا على الخريطة
-          </h2>
-          <MapEmbed query="Riyadh, Saudi Arabia" />
-        </div>
-      </Container>
-    </div>
-    <BlogSection />
-    <FAQSection />
-  </main>
+    <main>
+        <HeroSection />
+        <IntroSection />
+        <ServicesBento />
+        <HowItWorks />
+        <SafetyGuarantee />
+        <Testimonials />
+        <ScrapSection />
+        <LocationsGrid client:visible />
+
+        {/* Location Intelligence (Map) */}
+        <section class="py-16 bg-slate-50 relative overflow-hidden">
+            <div class="absolute inset-0 bg-pattern-islamic opacity-5"></div>
+            <Container className="relative z-10">
+                <div class="text-center mb-12">
+                    <h2
+                        class="text-3xl md:text-4xl font-bold text-emerald-950 mb-4"
+                    >
+                        نصلك أينما كنت في <span
+                            class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-800 to-teal-600"
+                            >الرياض</span
+                        >
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        شبكة واسعة من المندوبين تغطي جميع أحياء الرياض لضمان
+                        سرعة الوصول والخدمة.
+                    </p>
+                </div>
+                <LocationIntelligence
+                    query="Riyadh, Saudi Arabia"
+                    districtName="الرياض"
+                    landmark="جميع الأحياء"
+                />
+            </Container>
+        </section>
+
+        {/* Dynamic Pricing Table */}
+        <section class="py-16 bg-white">
+            <Container>
+                <div class="text-center mb-12">
+                    <h2
+                        class="text-3xl md:text-4xl font-bold text-emerald-950 mb-4"
+                    >
+                        أسعار <span
+                            class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-800 to-teal-600"
+                            >عادلة وشفافة</span
+                        >
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        نقدم أفضل الأسعار في السوق مع ضمان الدفع الفوري والخدمة
+                        المجانية للفك والنقل.
+                    </p>
+                </div>
+                <DynamicPricingTable vibe="Standard" />
+            </Container>
+        </section>
+
+        <BlogSection />
+        <FAQSection />
+    </main>
 </Layout>

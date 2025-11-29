@@ -4,18 +4,25 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
+import partytown from '@astrojs/partytown';
 
 import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
+
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://elomda-sa.com', // Replace with actual domain if available
+  site: 'https://elomda-sa.com',
   output: 'static',
   image: {
     domains: ["images.unsplash.com", "www.transparenttextures.com"],
   },
-  integrations: [react(), sitemap(), mdx()],
+  integrations: [
+    react(),
+    mdx(),
+    partytown({
+      config: { forward: ["dataLayer.push"] }
+    })
+  ],
 
   vite: {
     plugins: [tailwindcss()],

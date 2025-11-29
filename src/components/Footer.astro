@@ -8,8 +8,27 @@ import {
   Facebook,
   Twitter,
   Instagram,
+  Youtube,
+  Linkedin,
 } from "lucide-react";
 import logoWhiteImg from "../assets/branding/elomda-logo-white.png";
+
+// Social Media Links Configuration
+const SOCIAL_LINKS = [
+  { name: "Facebook", icon: Facebook, url: "#", color: "hover:text-blue-500" },
+  {
+    name: "Instagram",
+    icon: Instagram,
+    url: "#",
+    color: "hover:text-pink-500",
+  },
+  { name: "Twitter", icon: Twitter, url: "#", color: "hover:text-sky-500" }, // X
+  { name: "YouTube", icon: Youtube, url: "#", color: "hover:text-red-500" },
+  { name: "LinkedIn", icon: Linkedin, url: "#", color: "hover:text-blue-700" },
+  // For icons not in Lucide (or if we want to use Lucide for all):
+  // We can use generic icons or text if specific ones aren't available, but Lucide usually has them.
+  // Assuming standard Lucide set.
+];
 
 const currentYear = new Date().getFullYear();
 ---
@@ -33,25 +52,18 @@ const currentYear = new Date().getFullYear();
           شركة العمدة هي الشركة الرائدة في الرياض. نتميز عن غيرنا بالمصداقية
           (الأمانة) والسرعة (الإنجاز). لا نكسر الأسعار ولا نتأخر في المواعيد.
         </p>
-        <div class="flex gap-4">
-          <a
-            href="#"
-            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all"
-          >
-            <Facebook className="w-5 h-5" />
-          </a>
-          <a
-            href="#"
-            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all"
-          >
-            <Twitter className="w-5 h-5" />
-          </a>
-          <a
-            href="#"
-            class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-emerald-600 hover:text-white transition-all"
-          >
-            <Instagram className="w-5 h-5" />
-          </a>
+        <div class="flex gap-3 flex-wrap">
+          {
+            SOCIAL_LINKS.map((social) => (
+              <a
+                href={social.url}
+                aria-label={social.name}
+                class={`w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-white transition-all ${social.color}`}
+              >
+                <social.icon className="w-5 h-5" />
+              </a>
+            ))
+          }
         </div>
       </div>
 
@@ -90,7 +102,7 @@ const currentYear = new Date().getFullYear();
           </li>
           <li>
             <a
-              href="#contact"
+              href="/contact"
               class="hover:text-emerald-400 transition-colors flex items-center gap-2"
               ><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>اتصل
               بنا</a
@@ -185,24 +197,29 @@ const currentYear = new Date().getFullYear();
         </h3>
         <div class="grid grid-cols-1 gap-3">
           <a
-            href="/north-riyadh/al-malqa"
+            href="/riyadh"
             class="text-sm text-slate-400 hover:text-emerald-400 transition-colors border-b border-slate-800 pb-2"
-            >شراء اثاث في الملقا</a
+            >كل مناطق الرياض</a
           >
           <a
-            href="/north-riyadh/al-yasmine"
+            href="/riyadh/north-riyadh"
             class="text-sm text-slate-400 hover:text-emerald-400 transition-colors border-b border-slate-800 pb-2"
-            >شراء اثاث في الياسمين</a
+            >شمال الرياض</a
           >
           <a
-            href="/east-riyadh/al-naseem"
+            href="/riyadh/east-riyadh"
             class="text-sm text-slate-400 hover:text-emerald-400 transition-colors border-b border-slate-800 pb-2"
-            >شراء اثاث في النسيم</a
+            >شرق الرياض</a
           >
           <a
-            href="/south-riyadh/al-aziziyah"
+            href="/riyadh/west-riyadh"
             class="text-sm text-slate-400 hover:text-emerald-400 transition-colors border-b border-slate-800 pb-2"
-            >شراء اثاث في العزيزية</a
+            >غرب الرياض</a
+          >
+          <a
+            href="/riyadh/south-riyadh"
+            class="text-sm text-slate-400 hover:text-emerald-400 transition-colors border-b border-slate-800 pb-2"
+            >جنوب الرياض</a
           >
         </div>
       </div>

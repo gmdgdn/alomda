@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+# Block internal search parameters or useless query strings if any
+Disallow: /?*
+
 Sitemap: https://elomda-sa.com/sitemap-index.xml

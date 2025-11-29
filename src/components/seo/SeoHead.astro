@@ -1,5 +1,5 @@
 ---
-import { DISTRICTS } from "../../data/seo-data";
+import { RIYADH_DISTRICTS as DISTRICTS } from "../../data/districts";
 import { SITE_CONFIG } from "../../data/site-config";
 
 interface Props {
@@ -9,9 +9,9 @@ interface Props {
   type?: "website" | "article" | "service";
   district?: {
     nameAr: string;
-    socioEconomic: "High" | "Mid" | "Industrial";
+    vibe: "Luxury" | "Family" | "Industrial" | "Modern" | "New" | "Historic";
     landmarks: string[];
-    housingType: string;
+    housing: "Villas" | "Apartments" | "Old Houses" | "Mixed";
   };
   service?: {
     nameAr: string;
@@ -44,6 +44,7 @@ const ogWideStatic = new URL("/og-wide.jpg", ogSiteUrl).href;
 const ogSquareStatic = new URL("/og-square.jpg", ogSiteUrl).href;
 
 // 3. Determine Primary Image
+// 3. Determine Primary Image
 let primaryImage = ogWideStatic; // Default to branded wide image
 let isStatic = true;
 
@@ -51,25 +52,19 @@ if (propImage) {
   // Manual override
   primaryImage = new URL(propImage, ogSiteUrl).href;
   isStatic = false;
-} else if (Astro.url.pathname === "/" || Astro.url.pathname === "") {
-  // Homepage: ALWAYS use static branded images
+} else {
+  // FORCE STATIC BRANDED IMAGE FOR ALL PAGES
+  // The user requested to apply the custom OG image to the entire website
+  // as dynamic generation was failing or not preferred.
   primaryImage = ogWideStatic;
   isStatic = true;
-} else {
-  // Inner Pages: Try Dynamic, but we can't easily check if it exists during build in SSG without complexity.
-  // For now, we assume dynamic generation works for districts/services.
-  // However, if you want to force static for everything, change this.
-  // We will use dynamic for districts/services to keep the "Buying in Al-Malqa" value.
-  const path = Astro.url.pathname.replace(/^\/|\/$/g, "");
-  primaryImage = new URL(`/og/${path}.png`, ogSiteUrl).href;
-  isStatic = false;
 }
 
 if (district) {
-  // Dynamic Title Logic based on SocioEconomic status
+  // Dynamic Title Logic based on Vibe
   const mainKeyword = "شراء اثاث مستعمل";
   const uniqueValue =
-    district.socioEconomic === "High"
+    district.vibe === "Luxury"
       ? "تقييم عادل وسعر ممتاز"
       : "دفع كاش فوري ونقل مجاني";
 
@@ -79,7 +74,7 @@ if (district) {
 
   // Dynamic Description Logic
   if (!description) {
-    description = `تبيع اثاث في ${district.nameAr}؟ نحن نشتري من ${district.housingType === "Luxury Villa" ? "الفلل والقصور" : "الشقق والمنازل"} بالقرب من ${district.landmarks[0]} لتقييم فوري.`;
+    description = `تبيع اثاث في ${district.nameAr}؟ نحن نشتري من ${district.housing === "Villas" ? "الفلل والقصور" : "الشقق والمنازل"} بالقرب من ${district.landmarks[0]} لتقييم فوري.`;
   }
 }
 
@@ -100,7 +95,8 @@ if (!description)
 
 // --- Schema.org Generation ---
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname.replace(/\/$/, ""), Astro.site)
+  .href;
 const siteUrl = Astro.site
   ? Astro.site.toString()
   : "https://elomda-sa.pages.dev";
@@ -168,7 +164,7 @@ if (Astro.url.pathname === "/") {
     "@type": "LocalBusiness",
     name: "العمدة لشراء الاثاث المستعمل بالرياض",
     image: ogWideStatic,
-    telephone: `+${SITE_CONFIG.whatsapp}`,
+    telephone: "+966530714211",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Riyadh",

@@ -113,6 +113,17 @@ export const DISTRICTS: DistrictInterface[] = [
         localContext: 'حي النرجس هو مستقبل الشمال، يشهد تطوراً عمرانياً متسارعاً.',
         vibe: 'Family',
     },
+    {
+        slug: 'hittin',
+        nameAr: 'حي حطين',
+        region: 'North',
+        housingType: 'Luxury Villa',
+        socioEconomic: 'High',
+        landmarks: ['بوليفارد الرياض', 'طريق الأمير تركي الأول'],
+        urgencyTrigger: 'تجديد القصور',
+        localContext: 'حي حطين هو عنوان الفخامة في الرياض، يضم أرقى القصور والوجهات الترفيهية.',
+        vibe: 'Luxury',
+    },
 
     // East Riyadh (Mid/Mixed)
     {
@@ -168,6 +179,17 @@ export const DISTRICTS: DistrictInterface[] = [
         landmarks: ['استاد الملك فهد', 'طريق الملك عبدالله'],
         urgencyTrigger: 'السفر',
         localContext: 'حي الخليج حي هادئ ومرغوب للسكن، تتوفر فيه كافة الخدمات.',
+        vibe: 'Family',
+    },
+    {
+        slug: 'al-naseem',
+        nameAr: 'حي النسيم',
+        region: 'East',
+        housingType: 'Old Build',
+        socioEconomic: 'Mid',
+        landmarks: ['طريق خريص', 'سوق النسيم'],
+        urgencyTrigger: 'تجديد الاثاث',
+        localContext: 'حي النسيم من أعرق الأحياء. نشتري كميات كبيرة من المكيفات الشباك والمجالس العربية من سكان الحي.',
         vibe: 'Family',
     },
 

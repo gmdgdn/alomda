@@ -1,7 +1,7 @@
 import { Resvg } from '@resvg/resvg-js';
 import satori from 'satori';
 import { html as satoriHtml } from 'satori-html';
-import { DISTRICTS } from '../../data/districts';
+import { RIYADH_DISTRICTS as DISTRICTS } from '../../data/districts';
 import { SERVICE_TEMPLATES } from '../../data/service-content';
 import type { APIRoute } from 'astro';
 

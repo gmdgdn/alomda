@@ -2,3 +2,11 @@
 /about-us /about 301
 # Catch-all for old WordPress blog posts to preserve link juice
 /category/* / 301
+
+# Force non-www to www (or vice versa - choose one strategy)
+# https://www.elomda-sa.com/* https://elomda-sa.com/:splat 301!
+
+# Redirect old common paths if users guess them
+/admin / 301
+/login / 301
+/services / 301

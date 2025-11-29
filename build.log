@@ -1,0 +1,245 @@
+
+> elomda-sa@0.0.1 build
+> astro build
+
+[2m11:59:00[22m [34m[@astrojs/cloudflare][39m Enabling sessions with Cloudflare KV with the "SESSION" KV binding.
+[2m11:59:00[22m [34m[@astrojs/cloudflare][39m If you see the error "Invalid binding `SESSION`" in your build output, you need to add the binding to your wrangler config file.
+[33m[1m11:59:00[22m [WARN] [adapter][39m Cloudflare does not support sharp at runtime. However, you can configure `imageService: "compile"` to optimize images with sharp on prerendered pages during build time.
+[2m11:59:01[22m [34m[content][39m Syncing content
+[2m11:59:01[22m [34m[content][39m Synced content
+[2m11:59:01[22m [34m[types][39m Generated [2m651ms[22m
+[2m11:59:01[22m [34m[build][39m output: [34m"static"[39m
+[2m11:59:01[22m [34m[build][39m mode: [34m"server"[39m
+[2m11:59:01[22m [34m[build][39m directory: [34mE:\Eslam Builds\alomda-sa\dist\[39m
+[2m11:59:01[22m [34m[build][39m adapter: [32m@astrojs/cloudflare[39m
+[2m11:59:01[22m [34m[build][39m Collecting build info...
+[2m11:59:01[22m [34m[build][39m [32mÔ£ô Completed in 685ms.[39m
+[2m11:59:01[22m [34m[build][39m Building server entrypoints...
+[2m11:59:09[22m [34m[vite][39m [32mÔ£ô built in 7.80s[39m
+[2m11:59:09[22m [34m[build][39m [32mÔ£ô Completed in 7.85s.[39m
+
+[42m[30m building client (vite) [39m[49m
+[2m11:59:09[22m [34m[vite][39m transforming...
+[2m11:59:12[22m [34m[vite][39m [32mÔ£ô[39m 1690 modules transformed.
+[2m11:59:12[22m [34m[vite][39m rendering chunks...
+[2m11:59:12[22m [34m[vite][39m computing gzip size...
+[2m11:59:12[22m [34m[vite][39m [2mdist/[22m[36m_astro/StickyActionBar.BvgAfDre.js   [39m[1m[2m  2.12 kB[22m[1m[22m[2m Ôöé gzip:  1.02 kB[22m
+[2m11:59:12[22m [34m[vite][39m [2mdist/[22m[36m_astro/createLucideIcon.BqSU75wd.js  [39m[1m[2m  2.57 kB[22m[1m[22m[2m Ôöé gzip:  1.13 kB[22m
+[2m11:59:12[22m [34m[vite][39m [2mdist/[22m[36m_astro/index.Cd_vQiNd.js             [39m[1m[2m  7.85 kB[22m[1m[22m[2m Ôöé gzip:  3.05 kB[22m
+[2m11:59:12[22m [34m[vite][39m [2mdist/[22m[36m_astro/LocationsGrid.CswUJg4K.js     [39m[1m[2m 29.67 kB[22m[1m[22m[2m Ôöé gzip:  7.67 kB[22m
+[2m11:59:12[22m [34m[vite][39m [2mdist/[22m[36m_astro/client.BLUn-lwI.js            [39m[1m[2m186.62 kB[22m[1m[22m[2m Ôöé gzip: 58.54 kB[22m
+[2m11:59:12[22m [34m[vite][39m [32mÔ£ô built in 3.20s[39m
+
+[42m[30m prerendering static routes [39m[49m
+[2m11:59:12[22m [32mÔûÂ[39m src/pages/404.astro
+[2m11:59:12[22m   [34mÔööÔöÇ[39m [2m/404.html[22m [2m(+60ms)[22m 
+[2m11:59:12[22m [32mÔûÂ[39m src/pages/about.astro
+[2m11:59:12[22m   [34mÔööÔöÇ[39m [2m/about/index.html[22m [2m(+12ms)[22m 
+[2m11:59:12[22m [32mÔûÂ[39m src/pages/blog/tag/[tag].astro
+[2m11:59:12[22m   [34mÔö£ÔöÇ[39m [2m/blog/tag/┘à┘â┘è┘üÏºÏ¬/index.html[22m [2m(+142ms)[22m 
+[2m11:59:12[22m   [34mÔö£ÔöÇ[39m [2m/blog/tag/Ï│┘âÏ▒ÏºÏ¿/index.html[22m [2m(+69ms)[22m 
+[2m11:59:12[22m   [34mÔö£ÔöÇ[39m [2m/blog/tag/┘åÏÁÏºÏªÏ¡/index.html[22m [2m(+361ms)[22m 
+[2m11:59:13[22m   [34mÔö£ÔöÇ[39m [2m/blog/tag/Ï¬Ï│Ï╣┘èÏ▒ Ïº┘äÏºÏ½ÏºÏ½/index.html[22m [2m(+40ms)[22m 
+[2m11:59:13[22m   [34mÔö£ÔöÇ[39m [2m/blog/tag/Ï»┘ä┘è┘ä/index.html[22m [2m(+55ms)[22m 
+[2m11:59:13[22m   [34mÔö£ÔöÇ[39m [2m/blog/tag/┘å┘é┘ä Ï╣┘üÏ┤/index.html[22m [2m(+44ms)[22m 
+[2m11:59:13[22m   [34mÔö£ÔöÇ[39m [2m/blog/tag/Ï¡┘é┘è┘å Ïº┘äÏ▒┘èÏºÏÂ/index.html[22m [2m(+58ms)[22m 
+[2m11:59:13[22m   [34mÔööÔöÇ[39m [2m/blog/tag/┘åÏÁÏºÏªÏ¡ Ïº┘äÏº┘åÏ¬┘éÏº┘ä/index.html[22m [2m(+224ms)[22m 
+[2m11:59:13[22m [32mÔûÂ[39m src/pages/blog/index.astro
+[2m11:59:13[22m   [34mÔööÔöÇ[39m [2m/blog/index.html[22m [2m(+498ms)[22m 
+[2m11:59:14[22m [32mÔûÂ[39m src/pages/blog/[...slug].astro
+[2m11:59:14[22m   [34mÔö£ÔöÇ[39m [2m/blog/selling-used-scrap-acs-riyadh/index.html[22m [2m(+167ms)[22m 
+[2m11:59:14[22m   [34mÔö£ÔöÇ[39m [2m/blog/guide-used-furniture-prices-riyadh-2025/index.html[22m [2m(+82ms)[22m 
+[2m11:59:14[22m   [34mÔööÔöÇ[39m [2m/blog/moving-furniture-selling-guide-riyadh/index.html[22m [2m(+132ms)[22m 
+[2m11:59:15[22m [32mÔûÂ[39m src/pages/contact.astro
+[2m11:59:15[22m   [34mÔööÔöÇ[39m [2m/contact/index.html[22m [2m(+54ms)[22m 
+[2m11:59:15[22m [35m╬╗[39m src/pages/og/[...route].png.ts
+[2m11:59:15[22m   [34mÔö£ÔöÇ[39m [2m/og/index.png[22m [31m(+857ms)[39m 
+[2m11:59:16[22m   [34mÔö£ÔöÇ[39m [2m/og/north/al-malqa.png[22m [2m(+471ms)[22m 
+[2m11:59:16[22m   [34mÔö£ÔöÇ[39m [2m/og/north/al-yasmin.png[22m [2m(+399ms)[22m 
+[2m11:59:17[22m   [34mÔö£ÔöÇ[39m [2m/og/north/al-aqiq.png[22m [31m(+627ms)[39m 
+[2m11:59:17[22m   [34mÔö£ÔöÇ[39m [2m/og/north/al-sahafa.png[22m [31m(+558ms)[39m 
+[2m11:59:18[22m   [34mÔö£ÔöÇ[39m [2m/og/north/al-narjis.png[22m [2m(+425ms)[22m 
+[2m11:59:18[22m   [34mÔö£ÔöÇ[39m [2m/og/north/al-arid.png[22m [2m(+423ms)[22m 
+[2m11:59:19[22m   [34mÔö£ÔöÇ[39m [2m/og/north/al-qirawan.png[22m [2m(+360ms)[22m 
+[2m11:59:19[22m   [34mÔö£ÔöÇ[39m [2m/og/north/hittin.png[22m [2m(+499ms)[22m 
+[2m11:59:20[22m   [34mÔö£ÔöÇ[39m [2m/og/north/al-nakheel.png[22m [31m(+518ms)[39m 
+[2m11:59:20[22m   [34mÔö£ÔöÇ[39m [2m/og/north/al-ghadeer.png[22m [31m(+518ms)[39m 
+[2m11:59:21[22m   [34mÔö£ÔöÇ[39m [2m/og/north/al-rabea.png[22m [31m(+771ms)[39m 
+[2m11:59:22[22m   [34mÔö£ÔöÇ[39m [2m/og/north/al-falah.png[22m [31m(+616ms)[39m 
+[2m11:59:22[22m   [34mÔö£ÔöÇ[39m [2m/og/north/al-wady.png[22m [2m(+396ms)[22m 
+[2m11:59:23[22m   [34mÔö£ÔöÇ[39m [2m/og/north/al-nfl.png[22m [31m(+597ms)[39m 
+[2m11:59:23[22m   [34mÔö£ÔöÇ[39m [2m/og/north/al-masif.png[22m [2m(+265ms)[22m 
+[2m11:59:23[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-hamra.png[22m [2m(+334ms)[22m 
+[2m11:59:24[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-yarmuk.png[22m [2m(+243ms)[22m 
+[2m11:59:24[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-munsiyah.png[22m [2m(+245ms)[22m 
+[2m11:59:24[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-rawdah.png[22m [2m(+313ms)[22m 
+[2m11:59:25[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-khaleej.png[22m [2m(+276ms)[22m 
+[2m11:59:25[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-qurtubah.png[22m [2m(+253ms)[22m 
+[2m11:59:25[22m   [34mÔö£ÔöÇ[39m [2m/og/east/ghirnatah.png[22m [2m(+296ms)[22m 
+[2m11:59:25[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-shuhada.png[22m [2m(+246ms)[22m 
+[2m11:59:26[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-izdiher.png[22m [2m(+238ms)[22m 
+[2m11:59:26[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-taawun.png[22m [2m(+310ms)[22m 
+[2m11:59:26[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-ishbiliyah.png[22m [2m(+309ms)[22m 
+[2m11:59:26[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-qadisiyah.png[22m [2m(+347ms)[22m 
+[2m11:59:27[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-remal.png[22m [2m(+361ms)[22m 
+[2m11:59:27[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-andalus.png[22m [2m(+284ms)[22m 
+[2m11:59:27[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-nahda.png[22m [2m(+332ms)[22m 
+[2m11:59:28[22m   [34mÔö£ÔöÇ[39m [2m/og/east/al-naseem.png[22m [2m(+359ms)[22m 
+[2m11:59:28[22m   [34mÔö£ÔöÇ[39m [2m/og/west/al-laban.png[22m [2m(+319ms)[22m 
+[2m11:59:28[22m   [34mÔö£ÔöÇ[39m [2m/og/west/al-mahdiyah.png[22m [2m(+411ms)[22m 
+[2m11:59:29[22m   [34mÔö£ÔöÇ[39m [2m/og/west/al-suwaidi.png[22m [2m(+410ms)[22m 
+[2m11:59:29[22m   [34mÔö£ÔöÇ[39m [2m/og/west/al-badiah.png[22m [2m(+368ms)[22m 
+[2m11:59:30[22m   [34mÔö£ÔöÇ[39m [2m/og/west/dhahrat-al-badiah.png[22m [2m(+376ms)[22m 
+[2m11:59:30[22m   [34mÔö£ÔöÇ[39m [2m/og/west/al-arija.png[22m [2m(+359ms)[22m 
+[2m11:59:30[22m   [34mÔö£ÔöÇ[39m [2m/og/west/dhahrat-al-laban.png[22m [2m(+331ms)[22m 
+[2m11:59:31[22m   [34mÔö£ÔöÇ[39m [2m/og/west/tuwaiq.png[22m [2m(+279ms)[22m 
+[2m11:59:31[22m   [34mÔö£ÔöÇ[39m [2m/og/west/al-khuzama.png[22m [2m(+337ms)[22m 
+[2m11:59:31[22m   [34mÔö£ÔöÇ[39m [2m/og/west/al-raed.png[22m [2m(+302ms)[22m 
+[2m11:59:32[22m   [34mÔö£ÔöÇ[39m [2m/og/south/al-aziziyah.png[22m [2m(+348ms)[22m 
+[2m11:59:32[22m   [34mÔö£ÔöÇ[39m [2m/og/south/al-shifa.png[22m [2m(+283ms)[22m 
+[2m11:59:32[22m   [34mÔö£ÔöÇ[39m [2m/og/south/al-mansourah.png[22m [2m(+330ms)[22m 
+[2m11:59:33[22m   [34mÔö£ÔöÇ[39m [2m/og/south/al-suwaidi-al-gharb.png[22m [2m(+264ms)[22m 
+[2m11:59:33[22m   [34mÔö£ÔöÇ[39m [2m/og/south/nemar.png[22m [2m(+340ms)[22m 
+[2m11:59:33[22m   [34mÔö£ÔöÇ[39m [2m/og/south/al-dar-al-baida.png[22m [2m(+316ms)[22m 
+[2m11:59:34[22m   [34mÔö£ÔöÇ[39m [2m/og/south/al-marwah.png[22m [2m(+310ms)[22m 
+[2m11:59:34[22m   [34mÔö£ÔöÇ[39m [2m/og/south/al-hazm.png[22m [2m(+264ms)[22m 
+[2m11:59:34[22m   [34mÔö£ÔöÇ[39m [2m/og/south/al-fawaz.png[22m [2m(+337ms)[22m 
+[2m11:59:34[22m   [34mÔö£ÔöÇ[39m [2m/og/south/al-badr.png[22m [2m(+343ms)[22m 
+[2m11:59:35[22m   [34mÔö£ÔöÇ[39m [2m/og/central/al-olaya.png[22m [2m(+293ms)[22m 
+[2m11:59:35[22m   [34mÔö£ÔöÇ[39m [2m/og/central/al-sulaimaniyah.png[22m [2m(+308ms)[22m 
+[2m11:59:35[22m   [34mÔö£ÔöÇ[39m [2m/og/central/al-wurud.png[22m [2m(+276ms)[22m 
+[2m11:59:36[22m   [34mÔö£ÔöÇ[39m [2m/og/central/al-malaz.png[22m [2m(+373ms)[22m 
+[2m11:59:36[22m   [34mÔö£ÔöÇ[39m [2m/og/central/al-murabba.png[22m [2m(+321ms)[22m 
+[2m11:59:36[22m   [34mÔö£ÔöÇ[39m [2m/og/central/al-batha.png[22m [2m(+295ms)[22m 
+[2m11:59:37[22m   [34mÔö£ÔöÇ[39m [2m/og/central/manfuha.png[22m [2m(+272ms)[22m 
+[2m11:59:37[22m   [34mÔö£ÔöÇ[39m [2m/og/central/al-dhubbat.png[22m [2m(+246ms)[22m 
+[2m11:59:37[22m   [34mÔö£ÔöÇ[39m [2m/og/central/al-rahmaniyah.png[22m [2m(+263ms)[22m 
+[2m11:59:37[22m   [34mÔö£ÔöÇ[39m [2m/og/central/al-mohammadiyah.png[22m [2m(+264ms)[22m 
+[2m11:59:38[22m   [34mÔö£ÔöÇ[39m [2m/og/services/used-appliances.png[22m [2m(+246ms)[22m 
+[2m11:59:38[22m   [34mÔö£ÔöÇ[39m [2m/og/services/used-acs.png[22m [2m(+232ms)[22m 
+[2m11:59:38[22m   [34mÔö£ÔöÇ[39m [2m/og/services/used-bedrooms.png[22m [2m(+283ms)[22m 
+[2m11:59:38[22m   [34mÔö£ÔöÇ[39m [2m/og/services/used-kitchens.png[22m [2m(+267ms)[22m 
+[2m11:59:39[22m   [34mÔö£ÔöÇ[39m [2m/og/services/used-kitchen-equipment.png[22m [2m(+250ms)[22m 
+[2m11:59:39[22m   [34mÔö£ÔöÇ[39m [2m/og/services/used-majlis.png[22m [2m(+248ms)[22m 
+[2m11:59:39[22m   [34mÔö£ÔöÇ[39m [2m/og/services/used-office-furniture.png[22m [2m(+231ms)[22m 
+[2m11:59:39[22m   [34mÔö£ÔöÇ[39m [2m/og/services/villa-furniture.png[22m [2m(+220ms)[22m 
+[2m11:59:40[22m   [34mÔö£ÔöÇ[39m [2m/og/services/general-furniture.png[22m [2m(+293ms)[22m 
+[2m11:59:40[22m   [34mÔööÔöÇ[39m [2m/og/services/furniture-moving.png[22m [2m(+325ms)[22m 
+[2m11:59:40[22m [32mÔûÂ[39m src/pages/privacy.astro
+[2m11:59:40[22m   [34mÔööÔöÇ[39m [2m/privacy/index.html[22m [2m(+13ms)[22m 
+[2m11:59:40[22m [32mÔûÂ[39m src/pages/riyadh/[region]/[district].astro
+[2m11:59:40[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/al-malqa/index.html[22m [2m(+23ms)[22m 
+[2m11:59:40[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/al-yasmin/index.html[22m [2m(+14ms)[22m 
+[2m11:59:40[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/al-aqiq/index.html[22m [2m(+17ms)[22m 
+[2m11:59:40[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/al-sahafa/index.html[22m [2m(+17ms)[22m 
+[2m11:59:40[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/al-narjis/index.html[22m [2m(+17ms)[22m 
+[2m11:59:40[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/al-arid/index.html[22m [2m(+14ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/al-qirawan/index.html[22m [2m(+17ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/hittin/index.html[22m [2m(+17ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/al-nakheel/index.html[22m [2m(+15ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/al-ghadeer/index.html[22m [2m(+16ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/al-rabea/index.html[22m [2m(+19ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/al-falah/index.html[22m [2m(+18ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/al-wady/index.html[22m [2m(+18ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/al-nfl/index.html[22m [2m(+16ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/al-masif/index.html[22m [2m(+16ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-hamra/index.html[22m [2m(+18ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-yarmuk/index.html[22m [2m(+14ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-munsiyah/index.html[22m [2m(+14ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-rawdah/index.html[22m [2m(+15ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-khaleej/index.html[22m [2m(+12ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-qurtubah/index.html[22m [2m(+13ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/ghirnatah/index.html[22m [2m(+24ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-shuhada/index.html[22m [2m(+16ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-izdiher/index.html[22m [2m(+15ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-taawun/index.html[22m [2m(+12ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-ishbiliyah/index.html[22m [2m(+25ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-qadisiyah/index.html[22m [2m(+20ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-remal/index.html[22m [2m(+17ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-andalus/index.html[22m [2m(+14ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-nahda/index.html[22m [2m(+27ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/al-naseem/index.html[22m [2m(+20ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/west-riyadh/al-laban/index.html[22m [2m(+30ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/west-riyadh/al-mahdiyah/index.html[22m [2m(+13ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/west-riyadh/al-suwaidi/index.html[22m [2m(+20ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/west-riyadh/al-badiah/index.html[22m [2m(+20ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/west-riyadh/dhahrat-al-badiah/index.html[22m [2m(+13ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/west-riyadh/al-arija/index.html[22m [2m(+11ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/west-riyadh/dhahrat-al-laban/index.html[22m [2m(+16ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/west-riyadh/tuwaiq/index.html[22m [2m(+24ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/west-riyadh/al-khuzama/index.html[22m [2m(+19ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/west-riyadh/al-raed/index.html[22m [2m(+19ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/south-riyadh/al-aziziyah/index.html[22m [2m(+23ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/south-riyadh/al-shifa/index.html[22m [2m(+16ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/south-riyadh/al-mansourah/index.html[22m [2m(+14ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/south-riyadh/al-suwaidi-al-gharb/index.html[22m [2m(+11ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/south-riyadh/nemar/index.html[22m [2m(+9ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/south-riyadh/al-dar-al-baida/index.html[22m [2m(+12ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/south-riyadh/al-marwah/index.html[22m [2m(+9ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/south-riyadh/al-hazm/index.html[22m [2m(+11ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/south-riyadh/al-fawaz/index.html[22m [2m(+14ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/south-riyadh/al-badr/index.html[22m [2m(+13ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/central-riyadh/al-olaya/index.html[22m [2m(+12ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/central-riyadh/al-sulaimaniyah/index.html[22m [2m(+8ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/central-riyadh/al-wurud/index.html[22m [2m(+15ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/central-riyadh/al-malaz/index.html[22m [2m(+14ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/central-riyadh/al-murabba/index.html[22m [2m(+10ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/central-riyadh/al-batha/index.html[22m [2m(+14ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/central-riyadh/manfuha/index.html[22m [2m(+23ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/central-riyadh/al-dhubbat/index.html[22m [2m(+16ms)[22m 
+[2m11:59:41[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/central-riyadh/al-rahmaniyah/index.html[22m [2m(+9ms)[22m 
+[2m11:59:41[22m   [34mÔööÔöÇ[39m [2m/riyadh/central-riyadh/al-mohammadiyah/index.html[22m [2m(+11ms)[22m 
+[2m11:59:42[22m [32mÔûÂ[39m src/pages/riyadh/[region]/index.astro
+[2m11:59:42[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/north-riyadh/index.html[22m [2m(+27ms)[22m 
+[2m11:59:42[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/south-riyadh/index.html[22m [2m(+16ms)[22m 
+[2m11:59:42[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/east-riyadh/index.html[22m [2m(+12ms)[22m 
+[2m11:59:42[22m   [34mÔö£ÔöÇ[39m [2m/riyadh/west-riyadh/index.html[22m [2m(+14ms)[22m 
+[2m11:59:42[22m   [34mÔööÔöÇ[39m [2m/riyadh/central-riyadh/index.html[22m [2m(+14ms)[22m 
+[2m11:59:42[22m [32mÔûÂ[39m src/pages/riyadh/index.astro
+[2m11:59:42[22m   [34mÔööÔöÇ[39m [2m/riyadh/index.html[22m [2m(+20ms)[22m 
+[2m11:59:42[22m [32mÔûÂ[39m src/pages/services/[slug].astro
+[2m11:59:42[22m   [34mÔö£ÔöÇ[39m [2m/services/used-appliances/index.html[22m [2m(+10ms)[22m 
+[2m11:59:42[22m   [34mÔö£ÔöÇ[39m [2m/services/used-acs/index.html[22m [2m(+10ms)[22m 
+[2m11:59:42[22m   [34mÔö£ÔöÇ[39m [2m/services/used-bedrooms/index.html[22m [2m(+13ms)[22m 
+[2m11:59:42[22m   [34mÔö£ÔöÇ[39m [2m/services/used-kitchens/index.html[22m [2m(+11ms)[22m 
+[2m11:59:42[22m   [34mÔö£ÔöÇ[39m [2m/services/used-kitchen-equipment/index.html[22m [2m(+9ms)[22m 
+[2m11:59:42[22m   [34mÔö£ÔöÇ[39m [2m/services/used-majlis/index.html[22m [2m(+10ms)[22m 
+[2m11:59:42[22m   [34mÔö£ÔöÇ[39m [2m/services/used-office-furniture/index.html[22m [2m(+8ms)[22m 
+[2m11:59:42[22m   [34mÔö£ÔöÇ[39m [2m/services/villa-furniture/index.html[22m [2m(+11ms)[22m 
+[2m11:59:42[22m   [34mÔö£ÔöÇ[39m [2m/services/general-furniture/index.html[22m [2m(+9ms)[22m 
+[2m11:59:42[22m   [34mÔööÔöÇ[39m [2m/services/furniture-moving/index.html[22m [2m(+10ms)[22m 
+[2m11:59:42[22m [32mÔûÂ[39m src/pages/services/index.astro
+[2m11:59:42[22m   [34mÔööÔöÇ[39m [2m/services/index.html[22m [2m(+10ms)[22m 
+[2m11:59:42[22m [32mÔûÂ[39m src/pages/terms.astro
+[2m11:59:42[22m   [34mÔööÔöÇ[39m [2m/terms/index.html[22m [2m(+7ms)[22m 
+[2m11:59:42[22m [32mÔûÂ[39m src/pages/index.astro
+[2m11:59:42[22m   [34mÔööÔöÇ[39m [2m/index.html[22m [2m(+24ms)[22m 
+[2m11:59:42[22m [32mÔ£ô Completed in 30.18s.
+[39m
+[42m[30m generating optimized images [39m[49m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/acs-cover.CelOpGXC_JAI1C.webp [2m(reused cache entry)[22m [2m(+2ms)[22m [2m(1/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/elomda-logo-white.S2Y25w0T_Z60ABH.webp [2m(reused cache entry)[22m [2m(+20ms)[22m [2m(2/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/elomda-logo.W7G7Ha6E_1NiHtM.webp [2m(reused cache entry)[22m [2m(+30ms)[22m [2m(3/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/hero-villa.CLqO7qab_6tNcd.webp [2m(reused cache entry)[22m [2m(+48ms)[22m [2m(4/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/appliances-cover.BHCrcv0g_1xkz7V.webp [2m(reused cache entry)[22m [2m(+59ms)[22m [2m(5/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/kitchen-cover.CcFg68-p_I6pU9.webp [2m(reused cache entry)[22m [2m(+69ms)[22m [2m(6/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/service-majlis.CdX0g4W5_5Eorq.webp [2m(reused cache entry)[22m [2m(+72ms)[22m [2m(7/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/bedroom-cover.BEnT4dpD_Z5RJM2.webp [2m(reused cache entry)[22m [2m(+75ms)[22m [2m(8/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/appliances-cover.BHCrcv0g_vwoV5.webp [2m(reused cache entry)[22m [2m(+68ms)[22m [2m(9/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/acs-cover.CelOpGXC_Z1I5pVO.webp [2m(reused cache entry)[22m [2m(+147ms)[22m [2m(10/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/furniture-moving.3TvXx1KJ_1q5zdh.webp [2m(reused cache entry)[22m [2m(+145ms)[22m [2m(11/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/photo-1556228453-efd6c1ff04f6_2f2FzA.webp [2m(reused cache entry)[22m [2m(+159ms)[22m [2m(12/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/kitchen-cover.CcFg68-p_MxIlg.webp [2m(reused cache entry)[22m [2m(+145ms)[22m [2m(13/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/service-majlis.CdX0g4W5_26RyUH.webp [2m(reused cache entry)[22m [2m(+145ms)[22m [2m(14/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/bedroom-cover.BEnT4dpD_1voqWN.webp [2m(reused cache entry)[22m [2m(+150ms)[22m [2m(15/20)[22m
+[2m11:59:42[22m   [32mÔûÂ[39m /_astro/kitchen-cover.CcFg68-p_ZK8eOG.webp [2m(reused cache entry)[22m [2m(+21ms)[22m [2m(16/20)[22m
+[2m11:59:43[22m   [32mÔûÂ[39m /_astro/service-majlis.CdX0g4W5_1vgo2X.webp [2m(reused cache entry)[22m [2m(+28ms)[22m [2m(17/20)[22m
+[2m11:59:43[22m   [32mÔûÂ[39m /_astro/acs-cover.CelOpGXC_ZO6N4k.webp [2m(reused cache entry)[22m [2m(+111ms)[22m [2m(18/20)[22m
+[2m11:59:43[22m   [32mÔûÂ[39m /_astro/appliances-cover.BHCrcv0g_3lmL.webp [2m(reused cache entry)[22m [2m(+140ms)[22m [2m(19/20)[22m
+[2m11:59:43[22m   [32mÔûÂ[39m /_astro/bedroom-cover.BEnT4dpD_1gB3J9.webp [2m(reused cache entry)[22m [2m(+121ms)[22m [2m(20/20)[22m
+[2m11:59:43[22m [32mÔ£ô Completed in 349ms.
+[39m
+[2m11:59:43[22m [34m[build][39m Rearranging server assets...
+[2m11:59:43[22m [34m[@astrojs/sitemap][39m `sitemap-index.xml` created at `dist`
+[2m11:59:43[22m [34m[build][39m Server built in [1m42.62s[22m
+[2m11:59:43[22m [34m[build][39m [1mComplete![22m

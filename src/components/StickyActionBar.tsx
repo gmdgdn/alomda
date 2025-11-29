@@ -5,33 +5,28 @@ import { SITE_CONFIG } from '../data/site-config';
 export default function StickyActionBar() {
     return (
         <div
-            className="fixed bottom-4 left-4 right-4 z-50 md:hidden animate-fade-up"
+            className="fixed bottom-6 left-0 right-0 z-50 md:hidden flex justify-between px-6 pointer-events-none"
         >
-            <div className="glass-card rounded-2xl p-2 flex items-center justify-between gap-3 shadow-2xl border border-white/40">
-                {/* Call Button */}
-                <a
-                    href={`tel:${SITE_CONFIG.phone}`}
-                    aria-label="اتصل بنا الآن"
-                    className="track-call flex-1 flex items-center justify-center gap-2 bg-brand-primary text-white py-3 rounded-xl font-bold shadow-lg shadow-brand-primary/20 active:scale-95 transition-transform"
-                >
-                    <Phone className="w-5 h-5" />
-                    <span>اتصل الآن</span>
-                </a>
+            {/* Call Button (Left) */}
+            <a
+                href={`tel:${SITE_CONFIG.phone}`}
+                aria-label="اتصل بنا الآن"
+                className="pointer-events-auto w-16 h-16 rounded-full bg-gradient-to-br from-brand-primary to-emerald-700 text-white flex items-center justify-center shadow-xl shadow-brand-primary/40 border-2 border-white/20 animate-bounce-slow hover:scale-110 transition-transform active:scale-95"
+            >
+                <Phone className="w-8 h-8" />
+            </a>
 
-                {/* WhatsApp Button */}
-                <a
-                    href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="تواصل معنا عبر واتساب"
-                    className="track-whatsapp flex-1 flex items-center justify-center gap-2 bg-emerald-600 text-white py-3 rounded-xl font-bold shadow-lg shadow-emerald-600/20 active:scale-95 transition-transform relative overflow-hidden"
-                >
-                    <div className="absolute top-0 right-0 w-3 h-3 bg-green-400 rounded-full animate-ping"></div>
-                    <div className="absolute top-1 right-1 w-2 h-2 bg-green-400 rounded-full"></div>
-                    <MessageCircle className="w-5 h-5" />
-                    <span>واتساب</span>
-                </a>
-            </div>
+            {/* WhatsApp Button (Right) */}
+            <a
+                href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="تواصل معنا عبر واتساب"
+                className="pointer-events-auto w-16 h-16 rounded-full bg-gradient-to-br from-[#25D366] to-[#128C7E] text-white flex items-center justify-center shadow-xl shadow-[#25D366]/40 border-2 border-white/20 animate-bounce-slow [animation-delay:150ms] hover:scale-110 transition-transform active:scale-95 relative"
+            >
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white animate-pulse"></div>
+                <MessageCircle className="w-8 h-8" />
+            </a>
         </div>
     );
 }

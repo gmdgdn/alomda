@@ -1,0 +1,85 @@
+---
+import { RIYADH_DISTRICTS } from "../../data/districts";
+
+interface Props {
+    currentRegion: string;
+    currentDistrictSlug: string;
+}
+
+const { currentRegion, currentDistrictSlug } = Astro.props;
+
+// Filter districts: Same region, exclude current district
+const nearbyDistricts = RIYADH_DISTRICTS.filter(
+    (d) => d.region === currentRegion && d.slug !== currentDistrictSlug,
+).slice(0, 10); // Limit to 10
+
+const regionSlug =
+    currentRegion === "North"
+        ? "north-riyadh"
+        : currentRegion === "South"
+          ? "south-riyadh"
+          : currentRegion === "East"
+            ? "east-riyadh"
+            : currentRegion === "West"
+              ? "west-riyadh"
+              : "central-riyadh";
+
+const regionNameAr =
+    currentRegion === "North"
+        ? "شمال الرياض"
+        : currentRegion === "South"
+          ? "جنوب الرياض"
+          : currentRegion === "East"
+            ? "شرق الرياض"
+            : currentRegion === "West"
+              ? "غرب الرياض"
+              : "وسط الرياض";
+---
+
+<section class="bg-slate-50 py-16 border-t border-slate-200">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-10">
+            <h2 class="text-2xl font-bold text-slate-800 mb-2">
+                أحياء مجاورة نخدمها أيضاً
+            </h2>
+            <p class="text-slate-500">
+                نغطي جميع أحياء {regionNameAr} وضواحيها
+            </p>
+        </div>
+
+        <div
+            class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto mb-10"
+        >
+            {
+                nearbyDistricts.map((district) => (
+                    <a
+                        href={`/riyadh/${regionSlug}/${district.slug}`}
+                        class="px-4 py-2 bg-white border border-slate-200 rounded-full text-slate-600 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200 transition-all text-sm font-medium"
+                    >
+                        {district.nameAr}
+                    </a>
+                ))
+            }
+        </div>
+
+        <div class="text-center">
+            <a
+                href={`/riyadh/${regionSlug}`}
+                class="inline-flex items-center gap-2 text-emerald-700 font-bold hover:text-emerald-800 hover:underline underline-offset-4 transition-all"
+            >
+                <span>عرض جميع أحياء {regionNameAr}</span>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 rtl:rotate-180"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                >
+                    <path
+                        fill-rule="evenodd"
+                        d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>

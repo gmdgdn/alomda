@@ -1,0 +1,584 @@
+---
+// Import Region-Based Backgrounds
+import northImg from "../../../assets/images/backgrounds/used-furniture-north-riyadh-alomda-sa.jpeg";
+import southImg from "../../../assets/images/backgrounds/used-furniture-south -riyadh-alomda-sa.jpg";
+import eastImg from "../../../assets/images/backgrounds/used-furniture-east-riyadh-alomda-sa.jpg";
+import westImg from "../../../assets/images/backgrounds/used-furniture-west-riyadh-alomda-sa.jpg";
+import centralImg from "../../../assets/images/backgrounds/used-furniture-riyadh-alomda-sa.webp"; // Using main Riyadh image for Central as fallback/default
+
+import LocationIntelligence from "../../../components/ui/LocationIntelligence.astro";
+import DynamicPricingTable from "../../../components/ui/DynamicPricingTable.astro";
+
+import {
+    MessageCircle,
+    Phone,
+    MapPin,
+    CheckCircle,
+    Clock,
+    Truck,
+    Star,
+    Quote,
+    ShieldCheck,
+    Banknote,
+    Wind,
+    BedDouble,
+    Utensils,
+    Info,
+    ChevronDown,
+} from "lucide-react";
+
+import { RIYADH_DISTRICTS } from "../../../data/districts";
+import { CONTENT_TEMPLATES } from "../../../data/content-dictionaries";
+import {
+    DISTRICT_FAQ_TEMPLATE,
+    AL_OMDA_PROMISE,
+} from "../../../data/global-content";
+import Layout from "../../../layouts/Layout.astro";
+import Container from "../../../components/ui/Container.astro";
+import Breadcrumbs from "../../../components/ui/Breadcrumbs.astro";
+import SeoHead from "../../../components/seo/SeoHead.astro";
+import ServiceAreaList from "../../../components/services/ServiceAreaList.astro";
+import { Image } from "astro:assets";
+import NearbyCompact from "../../../components/ui/NearbyCompact.astro";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+    return RIYADH_DISTRICTS.map((district) => {
+        let regionSlug = district.region.toLowerCase();
+        if (!regionSlug.includes("riyadh")) {
+            regionSlug = `${regionSlug}-riyadh`;
+        }
+
+        return {
+            params: {
+                region: regionSlug,
+                district: district.slug,
+            },
+            props: { district },
+        };
+    });
+}
+
+const { district } = Astro.props;
+
+// --- Helper: Fix "Hayy" Duplication ---
+const districtName = district.nameAr;
+const districtNameNoPrefix = district.nameAr.replace("حي ", "");
+
+// --- Vibe-Based Content Logic ---
+const vibe = district.vibe || "Family";
+const template = CONTENT_TEMPLATES[vibe] || CONTENT_TEMPLATES["Family"];
+
+// Helper to replace placeholders
+const t = (text: string) => text.replace(/{nameAr}/g, districtName);
+
+// Dynamic Hero Image Logic - Region Based
+const heroImage =
+    district.region === "North"
+        ? northImg
+        : district.region === "South"
+          ? southImg
+          : district.region === "East"
+            ? eastImg
+            : district.region === "West"
+              ? westImg
+              : centralImg; // Central uses the main Riyadh image
+
+// Breadcrumb Logic
+const regionSlug = district.region.toLowerCase().includes("riyadh")
+    ? district.region.toLowerCase()
+    : `${district.region.toLowerCase()}-riyadh`;
+
+const breadcrumbItems = [
+    { name: "الرئيسية", url: "/" },
+    { name: "الرياض", url: "/riyadh" },
+    {
+        name:
+            district.region === "North"
+                ? "شمال الرياض"
+                : district.region === "South"
+                  ? "جنوب الرياض"
+                  : district.region === "East"
+                    ? "شرق الرياض"
+                    : district.region === "West"
+                      ? "غرب الرياض"
+                      : "وسط الرياض",
+        url: `/riyadh/${regionSlug}`,
+    },
+    { name: districtName, url: Astro.url.pathname },
+];
+
+// Localized Services Logic with Contextual Text
+const localizedServices = [
+    {
+        title: `شراء مكيفات في ${districtName}`,
+        desc: `نشتري المكيفات السبلت والشباك من سكان ${districtName}. ${vibe === "Industrial" ? "نشتري السكراب بأعلى سعر." : "فك نظيف بدون غبار."}`,
+        icon: Wind,
+        link: "/services/used-acs",
+    },
+    {
+        title: `شراء غرف نوم ${vibe === "Luxury" ? "أمريكية" : ""} في ${districtName}`,
+        desc: `نشتري غرف النوم والمجالس. ${vibe === "Luxury" ? "تقييم خاص لغرف الماستر والاثاث المستورد." : "تفكيك ونقل فوري من الشقق."}`,
+        icon: BedDouble,
+        link: "/services/used-bedrooms",
+    },
+    {
+        title: `شراء مطابخ في ${districtName}`,
+        desc: `متخصصون في فك المطابخ الالمنيوم والخشب في ${districtName}.`,
+        icon: Utensils,
+        link: "/services/used-kitchens",
+    },
+    {
+        title: `نقل عفش من ${districtName}`,
+        desc: `خدمة نقل عفش مخصصة لسكان ${districtName} والمناطق المجاورة.`,
+        icon: Truck,
+        link: "/services/furniture-moving",
+    },
+];
+
+// Pricing Logic
+const basePrices = [
+    { item: "غرف نوم كاملة", range: "500 - 2500 ريال" },
+    { item: "مكيفات سبليت", range: "300 - 800 ريال" },
+    { item: "مجالس وكنب", range: "200 - 1500 ريال" },
+    { item: "مطابخ (متر)", range: "100 - 300 ريال" },
+    { item: "أجهزة كهربائية", range: "100 - 1000 ريال" },
+];
+
+const pricingData = basePrices.map((p) => {
+    if (district.priceTier === "High") {
+        const [min, max] = p.range
+            .replace(/ ريال/g, "")
+            .split(" - ")
+            .map(Number);
+        return {
+            item: p.item,
+            range: `${Math.round(min * 1.2)} - ${Math.round(max * 1.2)} ريال`,
+        };
+    }
+    return p;
+});
+
+// FAQ Schema
+const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: DISTRICT_FAQ_TEMPLATE.map((item) => ({
+        "@type": "Question",
+        name: item.q.replace(/{districtName}/g, districtName),
+        acceptedAnswer: {
+            "@type": "Answer",
+            text: item.a.replace(/{districtName}/g, districtName),
+        },
+    })),
+};
+
+const CONTACT_NUMBER = "0565647753";
+const CONTACT_DISPLAY = "056 564 7753";
+---
+
+<Layout
+    title={`شراء اثاث مستعمل في ${districtName} | اتصل الآن ${CONTACT_DISPLAY}`}
+>
+    <SeoHead district={district} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+    {/* Breadcrumbs */}
+    <Breadcrumbs items={breadcrumbItems} />
+
+    {/* Localized Hero */}
+    <section
+        class="relative bg-slate-900 py-24 text-white overflow-hidden min-h-[60vh] flex items-center"
+    >
+        <div class="absolute inset-0 z-0">
+            <Image
+                src={heroImage}
+                alt={`شراء اثاث مستعمل في ${districtName}`}
+                class="w-full h-full object-cover grayscale-[10%] contrast-110"
+                format="webp"
+            />
+            <div class="absolute inset-0 bg-emerald-950/80 mix-blend-multiply">
+            </div>
+        </div>
+        <div
+            class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent z-10"
+        >
+        </div>
+
+        <Container className="relative z-20">
+            <div class="mx-auto max-w-4xl text-center pt-10">
+                {/* Trust Badge */}
+                <div
+                    class="inline-flex items-center gap-2 bg-emerald-900/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-emerald-500/50 mb-6 animate-fade-in-down text-emerald-100 text-sm font-medium shadow-lg shadow-emerald-900/20"
+                >
+                    <span class="relative flex h-3 w-3">
+                        <span
+                            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+                        ></span>
+                        <span
+                            class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"
+                        ></span>
+                    </span>
+                    <Truck className="w-4 h-4 text-amber-400" />
+                    <span
+                        >3 شاحنات متواجدة الآن في {
+                            district.region === "North"
+                                ? "شمال الرياض"
+                                : district.region === "South"
+                                  ? "جنوب الرياض"
+                                  : district.region === "East"
+                                    ? "شرق الرياض"
+                                    : district.region === "West"
+                                      ? "غرب الرياض"
+                                      : "وسط الرياض"
+                        }</span
+                    >
+                </div>
+
+                <h1
+                    class="mb-6 text-4xl font-extrabold leading-tight sm:text-5xl md:text-6xl animate-fade-in-up text-shadow-lg"
+                >
+                    شراء اثاث مستعمل في <span
+                        class="bg-clip-text text-transparent bg-gradient-to-r from-amber-200 to-amber-400 inline-block px-2"
+                        >{districtName}</span
+                    >
+                </h1>
+
+                <p
+                    class="mb-8 text-xl text-slate-200 leading-relaxed max-w-3xl mx-auto animate-fade-in-up delay-100 font-medium"
+                >
+                    نشتري جميع أنواع الاثاث والمكيفات والأجهزة الكهربائية من
+                    سكان {districtName}.
+                    <span class="block mt-2 text-emerald-300"
+                        >أعلى سعر، دفع كاش، ونقل فوري.</span
+                    >
+                </p>
+
+                <div
+                    class="flex flex-col items-center justify-center gap-4 sm:flex-row animate-fade-in-up delay-200"
+                >
+                    <a
+                        href={`https://wa.me/966${CONTACT_NUMBER.substring(1)}`}
+                        class="track-whatsapp flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-8 py-4 text-lg font-bold text-white transition-all hover:bg-emerald-500 hover:scale-105 hover:shadow-lg hover:shadow-emerald-600/30 sm:w-auto"
+                    >
+                        <MessageCircle className="h-6 w-6" />
+                        أرسل الصور واتساب
+                    </a>
+                    <a
+                        href={`tel:${CONTACT_NUMBER}`}
+                        class="track-call flex w-full items-center justify-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-8 py-4 text-lg font-bold text-white transition-all hover:bg-white/20 hover:scale-105 sm:w-auto"
+                    >
+                        <Phone className="h-6 w-6" />
+                        اتصل للمعاينة
+                    </a>
+                </div>
+            </div>
+        </Container>
+    </section>
+
+    {/* Pricing Table Section */}
+    <section class="py-12 bg-white relative -mt-10 z-30">
+        <Container>
+            <DynamicPricingTable
+                vibe={district.vibe === "Luxury" ? "Luxury" : "Standard"}
+            />
+        </Container>
+    </section>
+
+    {/* Al-Omda Promise (Trust Sandwich Middle) */}
+    <section class="py-16 bg-emerald-950 text-white relative overflow-hidden">
+        <div
+            class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')]"
+        >
+        </div>
+        <Container className="relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-amber-400">
+                    وعد العمدة لسكان {districtName}
+                </h2>
+                <p class="text-emerald-100 text-lg">
+                    لماذا يختار جيرانك التعامل معنا؟
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6 text-center">
+                {
+                    AL_OMDA_PROMISE.map((item) => (
+                        <div class="p-6 border border-emerald-800 rounded-xl bg-emerald-900/50 backdrop-blur hover:bg-emerald-900 transition-colors">
+                            <div class="mb-4 flex justify-center text-amber-400">
+                                <item.icon className="w-10 h-10" />
+                            </div>
+                            <h3 class="font-bold text-xl mb-2">{item.title}</h3>
+                            <p class="text-sm text-emerald-200">{item.desc}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </Container>
+    </section>
+
+    {/* Map Section */}
+    <section class="py-16 bg-slate-50 border-y border-slate-200">
+        <Container>
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">
+                        نصلك في <span
+                            class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-800 to-teal-600"
+                            >{districtName}</span
+                        > خلال 60 دقيقة
+                    </h2>
+                    <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                        لدينا فرق ميدانية موزعة في {
+                            district.region === "North"
+                                ? "شمال"
+                                : district.region === "South"
+                                  ? "جنوب"
+                                  : district.region === "East"
+                                    ? "شرق"
+                                    : district.region === "West"
+                                      ? "غرب"
+                                      : "وسط"
+                        } الرياض. نقطة التجمع الأقرب لحي {districtNameNoPrefix} تقع
+                        بالقرب من <span class="font-bold text-emerald-700"
+                            >{
+                                district.landmarks[1] || district.landmarks[0]
+                            }</span
+                        >.
+                    </p>
+                    <ul class="flex flex-wrap justify-center gap-4 mb-8">
+                        <li
+                            class="flex items-center gap-2 text-slate-700 bg-white px-4 py-2 rounded-full shadow-sm border border-slate-100"
+                        >
+                            <CheckCircle className="w-5 h-5 text-emerald-500" />
+                            <span>معاينة فورية مجانية</span>
+                        </li>
+                        <li
+                            class="flex items-center gap-2 text-slate-700 bg-white px-4 py-2 rounded-full shadow-sm border border-slate-100"
+                        >
+                            <CheckCircle className="w-5 h-5 text-emerald-500" />
+                            <span>سيارات مجهزة لـ {districtName}</span>
+                        </li>
+                        <li
+                            class="flex items-center gap-2 text-slate-700 bg-white px-4 py-2 rounded-full shadow-sm border border-slate-100"
+                        >
+                            <CheckCircle className="w-5 h-5 text-emerald-500" />
+                            <span>عمالة مدربة</span>
+                        </li>
+                    </ul>
+                </div>
+                <LocationIntelligence
+                    query={`${districtName}, Riyadh, Saudi Arabia`}
+                    districtName={districtName}
+                    landmark={district.landmarks[0]}
+                />
+            </div>
+        </Container>
+    </section>
+
+    {/* Main Content Area (Reviews & Details) */}
+    <section class="py-20 bg-white">
+        <Container>
+            <div class="grid gap-12 lg:grid-cols-3">
+                {/* Content Column */}
+                <article class="lg:col-span-2">
+                    <h3 class="mb-6 text-2xl font-bold text-slate-900">
+                        {t(template.valueProp.title)}
+                    </h3>
+                    <ul class="space-y-6 mb-12">
+                        {
+                            template.valueProp.points.map((point) => (
+                                <li class="flex gap-5 group">
+                                    <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm border border-emerald-100">
+                                        <CheckCircle className="h-7 w-7" />
+                                    </div>
+                                    <div>
+                                        <p class="text-slate-700 font-medium text-lg leading-relaxed pt-3">
+                                            {point}
+                                        </p>
+                                    </div>
+                                </li>
+                            ))
+                        }
+                    </ul>
+
+                    {/* Local Review */}
+                    <div
+                        class="bg-amber-50 rounded-3xl p-8 border border-amber-100 mb-12 relative overflow-hidden"
+                    >
+                        <Quote
+                            className="absolute top-6 left-6 w-12 h-12 text-amber-200 opacity-50"
+                        />
+                        <div class="flex gap-1 mb-4">
+                            {
+                                [...Array(5)].map(() => (
+                                    <Star className="w-5 h-5 text-amber-400 fill-amber-400" />
+                                ))
+                            }
+                        </div>
+                        <p
+                            class="text-xl font-medium text-slate-800 mb-4 leading-relaxed relative z-10"
+                        >
+                            "{t(template.review)}"
+                        </p>
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-amber-200 flex items-center justify-center text-amber-800 font-bold"
+                            >
+                                {t(template.reviewer).charAt(0)}
+                            </div>
+                            <span class="font-bold text-slate-600"
+                                >{t(template.reviewer)}</span
+                            >
+                        </div>
+                    </div>
+
+                    {/* FAQ Section (Trust Sandwich Bottom) */}
+                    <div class="mt-16">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-8">
+                            أسئلة شائعة من سكان {districtName}
+                        </h3>
+                        <div class="space-y-4">
+                            {
+                                DISTRICT_FAQ_TEMPLATE.map((faq, idx) => (
+                                    <details class="group bg-slate-50 rounded-xl border border-slate-100 overflow-hidden transition-all duration-300 open:bg-white open:shadow-md open:border-emerald-100">
+                                        <summary class="flex items-center justify-between p-5 cursor-pointer font-bold text-slate-800 list-none select-none">
+                                            <span>
+                                                {faq.q.replace(
+                                                    /{districtName}/g,
+                                                    districtName,
+                                                )}
+                                            </span>
+                                            <ChevronDown className="w-5 h-5 text-slate-400 transition-transform duration-300 group-open:rotate-180 group-open:text-emerald-500" />
+                                        </summary>
+                                        <div class="px-5 pb-5 text-slate-600 leading-relaxed border-t border-slate-100/50 pt-3">
+                                            {faq.a.replace(
+                                                /{districtName}/g,
+                                                districtName,
+                                            )}
+                                        </div>
+                                    </details>
+                                ))
+                            }
+                        </div>
+                    </div>
+                </article>
+
+                {/* Sidebar */}
+                <aside class="relative">
+                    <div
+                        class="rounded-3xl bg-white p-6 border border-slate-100 shadow-lg shadow-slate-200/50 sticky top-24 self-start"
+                    >
+                        <h3
+                            class="mb-6 text-xl font-bold text-slate-900 flex items-center gap-2"
+                        >
+                            <span class="w-1.5 h-6 bg-emerald-500 rounded-full"
+                            ></span>
+                            خدماتنا في {districtNameNoPrefix}
+                        </h3>
+                        <ServiceAreaList
+                            district={districtName}
+                            class="grid-cols-1"
+                        />
+                    </div>
+                </aside>
+            </div>
+        </Container>
+    </section>
+
+    {/* Astonishing CTA */}
+    <section class="py-8 px-4">
+        <Container>
+            <div
+                class="rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden bg-gradient-to-br from-emerald-900 to-slate-900 shadow-2xl"
+            >
+                <div
+                    class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')]"
+                >
+                </div>
+                <div class="relative z-10">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">
+                        تنقل من <span class="text-amber-400"
+                            >{districtName}</span
+                        >؟
+                    </h2>
+                    <p
+                        class="text-xl text-emerald-100 mb-8 max-w-2xl mx-auto leading-relaxed"
+                    >
+                        نخلصك من الاثاث الزائد اليوم. العمدة يضمن لك أعلى سعر،
+                        نقل مجاني، ودفع كاش فوري.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a
+                            href={`tel:${CONTACT_NUMBER}`}
+                            class="relative overflow-hidden bg-amber-400 text-slate-900 font-bold py-4 px-10 rounded-full hover:scale-105 transition-all shadow-[0_0_20px_rgba(251,191,36,0.4)] flex items-center justify-center gap-2 group"
+                        >
+                            <span
+                                class="absolute inset-0 w-full h-full bg-white/30 skew-x-12 -translate-x-full group-hover:animate-shimmer"
+                            ></span>
+                            <Phone className="w-5 h-5 relative z-10" />
+                            <span class="relative z-10"
+                                >اتصل الآن لنصلك فوراً</span
+                            >
+                        </a>
+                        <a
+                            href={`https://wa.me/966${CONTACT_NUMBER.substring(1)}`}
+                            class="bg-emerald-600 border border-emerald-400/30 text-white font-bold py-4 px-10 rounded-full hover:bg-emerald-500 transition-all flex items-center justify-center gap-2"
+                        >
+                            <MessageCircle className="w-5 h-5" />
+                            أرسل الصور واتساب
+                        </a>
+                    </div>
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 text-center max-w-4xl mx-auto"
+                    >
+                        <div
+                            class="bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-white/10 hover:bg-white/10 transition-colors"
+                        >
+                            <div
+                                class="bg-amber-400 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2 text-slate-900"
+                            >
+                                <Banknote className="w-5 h-5" />
+                            </div>
+                            <h3 class="font-bold text-base mb-1">
+                                دفع كاش فوري
+                            </h3>
+                            <p class="text-emerald-100 text-xs">
+                                نستلم وتسلمك فلوسك في نفس اللحظة
+                            </p>
+                        </div>
+                        <div
+                            class="bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-white/10 hover:bg-white/10 transition-colors"
+                        >
+                            <div
+                                class="bg-amber-400 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2 text-slate-900"
+                            >
+                                <Truck className="w-5 h-5" />
+                            </div>
+                            <h3 class="font-bold text-base mb-1">نقل مجاني</h3>
+                            <p class="text-emerald-100 text-xs">
+                                سياراتنا جاهزة لخدمة {districtName}
+                            </p>
+                        </div>
+                        <div
+                            class="bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-white/10 hover:bg-white/10 transition-colors"
+                        >
+                            <div
+                                class="bg-amber-400 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2 text-slate-900"
+                            >
+                                <Clock className="w-5 h-5" />
+                            </div>
+                            <h3 class="font-bold text-base mb-1">
+                                سرعة في التنفيذ
+                            </h3>
+                            <p class="text-emerald-100 text-xs">
+                                نصلك خلال 60 دقيقة من الاتصال
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Container>
+    </section>
+</Layout>

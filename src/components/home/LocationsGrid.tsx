@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin } from 'lucide-react';
-import { DISTRICTS } from '../../data/districts';
+import { RIYADH_DISTRICTS as DISTRICTS } from '../../data/districts';
 
 // Group districts by region
 const districtsByRegion = {
@@ -18,6 +18,13 @@ const regionLabels = {
 };
 
 type RegionKey = keyof typeof districtsByRegion;
+
+const regionSlugMap: Record<RegionKey, string> = {
+    North: 'north-riyadh',
+    East: 'east-riyadh',
+    West: 'west-riyadh',
+    South: 'south-riyadh',
+};
 
 export default function LocationsGrid() {
     const [activeRegion, setActiveRegion] = useState<RegionKey>('North');
@@ -60,7 +67,7 @@ export default function LocationsGrid() {
                     {districtsByRegion[activeRegion].map((district, index) => (
                         <a
                             key={district.slug}
-                            href={`/riyadh/${district.slug}`}
+                            href={`/riyadh/${regionSlugMap[activeRegion]}/${district.slug}`}
                             className="group flex items-center justify-between rounded-2xl bg-white p-5 shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-lg hover:border-emerald-200 hover:-translate-y-1 cursor-pointer block"
                             style={{ animationDelay: `${index * 50}ms` }}
                         >

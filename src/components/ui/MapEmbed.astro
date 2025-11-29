@@ -1,28 +1,53 @@
 ---
 interface Props {
-  query: string; // e.g. "حي الياسمين الرياض"
+  query: string;
 }
 
 const { query } = Astro.props;
-// Use strict URI encoding for Arabic characters
 const encodedQuery = encodeURIComponent(query);
-// Use the output=embed format which is more lenient
-const mapUrl = `https://maps.google.com/maps?q=${encodedQuery}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
 ---
 
-<div class="w-full h-[400px] rounded-xl overflow-hidden shadow-lg border-2 border-slate-100 relative bg-slate-100">
+<div
+  class="w-full h-[400px] rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-slate-100 relative group"
+>
   <iframe
     width="100%"
     height="100%"
-    id="gmap_canvas"
-    src={mapUrl}
     frameborder="0"
-    scrolling="no"
-    marginheight="0"
-    marginwidth="0"
+    style="border:0"
     loading="lazy"
-    title={`Map of ${query}`}
-  ></iframe>
-  <!-- Overlay to prevent mouse trap on scroll -->
-  <div class="absolute inset-0 pointer-events-none border-4 border-emerald-500/20 rounded-xl"></div>
+    allowfullscreen
+    src={`https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodedQuery}`}
+    class="grayscale-[20%] group-hover:grayscale-0 transition-all duration-500"
+  >
+  </iframe>
+  {
+    /* Fallback for no API Key (using simple embed for demo if needed, but sticking to standard structure) */
+  }
+  {
+    /* Note: In a real production environment without an API key, we might use a static map or a direct link. 
+      For this implementation, we assume an API key or use the standard embed format which might require one. 
+      Alternatively, we can use the 'maps?q=' format which sometimes works without a key for simple queries in iframes, 
+      but 'embed/v1/place' is more robust. 
+      
+      Let's use the standard output=embed format which is often free/open for simple usage.
+  */
+  }
 </div>
+
+{
+  /* 
+  Re-writing the iframe src to use the standard embed output which is more commonly used for free embedding 
+  without a strict API key requirement for simple display.
+*/
+}
+<script>
+  const frames = document.querySelectorAll("iframe");
+  frames.forEach((frame) => {
+    if (frame.src.includes("YOUR_API_KEY")) {
+      // Switch to the standard embed format
+      const query = frame.src.split("q=")[1];
+      frame.src = `https://maps.google.com/maps?q=${query}&t=&z=13&ie=UTF8&iwloc=&output=embed`;
+    }
+  });
+</script>
