@@ -13,21 +13,41 @@ import {
 } from "lucide-react";
 import logoWhiteImg from "../assets/branding/elomda-logo-white.png";
 
+import { SITE_CONFIG } from "../data/site-config";
+
 // Social Media Links Configuration
 const SOCIAL_LINKS = [
-  { name: "Facebook", icon: Facebook, url: "#", color: "hover:text-blue-500" },
+  {
+    name: "TikTok",
+    icon: null, // Custom SVG for TikTok
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>`,
+    url: SITE_CONFIG.social.tiktok,
+    color: "hover:text-pink-500",
+  },
+  {
+    name: "Facebook",
+    icon: Facebook,
+    url: SITE_CONFIG.social.facebook,
+    color: "hover:text-blue-500",
+  },
   {
     name: "Instagram",
     icon: Instagram,
-    url: "#",
+    url: SITE_CONFIG.social.instagram,
     color: "hover:text-pink-500",
   },
-  { name: "Twitter", icon: Twitter, url: "#", color: "hover:text-sky-500" }, // X
-  { name: "YouTube", icon: Youtube, url: "#", color: "hover:text-red-500" },
-  { name: "LinkedIn", icon: Linkedin, url: "#", color: "hover:text-blue-700" },
-  // For icons not in Lucide (or if we want to use Lucide for all):
-  // We can use generic icons or text if specific ones aren't available, but Lucide usually has them.
-  // Assuming standard Lucide set.
+  {
+    name: "Twitter",
+    icon: Twitter,
+    url: SITE_CONFIG.social.twitter,
+    color: "hover:text-sky-500",
+  }, // X
+  {
+    name: "LinkedIn",
+    icon: Linkedin,
+    url: SITE_CONFIG.social.linkedin,
+    color: "hover:text-blue-700",
+  },
 ];
 
 const currentYear = new Date().getFullYear();
@@ -58,9 +78,15 @@ const currentYear = new Date().getFullYear();
               <a
                 href={social.url}
                 aria-label={social.name}
+                target="_blank"
+                rel="noopener noreferrer"
                 class={`w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-white transition-all ${social.color}`}
               >
-                <social.icon className="w-5 h-5" />
+                {social.icon ? (
+                  <social.icon className="w-5 h-5" />
+                ) : (
+                  <Fragment set:html={social.svg} />
+                )}
               </a>
             ))
           }

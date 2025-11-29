@@ -8,5 +8,12 @@ export const SITE_CONFIG = {
     description: "شركة العمدة - الخيار الأول في الرياض لبيع الاثاث المستعمل. نشتري المكيفات، غرف النوم، والمطابخ بأعلى الأسعار. خدمة فك ونقل فوري.",
     keywords: ["العمدة للاثاث", "شراء اثاث مستعمل", "حقين الرياض", "شركة العمدة"],
     themeColor: "#059669", // Emerald 600
-    ogImage: "/images/elomda-social-cover.jpg"
+    ogImage: "/images/elomda-social-cover.jpg",
+    social: {
+        tiktok: "https://tiktok.com/@elomdasacom",
+        linkedin: "https://linkedin.com/company/elomdasacom",
+        facebook: "https://facebook.com/elomdasacom",
+        twitter: "https://x.com/elomdasacom",
+        instagram: "https://instagram.com/elomdasacom"
+    }
 };
